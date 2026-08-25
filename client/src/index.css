@@ -125,6 +125,8 @@ button:disabled { cursor: not-allowed; opacity: .42; }
 .word-bank-label { margin: 24px 0 10px; color: #83909b; font-size: 11px; font-weight: 900; letter-spacing: .08em; }
 .word-bank { display: flex; min-height: 43px; flex-wrap: wrap; gap: 12px; }
 .word-tile:nth-child(3n + 2) { border-color: #d3794e; border-radius: 13px 4px 11px 7px; background: #fff6e9; box-shadow: 3px 3px 0 #d3794e; transform:rotate(.65deg); }.word-tile:nth-child(3n) { border-color: #769e99; border-radius: 7px 13px 4px 11px; background: #eef7f5; box-shadow: 3px 3px 0 #769e99; transform:rotate(-.65deg); }
+.word-tile.is-selected { border-color:#b7b5ae; background:#e5e4df; color:#9a9994; box-shadow:2px 2px 0 #cbc9c3; filter:grayscale(1); opacity:.82; transform:none; }
+.word-tile.is-selected::before { background:rgba(190,188,181,.55); }
 .answer-actions { display: flex; justify-content: flex-end; gap: 11px; margin-top: 29px; }
 .secondary-action, .check-action { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 43px; padding: 9px 16px; border-radius: 11px; font-size: 13px; font-weight: 900; cursor: pointer; transition: transform .16s cubic-bezier(.23,1,.32,1), box-shadow .16s ease; }
 .secondary-action { border: 1px solid #d7d0c1; background: #fffdf7; color: #687887; }.check-action { border: 2px solid #18304c; background: #ff6b3d; color: #fffdf7; box-shadow: 4px 4px 0 #18304c; }.check-action:hover { transform: translate(-1px,-2px); box-shadow: 6px 6px 0 #18304c; }

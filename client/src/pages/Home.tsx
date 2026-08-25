@@ -30,6 +30,12 @@ type Question = {
   hint: string;
 };
 
+type WordToken = {
+  id: string;
+  text: string;
+  selected: boolean;
+};
+
 const questions: Question[] = [
   { id: 1, language: "zh", answer: ["我", "喜歡", "吃", "蘋果"], prompt: "把詞語排成一句完整的話。", hint: "誰喜歡做什麼？" },
   { id: 2, language: "zh", answer: ["小狗", "在", "花園", "裡", "跑"], prompt: "把詞語排成一句完整的話。", hint: "先找出誰在動。" },
@@ -92,13 +98,16 @@ const randomize = <T,>(items: T[]) => {
   return copy;
 };
 
+const createWordBank = (answer: string[]) =>
+  randomize(answer.map((text, index) => ({ id: `${text}-${index}-${crypto.randomUUID()}`, text, selected: false })));
+
 const labelFor = (language: Language) => (language === "zh" ? "繁體中文" : "English");
 
 export default function Home() {
   const [questionIndex, setQuestionIndex] = useState(0);
   const [questionOrder, setQuestionOrder] = useState<Question[]>(() => randomize(questions));
-  const [selected, setSelected] = useState<string[]>([]);
-  const [available, setAvailable] = useState<string[]>(() => randomize(questionOrder[0].answer));
+  const [selectedTokenIds, setSelectedTokenIds] = useState<string[]>([]);
+  const [wordBank, setWordBank] = useState<WordToken[]>(() => createWordBank(questionOrder[0].answer));
   const [result, setResult] = useState<"correct" | "incorrect" | null>(null);
   const [showHint, setShowHint] = useState(false);
   const [completed, setCompleted] = useState<number[]>([]);
@@ -111,8 +120,8 @@ export default function Home() {
   const loadQuestion = useCallback((index: number) => {
     const nextQuestion = questionOrder[index];
     setQuestionIndex(index);
-    setSelected([]);
-    setAvailable(randomize(nextQuestion.answer));
+    setSelectedTokenIds([]);
+    setWordBank(createWordBank(nextQuestion.answer));
     setResult(null);
     setShowHint(false);
   }, [questionOrder]);
@@ -121,41 +130,42 @@ export default function Home() {
     const nextOrder = randomize(questions);
     setQuestionOrder(nextOrder);
     setQuestionIndex(0);
-    setSelected([]);
-    setAvailable(randomize(nextOrder[0].answer));
+    setSelectedTokenIds([]);
+    setWordBank(createWordBank(nextOrder[0].answer));
     setResult(null);
     setShowHint(false);
     setCompleted([]);
     toast.success("已清除所有答题记录，新的题目顺序准备好了！");
   };
 
-  const pickWord = (word: string, index: number) => {
+  const pickWord = (tokenId: string) => {
     if (result === "correct") return;
-    setSelected((current) => [...current, word]);
-    setAvailable((current) => current.filter((_, currentIndex) => currentIndex !== index));
+    setSelectedTokenIds((current) => [...current, tokenId]);
+    setWordBank((current) => current.map((token) => token.id === tokenId ? { ...token, selected: true } : token));
     setResult(null);
   };
 
-  const removeWord = (word: string, index: number) => {
+  const removeWord = (tokenId: string) => {
     if (result === "correct") return;
-    setAvailable((current) => [...current, word]);
-    setSelected((current) => current.filter((_, currentIndex) => currentIndex !== index));
+    setWordBank((current) => current.map((token) => token.id === tokenId ? { ...token, selected: false } : token));
+    setSelectedTokenIds((current) => current.filter((currentTokenId) => currentTokenId !== tokenId));
     setResult(null);
   };
 
   const clearSentence = () => {
     if (result === "correct") return;
-    setAvailable((current) => randomize([...current, ...selected]));
-    setSelected([]);
+    setWordBank((current) => current.map((token) => ({ ...token, selected: false })));
+    setSelectedTokenIds([]);
     setResult(null);
   };
 
   const checkAnswer = () => {
-    if (selected.length !== question.answer.length) {
+    if (selectedTokenIds.length !== question.answer.length) {
       toast.message(language === "zh" ? "還有詞語在下面，快把它們放進句子裡。" : "There are still words waiting below.");
       return;
     }
-    const isCorrect = selected.every((word, index) => word === question.answer[index]);
+    const selectedWords = selectedTokenIds.map((tokenId) => wordBank.find((token) => token.id === tokenId)?.text ?? "");
+    const isCorrect = selectedWords.every((word, index) => word === question.answer[index]);
     setResult(isCorrect ? "correct" : "incorrect");
     if (isCorrect) {
       setCompleted((current) => (current.includes(question.id) ? current : [...current, question.id]));
@@ -233,9 +243,9 @@ export default function Home() {
             <div className="task-topline"><span>任務 {String(questionNumber).padStart(2, "0")}</span><button onClick={() => setShowHint((current) => !current)}><CircleHelp size={17} /> 想一想</button></div>
             <p className="instruction">{question.prompt}</p>
 
-            <div className="sentence-zone-label"><span>我的句子軌道</span><button onClick={clearSentence} disabled={selected.length === 0 || result === "correct"}><Eraser size={15} /> 清空</button></div>
-            <div className={`sentence-zone ${selected.length === 0 ? "is-empty" : ""}`}>
-              {selected.length === 0 ? <span>{language === "zh" ? "點一下下面的詞語卡，開始排句子吧！" : "Tap the word cards to build your sentence."}</span> : selected.map((word, index) => <motion.button key={`${word}-${index}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.12 }} onClick={() => removeWord(word, index)} className="selected-word">{word}<X size={14} /></motion.button>)}
+            <div className="sentence-zone-label"><span>我的句子軌道</span><button onClick={clearSentence} disabled={selectedTokenIds.length === 0 || result === "correct"}><Eraser size={15} /> 清空</button></div>
+            <div className={`sentence-zone ${selectedTokenIds.length === 0 ? "is-empty" : ""}`}>
+              {selectedTokenIds.length === 0 ? <span>{language === "zh" ? "點一下下面的詞語卡，開始排句子吧！" : "Tap the word cards to build your sentence."}</span> : selectedTokenIds.map((tokenId) => { const token = wordBank.find((item) => item.id === tokenId); return token ? <motion.button key={token.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.12 }} onClick={() => removeWord(token.id)} className="selected-word">{token.text}<X size={14} /></motion.button> : null; })}
             </div>
 
             <AnimatePresence>
@@ -244,9 +254,7 @@ export default function Home() {
 
             <div className="word-bank-label">還沒有上軌道的詞語</div>
             <div className="word-bank">
-              <AnimatePresence initial={false}>
-                {available.map((word, index) => <motion.button key={`${word}-${index}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.12 }} onClick={() => pickWord(word, index)} className="word-tile">{word}</motion.button>)}
-              </AnimatePresence>
+              {wordBank.map((token) => <button key={token.id} disabled={token.selected} onClick={() => pickWord(token.id)} className={`word-tile ${token.selected ? "is-selected" : ""}`}>{token.text}</button>)}
             </div>
 
             <div className="answer-actions">
