@@ -236,7 +236,7 @@ export default function Home() {
 
             <div className="sentence-zone-label"><span>我的句子軌道</span><button onClick={clearSentence} disabled={selected.length === 0 || result === "correct"}><Eraser size={15} /> 清空</button></div>
             <div className={`sentence-zone ${selected.length === 0 ? "is-empty" : ""}`}>
-              {selected.length === 0 ? <span>{language === "zh" ? "點一下下面的詞語卡，開始排句子吧！" : "Tap the word cards to build your sentence."}</span> : selected.map((word, index) => <motion.button layout key={`${word}-${index}`} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} onClick={() => removeWord(word, index)} className="selected-word">{word}<X size={14} /></motion.button>)}
+              {selected.length === 0 ? <span>{language === "zh" ? "點一下下面的詞語卡，開始排句子吧！" : "Tap the word cards to build your sentence."}</span> : selected.map((word, index) => <motion.button key={`${word}-${index}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.12 }} onClick={() => removeWord(word, index)} className="selected-word">{word}<X size={14} /></motion.button>)}
             </div>
 
             <AnimatePresence>
@@ -246,7 +246,7 @@ export default function Home() {
             <div className="word-bank-label">還沒有上軌道的詞語</div>
             <div className="word-bank">
               <AnimatePresence initial={false}>
-                {available.map((word, index) => <motion.button layout key={`${word}-${index}`} initial={{ opacity: 0, scale: 0.94 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.94 }} onClick={() => pickWord(word, index)} className="word-tile">{word}</motion.button>)}
+                {available.map((word, index) => <motion.button key={`${word}-${index}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.12 }} onClick={() => pickWord(word, index)} className="word-tile">{word}</motion.button>)}
               </AnimatePresence>
             </div>
 

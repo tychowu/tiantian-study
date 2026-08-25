@@ -45,7 +45,7 @@ button:disabled { cursor: not-allowed; opacity: .42; }
 .language-toggle button { padding: 7px 13px; color: #647386; border: 0; border-radius: 999px; background: transparent; font-size: 13px; font-weight: 800; cursor: pointer; transition: .18s cubic-bezier(.23,1,.32,1); }
 .language-toggle button.is-active { color: #fff; background: #18304c; box-shadow: 0 2px 6px rgba(24,48,76,.2); }
 .sound-button { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid #dfd8c7; border-radius: 50%; background: #fffdf7; color: #18304c; cursor: pointer; transition: transform .16s cubic-bezier(.23,1,.32,1); }
-.sound-button:active, .check-action:active, .word-tile:active { transform: scale(.97); }
+.sound-button:active, .check-action:active { transform: scale(.97); }
 
 .hero-strip { position: relative; max-width: 1320px; min-height: 214px; margin: 4px auto 32px; padding: 30px 48px; border-radius: 12px 12px 48px 12px; overflow: hidden; background: #eadcb8; box-shadow: 0 16px 33px rgba(105,81,38,.1); }
 .hero-strip::after { content: ""; position: absolute; inset: 0; background: linear-gradient(92deg, rgba(255,252,244,.94) 0%, rgba(255,250,237,.76) 43%, rgba(255,250,237,.06) 70%); }
@@ -117,7 +117,7 @@ button:disabled { cursor: not-allowed; opacity: .42; }
 .selected-word, .word-tile { position:relative; display: inline-flex; align-items: center; gap: 5px; min-height: 40px; padding: 8px 13px; border: 2px solid #18304c; border-radius: 5px 13px 8px 12px; background: #fffdf7; color: #18304c; box-shadow: 3px 3px 0 #18304c; font-size: 15px; font-weight: 800; cursor: pointer; transition: transform .15s cubic-bezier(.23,1,.32,1), box-shadow .15s ease; }
 .word-tile::before { content:""; position:absolute; top:-4px; left:15%; width:31%; height:7px; background:rgba(246,196,82,.58); transform:rotate(-4deg); }
 .word-tile:nth-child(even)::before { left:auto; right:17%; background:rgba(137,183,172,.48); transform:rotate(3deg); }
-.selected-word:hover, .word-tile:hover { transform: translate(-1px,-2px) rotate(-.5deg); box-shadow: 5px 5px 0 #18304c; }
+.selected-word:hover, .word-tile:hover { filter: brightness(.985) saturate(1.08); box-shadow: 4px 4px 0 #18304c; }
 .selected-word { border-color: #5f8d82; background: #e4f0e9; color: #275a4a; box-shadow: 3px 3px 0 #5f8d82; }
 .hint-note { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; padding: 9px 11px; border-radius: 8px; background: #fff0ba; color: #805916; font-size: 12px; font-weight: 800; }
 .word-bank-label { margin: 24px 0 10px; color: #83909b; font-size: 11px; font-weight: 900; letter-spacing: .08em; }
