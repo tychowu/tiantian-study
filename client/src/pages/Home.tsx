@@ -83,7 +83,7 @@ const questions: Question[] = [
   { id: 50, language: "en", answer: ["I", "say", "good", "morning", "to", "my", "teacher"], prompt: "Put the words in the right order.", hint: "Who do I say good morning to?" },
 ];
 
-const randomize = (items: string[]) => {
+const randomize = <T,>(items: T[]) => {
   const copy = [...items];
   for (let index = copy.length - 1; index > 0; index -= 1) {
     const newIndex = Math.floor(Math.random() * (index + 1));
@@ -95,36 +95,38 @@ const randomize = (items: string[]) => {
 const labelFor = (language: Language) => (language === "zh" ? "繁體中文" : "English");
 
 export default function Home() {
-  const [language, setLanguage] = useState<Language>("zh");
   const [questionIndex, setQuestionIndex] = useState(0);
+  const [questionOrder, setQuestionOrder] = useState<Question[]>(() => randomize(questions));
   const [selected, setSelected] = useState<string[]>([]);
-  const [available, setAvailable] = useState<string[]>(() => randomize(questions[0].answer));
+  const [available, setAvailable] = useState<string[]>(() => randomize(questionOrder[0].answer));
   const [result, setResult] = useState<"correct" | "incorrect" | null>(null);
   const [showHint, setShowHint] = useState(false);
   const [completed, setCompleted] = useState<number[]>([]);
 
-  const filteredQuestions = useMemo(
-    () => questions.filter((question) => question.language === language),
-    [language],
-  );
-  const question = filteredQuestions[questionIndex];
-  const questionNumber = language === "zh" ? questionIndex + 1 : questionIndex + 26;
+  const question = questionOrder[questionIndex];
+  const language = question.language;
+  const questionNumber = questionIndex + 1;
   const progress = Math.round((completed.length / questions.length) * 100);
 
-  const loadQuestion = useCallback((index: number, nextLanguage = language) => {
-    const nextQuestions = questions.filter((item) => item.language === nextLanguage);
-    const nextQuestion = nextQuestions[index];
+  const loadQuestion = useCallback((index: number) => {
+    const nextQuestion = questionOrder[index];
     setQuestionIndex(index);
     setSelected([]);
     setAvailable(randomize(nextQuestion.answer));
     setResult(null);
     setShowHint(false);
-  }, [language]);
+  }, [questionOrder]);
 
-  const changeLanguage = (nextLanguage: Language) => {
-    if (nextLanguage === language) return;
-    setLanguage(nextLanguage);
-    loadQuestion(0, nextLanguage);
+  const restartLesson = () => {
+    const nextOrder = randomize(questions);
+    setQuestionOrder(nextOrder);
+    setQuestionIndex(0);
+    setSelected([]);
+    setAvailable(randomize(nextOrder[0].answer));
+    setResult(null);
+    setShowHint(false);
+    setCompleted([]);
+    toast.success("已清除所有答题记录，新的题目顺序准备好了！");
   };
 
   const pickWord = (word: string, index: number) => {
@@ -161,8 +163,8 @@ export default function Home() {
   };
 
   const nextQuestion = () => {
-    if (questionIndex === filteredQuestions.length - 1) {
-      toast.message(language === "zh" ? "這一組題目完成了！換另一種語言試試看。" : "You finished this set! Try the other language.");
+    if (questionIndex === questionOrder.length - 1) {
+      toast.message(language === "zh" ? "所有題目都完成了，真厲害！" : "You finished all the questions. Great job!");
       return;
     }
     loadQuestion(questionIndex + 1);
@@ -177,10 +179,7 @@ export default function Home() {
           <span className="brand-wordmark"><b>天天</b><i>的學習平台</i></span>
         </button>
         <div className="topbar-actions">
-          <div className="language-toggle" aria-label="選擇練習語言">
-            <button className={language === "zh" ? "is-active" : ""} onClick={() => changeLanguage("zh")}>中文</button>
-            <button className={language === "en" ? "is-active" : ""} onClick={() => changeLanguage("en")}>English</button>
-          </div>
+          <button className="restart-button" onClick={restartLesson}><RotateCcw size={16} /> 重新答題</button>
           <button className="sound-button" onClick={() => toast.message("聲音提示功能正在準備中。")} aria-label="聲音設定"><Volume2 size={20} /></button>
         </div>
       </header>
@@ -225,7 +224,7 @@ export default function Home() {
           </div>
 
           <div className="question-dots" aria-label="題目進度">
-            {filteredQuestions.map((item, index) => <button key={item.id} aria-label={`前往第 ${language === "zh" ? index + 1 : index + 26} 題`} onClick={() => loadQuestion(index)} className={`${index === questionIndex ? "is-active" : ""} ${completed.includes(item.id) ? "is-done" : ""}`} />)}
+            {questionOrder.map((item, index) => <button key={`${item.id}-${index}`} aria-label={`前往第 ${index + 1} 題`} onClick={() => loadQuestion(index)} className={`${index === questionIndex ? "is-active" : ""} ${completed.includes(item.id) ? "is-done" : ""}`} />)}
           </div>
 
           <motion.article className={`task-paper ${result ? `result-${result}` : ""}`} key={question.id} initial={{ opacity: 0, y: 16, rotate: -0.8 }} animate={{ opacity: 1, y: 0, rotate: -0.8 }} transition={{ duration: 0.34, ease: [0.23, 1, 0.32, 1] }}>
