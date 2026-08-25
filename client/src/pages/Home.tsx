@@ -1,25 +1,269 @@
-import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
-import { Streamdown } from 'streamdown';
-
 /**
- * All content in this page are only for example, replace with your own feature implementation
- * When building pages, remember your instructions in Frontend Best Practices, Design Guide and Common Pitfalls
+ * 设计提醒：天天的奇想书桌——儿童绘本拼贴与新复古教育海报。
+ * 米白纸张、深海军蓝结构、天天橙行动色；练习区是一张贴在书桌上的任务纸。
  */
+import { AnimatePresence, motion } from "framer-motion";
+import {
+  ArrowRight,
+  ChevronLeft,
+  ChevronRight,
+  CircleHelp,
+  Eraser,
+  Languages,
+  LockKeyhole,
+  RotateCcw,
+  Sparkles,
+  Star,
+  Trophy,
+  Volume2,
+  X,
+} from "lucide-react";
+import { useCallback, useMemo, useState } from "react";
+import { toast } from "sonner";
+
+type Language = "zh" | "en";
+type Question = {
+  id: number;
+  language: Language;
+  answer: string[];
+  prompt: string;
+  hint: string;
+};
+
+const questions: Question[] = [
+  { id: 1, language: "zh", answer: ["我", "喜歡", "吃", "蘋果"], prompt: "把詞語排成一句完整的話。", hint: "誰喜歡做什麼？" },
+  { id: 2, language: "zh", answer: ["小狗", "在", "花園", "裡", "跑"], prompt: "把詞語排成一句完整的話。", hint: "先找出誰在動。" },
+  { id: 3, language: "zh", answer: ["媽媽", "今天", "做", "蛋糕"], prompt: "把詞語排成一句完整的話。", hint: "想想今天發生了什麼。" },
+  { id: 4, language: "zh", answer: ["太陽", "從", "東邊", "升起"], prompt: "把詞語排成一句完整的話。", hint: "這是早上的事情。" },
+  { id: 5, language: "zh", answer: ["妹妹", "正在", "畫", "小花"], prompt: "把詞語排成一句完整的話。", hint: "誰正在畫東西？" },
+  { id: 6, language: "zh", answer: ["小鳥", "站在", "樹枝上", "唱歌"], prompt: "把詞語排成一句完整的話。", hint: "先找出小鳥在哪裡。" },
+  { id: 7, language: "zh", answer: ["爸爸", "開車", "去", "上班"], prompt: "把詞語排成一句完整的話。", hint: "爸爸要去哪裡？" },
+  { id: 8, language: "zh", answer: ["我", "和", "朋友", "一起", "玩球"], prompt: "把詞語排成一句完整的話。", hint: "有誰一起玩？" },
+  { id: 9, language: "zh", answer: ["天空", "有", "一朵", "白雲"], prompt: "把詞語排成一句完整的話。", hint: "先找出在天空裡的東西。" },
+  { id: 10, language: "zh", answer: ["老師", "說", "一個", "故事"], prompt: "把詞語排成一句完整的話。", hint: "老師說了什麼？" },
+  { id: 11, language: "zh", answer: ["小貓", "躲在", "桌子", "下面"], prompt: "把詞語排成一句完整的話。", hint: "小貓在哪裡？" },
+  { id: 12, language: "zh", answer: ["我們", "排隊", "洗手"], prompt: "把詞語排成一句完整的話。", hint: "誰要洗手？" },
+  { id: 13, language: "zh", answer: ["爺爺", "戴著", "一頂", "帽子"], prompt: "把詞語排成一句完整的話。", hint: "爺爺戴著什麼？" },
+  { id: 14, language: "zh", answer: ["雨滴", "落在", "雨傘上"], prompt: "把詞語排成一句完整的話。", hint: "誰落在哪裡？" },
+  { id: 15, language: "zh", answer: ["小魚", "在", "水裡", "游泳"], prompt: "把詞語排成一句完整的話。", hint: "小魚在做什麼？" },
+  { id: 16, language: "zh", answer: ["弟弟", "把", "玩具", "收好"], prompt: "把詞語排成一句完整的話。", hint: "弟弟收好了什麼？" },
+  { id: 17, language: "zh", answer: ["我們", "明天", "去", "動物園"], prompt: "把詞語排成一句完整的話。", hint: "什麼時候去哪裡？" },
+  { id: 18, language: "zh", answer: ["月亮", "晚上", "掛在", "天空"], prompt: "把詞語排成一句完整的話。", hint: "先想想時間。" },
+  { id: 19, language: "zh", answer: ["哥哥", "正在", "看", "圖畫書"], prompt: "把詞語排成一句完整的話。", hint: "哥哥正在做什麼？" },
+  { id: 20, language: "zh", answer: ["蝴蝶", "飛到", "花朵", "旁邊"], prompt: "把詞語排成一句完整的話。", hint: "蝴蝶飛到了哪裡？" },
+  { id: 21, language: "zh", answer: ["我", "想要", "一杯", "牛奶"], prompt: "把詞語排成一句完整的話。", hint: "誰想要什麼？" },
+  { id: 22, language: "zh", answer: ["小明", "幫", "奶奶", "拿", "袋子"], prompt: "把詞語排成一句完整的話。", hint: "小明幫誰拿東西？" },
+  { id: 23, language: "zh", answer: ["小兔子", "吃", "甜甜的", "紅蘿蔔"], prompt: "把詞語排成一句完整的話。", hint: "誰吃什麼？" },
+  { id: 24, language: "zh", answer: ["風", "把", "葉子", "吹走"], prompt: "把詞語排成一句完整的話。", hint: "誰把葉子吹走？" },
+  { id: 25, language: "zh", answer: ["我們", "一起", "說", "早安"], prompt: "把詞語排成一句完整的話。", hint: "一起說什麼？" },
+  { id: 26, language: "en", answer: ["I", "see", "a", "red", "ball"], prompt: "Put the words in the right order.", hint: "Who sees the ball?" },
+  { id: 27, language: "en", answer: ["The", "cat", "is", "on", "the", "bed"], prompt: "Put the words in the right order.", hint: "Where is the cat?" },
+  { id: 28, language: "en", answer: ["We", "eat", "rice", "for", "lunch"], prompt: "Put the words in the right order.", hint: "What do we eat?" },
+  { id: 29, language: "en", answer: ["My", "dad", "has", "a", "blue", "car"], prompt: "Put the words in the right order.", hint: "Who has a car?" },
+  { id: 30, language: "en", answer: ["The", "sun", "is", "very", "bright"], prompt: "Put the words in the right order.", hint: "What is very bright?" },
+  { id: 31, language: "en", answer: ["I", "like", "to", "draw", "stars"], prompt: "Put the words in the right order.", hint: "What do I like to draw?" },
+  { id: 32, language: "en", answer: ["The", "dog", "can", "run", "fast"], prompt: "Put the words in the right order.", hint: "What can the dog do?" },
+  { id: 33, language: "en", answer: ["Mom", "reads", "a", "funny", "book"], prompt: "Put the words in the right order.", hint: "What does Mom read?" },
+  { id: 34, language: "en", answer: ["A", "fish", "swims", "in", "the", "pond"], prompt: "Put the words in the right order.", hint: "Where does the fish swim?" },
+  { id: 35, language: "en", answer: ["My", "friend", "has", "a", "kite"], prompt: "Put the words in the right order.", hint: "What does my friend have?" },
+  { id: 36, language: "en", answer: ["We", "wash", "our", "hands", "first"], prompt: "Put the words in the right order.", hint: "What do we wash first?" },
+  { id: 37, language: "en", answer: ["The", "baby", "is", "sleeping", "now"], prompt: "Put the words in the right order.", hint: "What is the baby doing?" },
+  { id: 38, language: "en", answer: ["I", "can", "count", "to", "ten"], prompt: "Put the words in the right order.", hint: "What can I do?" },
+  { id: 39, language: "en", answer: ["Birds", "sing", "in", "the", "tree"], prompt: "Put the words in the right order.", hint: "Where do birds sing?" },
+  { id: 40, language: "en", answer: ["The", "frog", "jumps", "in", "the", "rain"], prompt: "Put the words in the right order.", hint: "When does the frog jump?" },
+  { id: 41, language: "en", answer: ["I", "wear", "my", "yellow", "hat"], prompt: "Put the words in the right order.", hint: "What color is my hat?" },
+  { id: 42, language: "en", answer: ["We", "go", "to", "the", "park", "today"], prompt: "Put the words in the right order.", hint: "Where do we go today?" },
+  { id: 43, language: "en", answer: ["The", "moon", "comes", "out", "at", "night"], prompt: "Put the words in the right order.", hint: "When does the moon come out?" },
+  { id: 44, language: "en", answer: ["My", "sister", "likes", "pink", "flowers"], prompt: "Put the words in the right order.", hint: "What does my sister like?" },
+  { id: 45, language: "en", answer: ["The", "bus", "stops", "by", "the", "school"], prompt: "Put the words in the right order.", hint: "Where does the bus stop?" },
+  { id: 46, language: "en", answer: ["I", "help", "my", "mom", "cook"], prompt: "Put the words in the right order.", hint: "Who do I help?" },
+  { id: 47, language: "en", answer: ["The", "little", "duck", "is", "happy"], prompt: "Put the words in the right order.", hint: "How is the duck?" },
+  { id: 48, language: "en", answer: ["We", "play", "a", "game", "together"], prompt: "Put the words in the right order.", hint: "What do we play?" },
+  { id: 49, language: "en", answer: ["The", "apple", "is", "sweet", "and", "juicy"], prompt: "Put the words in the right order.", hint: "How is the apple?" },
+  { id: 50, language: "en", answer: ["I", "say", "good", "morning", "to", "my", "teacher"], prompt: "Put the words in the right order.", hint: "Who do I say good morning to?" },
+];
+
+const randomize = (items: string[]) => {
+  const copy = [...items];
+  for (let index = copy.length - 1; index > 0; index -= 1) {
+    const newIndex = Math.floor(Math.random() * (index + 1));
+    [copy[index], copy[newIndex]] = [copy[newIndex], copy[index]];
+  }
+  return copy;
+};
+
+const labelFor = (language: Language) => (language === "zh" ? "繁體中文" : "English");
+
 export default function Home() {
-  // If theme is switchable in App.tsx, we can implement theme toggling like this:
-  // const { theme, toggleTheme } = useTheme();
+  const [language, setLanguage] = useState<Language>("zh");
+  const [questionIndex, setQuestionIndex] = useState(0);
+  const [selected, setSelected] = useState<string[]>([]);
+  const [available, setAvailable] = useState<string[]>(() => randomize(questions[0].answer));
+  const [result, setResult] = useState<"correct" | "incorrect" | null>(null);
+  const [showHint, setShowHint] = useState(false);
+  const [completed, setCompleted] = useState<number[]>([]);
+
+  const filteredQuestions = useMemo(
+    () => questions.filter((question) => question.language === language),
+    [language],
+  );
+  const question = filteredQuestions[questionIndex];
+  const questionNumber = language === "zh" ? questionIndex + 1 : questionIndex + 26;
+  const progress = Math.round((completed.length / questions.length) * 100);
+
+  const loadQuestion = useCallback((index: number, nextLanguage = language) => {
+    const nextQuestions = questions.filter((item) => item.language === nextLanguage);
+    const nextQuestion = nextQuestions[index];
+    setQuestionIndex(index);
+    setSelected([]);
+    setAvailable(randomize(nextQuestion.answer));
+    setResult(null);
+    setShowHint(false);
+  }, [language]);
+
+  const changeLanguage = (nextLanguage: Language) => {
+    if (nextLanguage === language) return;
+    setLanguage(nextLanguage);
+    loadQuestion(0, nextLanguage);
+  };
+
+  const pickWord = (word: string, index: number) => {
+    if (result === "correct") return;
+    setSelected((current) => [...current, word]);
+    setAvailable((current) => current.filter((_, currentIndex) => currentIndex !== index));
+    setResult(null);
+  };
+
+  const removeWord = (word: string, index: number) => {
+    if (result === "correct") return;
+    setAvailable((current) => [...current, word]);
+    setSelected((current) => current.filter((_, currentIndex) => currentIndex !== index));
+    setResult(null);
+  };
+
+  const clearSentence = () => {
+    if (result === "correct") return;
+    setAvailable((current) => randomize([...current, ...selected]));
+    setSelected([]);
+    setResult(null);
+  };
+
+  const checkAnswer = () => {
+    if (selected.length !== question.answer.length) {
+      toast.message(language === "zh" ? "還有詞語在下面，快把它們放進句子裡。" : "There are still words waiting below.");
+      return;
+    }
+    const isCorrect = selected.every((word, index) => word === question.answer[index]);
+    setResult(isCorrect ? "correct" : "incorrect");
+    if (isCorrect) {
+      setCompleted((current) => (current.includes(question.id) ? current : [...current, question.id]));
+    }
+  };
+
+  const nextQuestion = () => {
+    if (questionIndex === filteredQuestions.length - 1) {
+      toast.message(language === "zh" ? "這一組題目完成了！換另一種語言試試看。" : "You finished this set! Try the other language.");
+      return;
+    }
+    loadQuestion(questionIndex + 1);
+  };
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <main>
-        {/* Example: lucide-react for icons */}
-        <Loader2 className="animate-spin" />
-        Example Page
-        {/* Example: Streamdown for markdown rendering */}
-        <Streamdown>Any **markdown** content</Streamdown>
-        <Button variant="default">Example Button</Button>
-      </main>
-    </div>
+    <main className="learning-shell">
+      <div className="desk-grain" aria-hidden="true" />
+      <header className="topbar">
+        <button className="brand" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label="回到天天的學習平台首頁">
+          <span className="brand-mark"><img src="/manus-storage/tiantian-pencil-rocket-logo_94715784.png" alt="" /></span>
+          <span className="brand-wordmark"><b>天天</b><i>的學習平台</i></span>
+        </button>
+        <div className="topbar-actions">
+          <div className="language-toggle" aria-label="選擇練習語言">
+            <button className={language === "zh" ? "is-active" : ""} onClick={() => changeLanguage("zh")}>中文</button>
+            <button className={language === "en" ? "is-active" : ""} onClick={() => changeLanguage("en")}>English</button>
+          </div>
+          <button className="sound-button" onClick={() => toast.message("聲音提示功能正在準備中。")} aria-label="聲音設定"><Volume2 size={20} /></button>
+        </div>
+      </header>
+
+      <section className="hero-strip">
+        <div className="hero-copy">
+          <span className="eyebrow"><Sparkles size={14} /> 今天的語言任務</span>
+          <h1>把詞語送上<br /><span>會說話的軌道。</span></h1>
+          <p>挑一張詞語卡，排出你心裡完整又漂亮的句子。</p>
+        </div>
+        <img className="hero-art" src="/manus-storage/tiantian-hero-desk_71c399ad.png" alt="紙張、詞語卡與鉛筆火箭組成的學習書桌插畫" />
+      </section>
+
+      <div className="workspace">
+        <aside className="study-rail">
+          <section className="tiantian-card">
+            <div className="portrait-wrap"><img src="/manus-storage/tiantian-portrait_29b4d9d2.png" alt="天天的照片" /></div>
+            <div><p>小小造句家</p><h2>天天</h2></div>
+            <span className="star-count"><Star size={13} fill="currentColor" /> {completed.length}</span>
+          </section>
+
+          <section className="progress-card">
+            <div className="rail-heading"><span>探索星圖</span><strong>{progress}%</strong></div>
+            <div className="progress-track"><span style={{ width: `${progress}%` }} /></div>
+            <p>完成一題，點亮一顆小星星。</p>
+          </section>
+
+          <nav className="course-map" aria-label="課程地圖">
+            <span className="rail-label">學習星球</span>
+            <button className="course-node is-current"><span className="node-icon"><Languages size={20} /></span><span><b>句子星球</b><small>打亂詞組造句</small></span><em>01</em></button>
+            <button className="course-node is-locked" onClick={() => toast.message("下一顆學習星球正在準備中。")}><span className="node-icon"><LockKeyhole size={18} /></span><span><b>故事星球</b><small>下一段星際旅程</small></span><em>02</em></button>
+            <button className="course-node is-locked" onClick={() => toast.message("下一顆學習星球正在準備中。")}><span className="node-icon"><LockKeyhole size={18} /></span><span><b>數字星球</b><small>下一段星際旅程</small></span><em>03</em></button>
+          </nav>
+
+          <div className="tiny-reminder"><span>小提醒</span><p>慢慢想沒關係，每一個嘗試都很棒。</p></div>
+        </aside>
+
+        <section className="lesson-stage" aria-label="打亂詞組造句練習">
+          <div className="stage-header">
+            <div><span className={`subject-tag ${language}`}><Languages size={15} /> {labelFor(language)}</span><h2>句子星球 <span>・</span> 第一站</h2></div>
+            <div className="question-count">第 <b>{questionNumber}</b> / 50 題</div>
+          </div>
+
+          <div className="question-dots" aria-label="題目進度">
+            {filteredQuestions.map((item, index) => <button key={item.id} aria-label={`前往第 ${language === "zh" ? index + 1 : index + 26} 題`} onClick={() => loadQuestion(index)} className={`${index === questionIndex ? "is-active" : ""} ${completed.includes(item.id) ? "is-done" : ""}`} />)}
+          </div>
+
+          <motion.article className={`task-paper ${result ? `result-${result}` : ""}`} key={question.id} initial={{ opacity: 0, y: 16, rotate: -0.8 }} animate={{ opacity: 1, y: 0, rotate: -0.8 }} transition={{ duration: 0.34, ease: [0.23, 1, 0.32, 1] }}>
+            <span className="paper-tape tape-left" aria-hidden="true" />
+            <span className="paper-tape tape-right" aria-hidden="true" />
+            <div className="task-topline"><span>任務 {String(questionNumber).padStart(2, "0")}</span><button onClick={() => setShowHint((current) => !current)}><CircleHelp size={17} /> 想一想</button></div>
+            <p className="instruction">{question.prompt}</p>
+
+            <div className="sentence-zone-label"><span>我的句子軌道</span><button onClick={clearSentence} disabled={selected.length === 0 || result === "correct"}><Eraser size={15} /> 清空</button></div>
+            <div className={`sentence-zone ${selected.length === 0 ? "is-empty" : ""}`}>
+              {selected.length === 0 ? <span>{language === "zh" ? "點一下下面的詞語卡，開始排句子吧！" : "Tap the word cards to build your sentence."}</span> : selected.map((word, index) => <motion.button layout key={`${word}-${index}`} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} onClick={() => removeWord(word, index)} className="selected-word">{word}<X size={14} /></motion.button>)}
+            </div>
+
+            <AnimatePresence>
+              {showHint && <motion.div className="hint-note" initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }}><Sparkles size={16} /> {question.hint}</motion.div>}
+            </AnimatePresence>
+
+            <div className="word-bank-label">還沒有上軌道的詞語</div>
+            <div className="word-bank">
+              <AnimatePresence initial={false}>
+                {available.map((word, index) => <motion.button layout key={`${word}-${index}`} initial={{ opacity: 0, scale: 0.94 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.94 }} onClick={() => pickWord(word, index)} className="word-tile">{word}</motion.button>)}
+              </AnimatePresence>
+            </div>
+
+            <div className="answer-actions">
+              <button className="secondary-action" onClick={clearSentence}><RotateCcw size={17} /> 重排</button>
+              <button className="check-action" onClick={checkAnswer}>檢查我的句子 <ArrowRight size={18} /></button>
+            </div>
+
+            <AnimatePresence>
+              {result === "correct" && <motion.div className="feedback correct-feedback" initial={{ opacity: 0, y: 10, scale: 0.97 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 5, scale: 0.97 }}><div className="success-burst"><Star fill="currentColor" /><Star fill="currentColor" /><Star fill="currentColor" /></div><img src="/manus-storage/tiantian-success-stars_5462d800.png" alt="" /><div><span>太棒了！句子發光了</span><p>{question.answer.join(language === "zh" ? "" : " ")}。</p></div><button onClick={nextQuestion}>下一題 <ChevronRight size={17} /></button></motion.div>}
+              {result === "incorrect" && <motion.div className="feedback incorrect-feedback" initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0 }}><div className="retry-face">?</div><div><span>差一點點，再想一想！</span><p>試著先找出「誰」，再找「做什麼」或「在哪裡」。</p></div><button onClick={clearSentence}>重新排</button></motion.div>}
+            </AnimatePresence>
+          </motion.article>
+
+          <div className="lesson-footer"><button className="nav-question" onClick={() => questionIndex > 0 && loadQuestion(questionIndex - 1)} disabled={questionIndex === 0}><ChevronLeft size={19} /> 上一題</button><span><Trophy size={17} /> 已完成 <b>{completed.length}</b> 題</span><button className="nav-question" onClick={nextQuestion}>下一題 <ChevronRight size={19} /></button></div>
+        </section>
+      </div>
+    </main>
   );
 }
