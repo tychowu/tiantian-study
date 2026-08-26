@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#fff8e8" />
+  <title>天天學習島</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="sky" aria-hidden="true"><span class="cloud c1"></span><span class="cloud c2"></span><span class="star s1">✦</span><span class="star s2">✦</span></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="天天學習島首頁"><span class="brand-face">天</span><span>天天學習島</span></a>
+    <div class="header-actions">
+      <button class="sound-btn" id="soundBtn" type="button" aria-label="切換音效" aria-pressed="true">🔊</button>
+      <div class="streak" title="連續答對"><span>🔥</span><strong id="streakCount">0</strong></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <span class="eyebrow">每天一點點，進步一大步</span>
+        <h1>嗨，天天！<br><span>今天想學什麼？</span></h1>
+        <p>動動小腦袋，把調皮的詞語排回正確位置吧。</p>
+      </div>
+      <div class="hero-art" aria-hidden="true"><div class="sun">☀</div><div class="island"><span>🌳</span><b>📚</b></div></div>
+    </section>
+
+    <section class="modules" aria-label="學習內容">
+      <div class="section-heading"><div><span>LEARNING MAP</span><h2>學習地圖</h2></div><p>更多有趣內容會陸續登島！</p></div>
+      <div class="module-grid">
+        <button class="module-card active" id="sentenceModule" type="button">
+          <span class="module-icon coral">🧩</span><span class="module-copy"><small>語文小達人</small><strong>詞語排排隊</strong><em>50 個挑戰</em></span><span class="arrow">→</span>
+        </button>
+        <div class="module-card locked"><span class="module-icon mint">🔢</span><span class="module-copy"><small>即將推出</small><strong>數字探險</strong><em>敬請期待</em></span><span class="lock">🔒</span></div>
+        <div class="module-card locked"><span class="module-icon purple">🎨</span><span class="module-copy"><small>即將推出</small><strong>創意畫室</strong><em>敬請期待</em></span><span class="lock">🔒</span></div>
+      </div>
+    </section>
+
+    <section class="game" id="game" aria-labelledby="gameTitle">
+      <div class="game-top">
+        <div><span class="game-kicker">🧩 詞語排排隊</span><h2 id="gameTitle">把詞語排成完整句子</h2></div>
+        <button class="close-game" id="closeGame" type="button" aria-label="收起練習">×</button>
+      </div>
+      <div class="game-status">
+        <div class="language-tabs" role="group" aria-label="選擇語言">
+          <button class="lang active" data-lang="zh" type="button">繁體中文</button><button class="lang" data-lang="en" type="button">English</button>
+        </div>
+        <div class="progress-label"><span id="progressText">第 1 / 25 題</span><div class="progress-track"><i id="progressBar"></i></div></div>
+      </div>
+      <div class="question-card" id="questionCard">
+        <div class="mascot" id="mascot" aria-hidden="true"><span>•ᴗ•</span></div>
+        <p class="instruction" id="instruction">點一點詞語，排出正確的句子</p>
+        <div class="answer-zone" id="answerZone" aria-label="你的答案"><span class="placeholder">答案會放在這裡…</span></div>
+        <div class="word-bank" id="wordBank" aria-label="可選詞語"></div>
+        <div class="feedback" id="feedback" role="status" aria-live="polite"></div>
+        <div class="game-actions"><button class="secondary" id="resetBtn" type="button">↻ 重新排列</button><button class="primary" id="checkBtn" type="button">檢查答案 <span>✓</span></button><button class="primary next hidden" id="nextBtn" type="button">下一題 <span>→</span></button></div>
+      </div>
+    </section>
+  </main>
+  <footer><span>Made with ☀️ for 天天</span><span>天天學習島 · 快樂探索每一天</span></footer>
+  <div class="celebration" id="celebration" aria-hidden="true"></div>
+  <script src="app.js"></script>
+</body>
+</html>
