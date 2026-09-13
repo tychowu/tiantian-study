@@ -185,7 +185,7 @@ export default function Home() {
       <div className="desk-grain" aria-hidden="true" />
       <header className="topbar">
         <button className="brand" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label="回到天天的學習平台首頁">
-          <span className="brand-mark"><img src="/manus-storage/tiantian-pencil-rocket-logo_94715784.png" alt="" /></span>
+          <span className="brand-mark"><img src="/images/tiantian-pencil-rocket-logo_94715784.webp" alt="" /></span>
           <span className="brand-wordmark"><b>天天</b><i>的學習平台</i></span>
         </button>
         <div className="topbar-actions">
@@ -200,13 +200,13 @@ export default function Home() {
           <h1>把詞語送上<br /><span>會說話的軌道。</span></h1>
           <p>挑一張詞語卡，排出你心裡完整又漂亮的句子。</p>
         </div>
-        <img className="hero-art" src="/manus-storage/tiantian-hero-desk_71c399ad.png" alt="紙張、詞語卡與鉛筆火箭組成的學習書桌插畫" />
+        <img className="hero-art" src="/images/tiantian-hero-desk_71c399ad.webp" alt="紙張、詞語卡與鉛筆火箭組成的學習書桌插畫" />
       </section>
 
       <div className="workspace">
         <aside className="study-rail">
           <section className="tiantian-card">
-            <div className="portrait-wrap"><img src="/manus-storage/tiantian-portrait_29b4d9d2.png" alt="天天的照片" /></div>
+            <div className="portrait-wrap"><img src="/images/tiantian-portrait_29b4d9d2.png" alt="天天的照片" /></div>
             <div><p>小小造句家</p><h2>天天</h2></div>
             <span className="star-count"><Star size={13} fill="currentColor" /> {completed.length}</span>
           </section>
@@ -263,7 +263,7 @@ export default function Home() {
             </div>
 
             <AnimatePresence>
-              {result === "correct" && <motion.div className="feedback correct-feedback" initial={{ opacity: 0, y: 10, scale: 0.97 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 5, scale: 0.97 }}><div className="success-burst"><Star fill="currentColor" /><Star fill="currentColor" /><Star fill="currentColor" /></div><img src="/manus-storage/tiantian-success-stars_5462d800.png" alt="" /><div><span>太棒了！句子發光了</span><p>{question.answer.join(language === "zh" ? "" : " ")}。</p></div><button onClick={nextQuestion}>下一題 <ChevronRight size={17} /></button></motion.div>}
+              {result === "correct" && <motion.div className="feedback correct-feedback" initial={{ opacity: 0, y: 10, scale: 0.97 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 5, scale: 0.97 }}><div className="success-burst"><Star fill="currentColor" /><Star fill="currentColor" /><Star fill="currentColor" /></div><img src="/images/tiantian-success-stars_5462d800.webp" alt="" /><div><span>太棒了！句子發光了</span><p>{question.answer.join(language === "zh" ? "" : " ")}。</p></div><button onClick={nextQuestion}>下一題 <ChevronRight size={17} /></button></motion.div>}
               {result === "incorrect" && <motion.div className="feedback incorrect-feedback" initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0 }}><div className="retry-face">?</div><div><span>差一點點，再想一想！</span><p>試著先找出「誰」，再找「做什麼」或「在哪裡」。</p></div><button onClick={clearSentence}>重新排</button></motion.div>}
             </AnimatePresence>
           </motion.article>
