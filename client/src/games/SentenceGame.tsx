@@ -206,8 +206,6 @@ export default function SentenceGame() {
         animate={{ opacity: 1, y: 0, rotate: -0.8 }}
         transition={{ duration: 0.34, ease: [0.23, 1, 0.32, 1] }}
       >
-        <span className="paper-tape tape-left" aria-hidden="true" />
-        <span className="paper-tape tape-right" aria-hidden="true" />
         <div className="task-topline">
           <span>任務 {String(questionNumber).padStart(2, "0")} / 50</span>
           <button onClick={() => setShowHint((current) => !current)}>

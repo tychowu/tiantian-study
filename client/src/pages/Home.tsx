@@ -23,7 +23,6 @@ type GameMeta = {
   /** 手繪貼紙插畫（透明背景 PNG）；沒有就退回 emoji。 */
   img?: string;
   accent: string;
-  badge?: string;
   stars: string;
   Component: ComponentType;
 };
@@ -36,7 +35,6 @@ const GAMES: GameMeta[] = [
     icon: "🪐",
     img: "/images/cards/sentence.png",
     accent: "#4E93AC",
-    badge: "50 題",
     stars: "中英混排",
     Component: SentenceGame,
   },
@@ -47,7 +45,6 @@ const GAMES: GameMeta[] = [
     icon: "⚛️",
     img: "/images/cards/periodic.png",
     accent: "#FF6B3D",
-    badge: "NEW",
     stars: "點字看翻譯",
     Component: PeriodicTableGame,
   },
@@ -58,7 +55,6 @@ const GAMES: GameMeta[] = [
     icon: "🔢",
     img: "/images/cards/math.png",
     accent: "#7FA65C",
-    badge: "NEW",
     stars: "加減乘一站學會",
     Component: MathGame,
   },
@@ -69,29 +65,26 @@ const GAMES: GameMeta[] = [
     icon: "🔤",
     img: "/images/cards/english.png",
     accent: "#6C7FD1",
-    badge: "NEW",
     stars: "聽發音拼出它",
     Component: EnglishGame,
   },
   {
     id: "festival",
     title: "節日派對",
-    subtitle: "翻開卡牌・配對中西節日",
+    subtitle: "名稱連圖片・內地與香港法定節日",
     icon: "🎉",
     img: "/images/cards/festival.png",
     accent: "#E0524E",
-    badge: "NEW",
-    stars: "翻牌配對",
+    stars: "16 個節日連連看",
     Component: FestivalGame,
   },
   {
     id: "landmark",
     title: "名勝探險",
-    subtitle: "中國與香港的名勝・博物館",
+    subtitle: "中國內地與香港的名勝・博物館",
     icon: "🗺️",
     img: "/images/cards/landmark.png",
     accent: "#B5712F",
-    badge: "NEW",
     stars: "圖鑑＋小測驗",
     Component: LandmarkGame,
   },
@@ -102,7 +95,6 @@ const GAMES: GameMeta[] = [
     icon: "🚆",
     img: "/images/cards/mtr.png",
     accent: "#00888A",
-    badge: "NEW",
     stars: "點站名聽發音",
     Component: MtrGame,
   },
@@ -113,7 +105,6 @@ const GAMES: GameMeta[] = [
     icon: "🌦️",
     img: "/images/cards/weather.png",
     accent: "#3E82C4",
-    badge: "NEW",
     stars: "認符號學安全",
     Component: WeatherGame,
   },
@@ -175,9 +166,6 @@ export default function Home() {
               transition={{ duration: 0.32, delay: index * 0.06, ease: [0.23, 1, 0.32, 1] }}
               whileHover={{ y: -5, rotate: -0.6 }}
             >
-              <span className="paper-tape tape-left" aria-hidden="true" />
-              <span className="paper-tape tape-right" aria-hidden="true" />
-              {game.badge && <span className="game-badge">{game.badge}</span>}
               <span className="game-icon" aria-hidden="true">
                 {game.img ? <img src={game.img} alt="" loading="lazy" /> : game.icon}
               </span>

@@ -1,15 +1,15 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, RotateCcw, Star, Volume2, X } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import BilingualText from "@/components/BilingualText";
 import SpeakableZh from "@/components/SpeakableZh";
 import { LANDMARKS, type Landmark } from "@/data/landmarks";
 import { speak } from "@/lib/speech";
 
 /**
- * 名勝探險：中國與香港的著名景點和博物館。
- * 圖鑑模式：點卡片看雙語詳情（逐字點讀）；
- * 小測驗模式：看 emoji 提示，三選一猜名稱，共 10 題。
+ * 名勝探險：中國內地與香港的著名景點和博物館（真實照片圖鑑）。
+ * 小測驗：只讀一句英文提示（無圖），三個純文字選項（中英地名，無圖無 icon）；
+ * 第一次答錯不會公佈答案，可以再試一次；答對放煙花，綠色框只顯示中文。
  */
 type QuizQuestion = { answer: Landmark; options: Landmark[] };
 
@@ -31,36 +31,92 @@ const buildQuiz = (): QuizQuestion[] => {
   });
 };
 
+/** 煙花：答對時全螢幕慶祝（純 CSS 粒子） */
+function Fireworks({ onDone }: { onDone: () => void }) {
+  const bursts = useMemo(
+    () =>
+      Array.from({ length: 5 }, (_, b) => ({
+        left: 12 + Math.random() * 76,
+        top: 10 + Math.random() * 55,
+        delay: b * 0.22,
+        hue: [8, 35, 45, 200, 330][b % 5],
+        particles: Array.from({ length: 14 }, (_, i) => {
+          const angle = (i / 14) * Math.PI * 2 + Math.random() * 0.4;
+          const dist = 60 + Math.random() * 70;
+          return {
+            tx: `${Math.cos(angle) * dist}px`,
+            ty: `${Math.sin(angle) * dist}px`,
+          };
+        }),
+      })),
+    [],
+  );
+  useEffect(() => {
+    const timer = window.setTimeout(onDone, 2400);
+    return () => window.clearTimeout(timer);
+  }, [onDone]);
+  return (
+    <div className="fw-layer" aria-hidden="true">
+      {bursts.map((burst, b) => (
+        <div key={b} className="fw-burst" style={{ left: `${burst.left}%`, top: `${burst.top}%`, animationDelay: `${burst.delay}s` }}>
+          {burst.particles.map((p, i) => (
+            <span
+              key={i}
+              className="fw-particle"
+              style={{ background: `hsl(${burst.hue} 90% 60%)`, ["--tx" as string]: p.tx, ["--ty" as string]: p.ty, animationDelay: `${burst.delay}s` }}
+            />
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export default function LandmarkGame() {
   const [mode, setMode] = useState<"gallery" | "quiz">("gallery");
   const [selected, setSelected] = useState<Landmark | null>(null);
 
   const [quiz, setQuiz] = useState<QuizQuestion[]>(buildQuiz);
   const [step, setStep] = useState(0);
-  const [picked, setPicked] = useState<string | null>(null);
+  const [solved, setSolved] = useState(false);
+  const [wrongPicks, setWrongPicks] = useState<string[]>([]);
+  const [showAnswer, setShowAnswer] = useState(false);
   const [score, setScore] = useState(0);
   const [round, setRound] = useState(0);
+  const [fireworks, setFireworks] = useState(false);
 
   const question = quiz[Math.min(step, quiz.length - 1)];
-  const finished = step + 1 >= ROUND && picked === question.answer.zh;
+  const finished = step + 1 >= ROUND && solved;
 
   const startQuiz = () => {
     setQuiz(buildQuiz());
     setStep(0);
-    setPicked(null);
+    setSolved(false);
+    setWrongPicks([]);
+    setShowAnswer(false);
     setScore(0);
+    setFireworks(false);
     setRound((current) => current + 1);
     setMode("quiz");
   };
 
   const choose = (option: Landmark) => {
-    if (picked) return;
-    setPicked(option.zh);
+    if (solved || wrongPicks.includes(option.zh) || showAnswer) return;
     if (option.zh === question.answer.zh) {
+      setSolved(true);
       setScore((current) => current + 1);
-      speak(`答對了，這是${question.answer.zh}。${question.answer.introZh.split("。")[0]}。`, "zh");
+      setFireworks(true);
+      speak(`答對了！這是${question.answer.zh}。${question.answer.introZh.split("。")[0]}。`, "zh");
     } else {
-      speak(`這是${question.answer.zh}，再看看吧。`, "zh");
+      const nextWrong = [...wrongPicks, option.zh];
+      setWrongPicks(nextWrong);
+      // 已經錯過一次：這次不再給機會，公佈答案後繼續
+      if (nextWrong.length >= 2) {
+        setShowAnswer(true);
+        speak(`差一點點。答案是${question.answer.zh}。`, "zh");
+      } else {
+        speak(`不對喔，再試一次！`, "zh");
+      }
     }
   };
 
@@ -70,14 +126,18 @@ export default function LandmarkGame() {
       return;
     }
     setStep((current) => current + 1);
-    setPicked(null);
+    setSolved(false);
+    setWrongPicks([]);
+    setShowAnswer(false);
   };
 
-  const china = LANDMARKS.filter((item) => item.region === "china");
+  const mainland = LANDMARKS.filter((item) => item.region === "mainland");
   const hongkong = LANDMARKS.filter((item) => item.region === "hongkong");
 
   return (
     <div className="game-body">
+      {fireworks && <Fireworks onDone={() => setFireworks(false)} />}
+
       <div className="mx-controls">
         <div className="mx-modes">
           <button type="button" className={`mx-mode ${mode === "gallery" ? "is-on" : ""}`} onClick={() => { setSelected(null); setMode("gallery"); }}>
@@ -96,11 +156,11 @@ export default function LandmarkGame() {
 
       {mode === "gallery" && (
         <>
-          <p className="lm-group"><b aria-hidden="true">🐉</b> 中國的名勝</p>
+          <p className="lm-group"><b aria-hidden="true">🐉</b> 中國內地的名勝</p>
           <div className="lm-grid">
-            {china.map((item) => (
+            {mainland.map((item) => (
               <button key={item.zh} type="button" className="lm-card" onClick={() => { setSelected(item); speak(item.zh, "zh"); }}>
-                <b aria-hidden="true">{item.icon}</b>
+                <span className="lm-photo"><img src={item.photo} alt={item.zh} loading="lazy" /></span>
                 <i>{item.zh}</i>
                 <em>{item.en}</em>
               </button>
@@ -110,7 +170,7 @@ export default function LandmarkGame() {
           <div className="lm-grid">
             {hongkong.map((item) => (
               <button key={item.zh} type="button" className="lm-card" onClick={() => { setSelected(item); speak(item.zh, "zh"); }}>
-                <b aria-hidden="true">{item.icon}</b>
+                <span className="lm-photo"><img src={item.photo} alt={item.zh} loading="lazy" /></span>
                 <i>{item.zh}</i>
                 <em>{item.en}</em>
               </button>
@@ -127,61 +187,82 @@ export default function LandmarkGame() {
             <span><Star size={13} fill="currentColor" /> 第 {Math.min(step + 1, ROUND)} / {ROUND} 題 · 答對 {score}</span>
           </div>
           <motion.article
-            className={`task-paper lm-quiz ${picked ? (picked === question.answer.zh ? "result-correct" : "result-incorrect") : ""}`}
+            className={`task-paper lm-quiz ${solved ? "result-correct" : wrongPicks.length && !showAnswer ? "result-incorrect" : ""}`}
             key={`${round}-${step}`}
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <span className="paper-tape tape-left" aria-hidden="true" />
-            <span className="paper-tape tape-right" aria-hidden="true" />
             <div className="task-topline"><span>名勝任務 {String(step + 1).padStart(2, "0")}</span><span>猜猜這是哪裡？</span></div>
-            <div className="lm-quiz-stage">
-              <span className="lm-quiz-icon" aria-hidden="true">{question.answer.icon}</span>
-              <SpeakableZh text={question.answer.introZh.split("。")[0] + "。"} />
+            {/* 題目：只有一句英文，沒有圖片 */}
+            <div className="lm-quiz-clue">
+              <BilingualText text={question.answer.clueEn} size="lg" />
             </div>
+            {/* 選項：只有中英文地名，沒有圖片與圖示 */}
             <div className="lm-quiz-options">
-              {question.options.map((option) => (
-                <button
-                  key={option.zh}
-                  type="button"
-                  className={`pk-option ${picked ? (option.zh === question.answer.zh ? "is-right" : option.zh === picked ? "is-wrong" : "") : ""}`}
-                  onClick={() => choose(option)}
-                  disabled={Boolean(picked) && option.zh !== question.answer.zh && option.zh !== picked}
-                >
-                  <span aria-hidden="true">{option.icon}</span>
-                  <b>{option.zh}</b>
-                  <i>{option.en}</i>
-                </button>
-              ))}
+              {question.options.map((option) => {
+                const isRight = solved && option.zh === question.answer.zh;
+                const isWrongPick = wrongPicks.includes(option.zh);
+                return (
+                  <button
+                    key={option.zh}
+                    type="button"
+                    className={`pk-option lm-quiz-option ${isRight ? "is-right" : ""} ${isWrongPick ? "is-wrong" : ""}`}
+                    onClick={() => choose(option)}
+                    disabled={solved || isWrongPick || showAnswer}
+                  >
+                    <b>{option.zh}</b>
+                    <i>{option.en}</i>
+                  </button>
+                );
+              })}
             </div>
             <AnimatePresence>
-              {picked && (
+              {/* 答對：綠色框只放中文，不放任何英文 */}
+              {solved && (
                 <motion.div
-                  className={`feedback ${picked === question.answer.zh ? "correct-feedback" : "incorrect-feedback"}`}
+                  className="feedback correct-feedback"
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
                 >
-                  {picked === question.answer.zh ? (
-                    <>
-                      <img src="/images/tiantian-success-stars_5462d800.webp" alt="" />
-                      <div>
-                        <span>答對了！這是{question.answer.zh}</span>
-                        <p><BilingualText text={question.answer.introEn} /></p>
-                      </div>
-                      <button onClick={next}>{finished ? "再玩一輪" : "下一題"} <Check size={17} /></button>
-                    </>
-                  ) : (
-                    <>
-                      <div className="retry-face">?</div>
-                      <div>
-                        <span>正確答案是「{question.answer.zh}」</span>
-                        <p>{question.answer.introZh.split("。")[0]}。再猜下一個！</p>
-                      </div>
-                      <button onClick={next}>{finished ? "再玩一輪" : "下一題"} <Check size={17} /></button>
-                    </>
-                  )}
+                  <img src="/images/tiantian-success-stars_5462d800.webp" alt="" />
+                  <div>
+                    <span>答對了！這是{question.answer.zh}。</span>
+                    <p>{question.answer.introZh.split("。")[0]}。</p>
+                  </div>
+                  <button onClick={next}>{finished ? "再玩一輪" : "下一題"} <Check size={17} /></button>
+                </motion.div>
+              )}
+              {/* 第一次答錯：不公佈答案，再給一次機會 */}
+              {wrongPicks.length === 1 && !solved && (
+                <motion.div
+                  className="feedback incorrect-feedback"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <div className="retry-face">?</div>
+                  <div>
+                    <span>不對喔，再試一次！</span>
+                    <p>還有兩個選擇，想一想再選。</p>
+                  </div>
+                </motion.div>
+              )}
+              {/* 兩次都錯：公佈答案 */}
+              {showAnswer && (
+                <motion.div
+                  className="feedback incorrect-feedback"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <div className="retry-face">?</div>
+                  <div>
+                    <span>差一點點，答案是「{question.answer.zh}」。</span>
+                    <p>{question.answer.introZh.split("。")[0]}。下一題繼續加油！</p>
+                  </div>
+                  <button onClick={next}>{finished ? "再玩一輪" : "下一題"} <Check size={17} /></button>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -189,7 +270,7 @@ export default function LandmarkGame() {
           <div className="lesson-footer">
             <button className="nav-question" onClick={startQuiz}><RotateCcw size={17} /> 重新開始</button>
             <span>累計答對 <b>{score}</b> 題</span>
-            <button className="nav-question" onClick={next} disabled={!picked}>下一題 →</button>
+            <button className="nav-question" onClick={next} disabled={!solved && !showAnswer}>下一題 →</button>
           </div>
         </>
       )}
@@ -199,17 +280,17 @@ export default function LandmarkGame() {
           <motion.div className="pt-detail" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setSelected(null)}>
             <motion.div className="pt-detail-card lm-detail" initial={{ scale: .94, y: 16 }} animate={{ scale: 1, y: 0 }} transition={{ type: "spring", stiffness: 240, damping: 24 }} onClick={(event) => event.stopPropagation()}>
               <button type="button" className="pt-close" onClick={() => setSelected(null)} aria-label="關閉"><X size={20} /></button>
-              <div className="lm-detail-hero">
-                <span className="lm-detail-icon" aria-hidden="true">{selected.icon}</span>
-                <div className="pt-name-row">
-                  <h3 className="pt-name-zh">{selected.zh}</h3>
-                  <button type="button" className="pt-speak" onClick={() => speak(selected.zh, "zh")} aria-label={`聆聽 ${selected.zh}`}><Volume2 size={14} /></button>
-                </div>
-                <p className="pt-en-name">
-                  {selected.en}
-                  <button type="button" className="pt-speak" onClick={() => speak(selected.en, "en")} aria-label={`聆聽 ${selected.en}`}><Volume2 size={14} /></button>
-                </p>
+              <div className="lm-detail-hero lm-detail-hero-photo">
+                <img src={selected.photo} alt={selected.zh} />
               </div>
+              <div className="pt-name-row">
+                <h3 className="pt-name-zh">{selected.zh}</h3>
+                <button type="button" className="pt-speak" onClick={() => speak(selected.zh, "zh")} aria-label={`聆聽 ${selected.zh}`}><Volume2 size={14} /></button>
+              </div>
+              <p className="pt-en-name">
+                {selected.en}
+                <button type="button" className="pt-speak" onClick={() => speak(selected.en, "en")} aria-label={`聆聽 ${selected.en}`}><Volume2 size={14} /></button>
+              </p>
               <div className="pt-section lm-detail-body">
                 <span className="pt-label">小介紹 · About</span>
                 <div className="pt-fact-group">

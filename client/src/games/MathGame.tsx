@@ -185,8 +185,6 @@ export default function MathGame() {
         animate={{ opacity: 1, y: 0, rotate: -0.6 }}
         transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
       >
-        <span className="paper-tape tape-left" aria-hidden="true" />
-        <span className="paper-tape tape-right" aria-hidden="true" />
         <div className="task-topline">
           <span>數字任務 {String(step + 1).padStart(2, "0")}</span>
           <span>連對 {streak} 🔥</span>

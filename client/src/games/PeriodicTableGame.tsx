@@ -124,8 +124,6 @@ function ElementDetail({
     >
       <div className="pt-detail-scroll" onClick={stop}>
         <div className="pt-detail-card" style={cellVars(meta.color, meta.tint)}>
-          <span className="paper-tape tape-left" aria-hidden="true" />
-          <span className="paper-tape tape-right" aria-hidden="true" />
 
           <button type="button" className="pt-close" onClick={onClose} aria-label="回到週期表">
             <X size={22} />
