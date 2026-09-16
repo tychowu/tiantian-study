@@ -317,7 +317,7 @@ export default function MtrGame() {
           )}
           <div className="mtr-fullmap" aria-label="可縮放的全港港鐵互動路綫圖">
             <div className="mtr-official-canvas" style={{ width: `${mapZoom * 100}%` }}>
-              <img src="/images/mtr-routemap-2024.png" alt="港鐵全港路綫圖，包含重鐵、機場快綫、迪士尼綫和輕鐵" draggable={false} />
+              <img src="/images/mtr-routemap-2024.jpg" alt="港鐵全港路綫圖，包含重鐵、機場快綫、迪士尼綫和輕鐵" draggable={false} />
               <svg viewBox={`0 138 ${OFFICIAL_MAP_SIZE.width} ${OFFICIAL_MAP_SIZE.height - 138}`} role="group" aria-label="可點擊的港鐵站點">
                 {OFFICIAL_STATIONS.map((station) => {
                   const active = mapPick?.zh === station.zh;

@@ -103,11 +103,11 @@ const isFriendlyEnglishAnswer = (selected: string[], expected: string[]) => {
   const attempt = normalizeEnglish(selected);
   if (sameWords(attempt, answer)) return true;
 
-  // 常见的时间／方式副词可以自然地放在句首：Today we go… / We go… today。
+  // 常見的時間／方式副詞可以自然地放在句首：Today we go… / We go… today。
   const tail = answer.at(-1);
   if (tail && ["today", "now", "first", "together"].includes(tail) && sameWords(attempt, [tail, ...answer.slice(0, -1)])) return true;
 
-  // 地点或时间介词短语也可以前置：In the rain the frog jumps。
+  // 地點或時間介詞短語也可以前置：In the rain the frog jumps。
   for (let index = 1; index < answer.length; index += 1) {
     if (["in", "at", "by"].includes(answer[index]) && sameWords(attempt, [...answer.slice(index), ...answer.slice(0, index)])) return true;
   }
