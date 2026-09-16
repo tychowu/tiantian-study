@@ -14,6 +14,7 @@ import MtrGame from "@/games/MtrGame";
 import PeriodicTableGame from "@/games/PeriodicTableGame";
 import SentenceGame from "@/games/SentenceGame";
 import WeatherGame from "@/games/WeatherGame";
+import { APP_VERSION, APP_VERSION_DATE } from "@/lib/version";
 
 type GameMeta = {
   id: string;
@@ -126,6 +127,11 @@ export default function Home() {
           <span className="brand-wordmark">
             <b>天天</b>
             <i>的學習台</i>
+          </span>
+        </div>
+        <div className="topbar-actions">
+          <span className="app-version" title={`更新日期 ${APP_VERSION_DATE}`}>
+            v{APP_VERSION}
           </span>
         </div>
       </header>

@@ -43,6 +43,7 @@ button:disabled { cursor: not-allowed; opacity: .42; }
 .brand-mark { width: 42px; height: 42px; display: grid; place-items: center; transform: rotate(-4deg); }
 .brand-mark img { width: 46px; height: 46px; object-fit: contain; }
 .topbar-actions { display: flex; align-items: center; gap: 12px; }
+.app-version { padding: 3px 9px; border: 1px solid #e2dbc9; border-radius: 99px; background: rgba(255,253,247,.7); color: #9aa3ad; font-size: 11px; font-weight: 800; letter-spacing: .04em; font-variant-numeric: tabular-nums; }
 .restart-button { display:inline-flex; align-items:center; gap:6px; min-height:38px; padding:7px 12px; border:1px solid #b8c9bc; border-radius:12px 8px 12px 7px; background:#f3f8ed; color:#45664b; box-shadow:2px 2px 0 #a9c1ad; font-size:12px; font-weight:900; cursor:pointer; transition:filter .16s ease, box-shadow .16s ease; }
 .restart-button:hover { filter:brightness(.98); box-shadow:3px 3px 0 #a9c1ad; }
 .language-toggle { padding: 4px; display: flex; gap: 2px; background: rgba(255,253,247,.72); border: 1px solid #dfd8c7; border-radius: 999px; box-shadow: 0 4px 13px rgba(24,48,76,.06); }
