@@ -1,8 +1,8 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { Check, Map as MapIcon, RotateCcw, Star, Volume2 } from "lucide-react";
+import { Check, Map as MapIcon, RotateCcw, Star, Volume2, ZoomIn, ZoomOut } from "lucide-react";
 import { useState, type CSSProperties } from "react";
 import { MTR_LINES, type MtrLine } from "@/data/mtrLines";
-import { MTR_MAP } from "@/data/mtrMap";
+import { MTR_MAP, OFFICIAL_MAP_POSITIONS, OFFICIAL_MAP_SIZE } from "@/data/mtrMap";
 import { playCorrect, playWrong } from "@/lib/sound";
 import { speak } from "@/lib/speech";
 
@@ -10,7 +10,7 @@ import { speak } from "@/lib/speech";
  * 港鐵小車長：認識四條港鐵綫和站名（真實路綫色、站名完整）。
  * 學站名模式：點站名就會唸出來，還可以把小火車開到那一站；
  * 下一站模式：列車停在某一站，猜猜下一站是哪裡（三選一），共 10 題；
- * 鐵路地圖模式：全港十條港鐵綫的簡化地圖，點站點就會顯示站名。
+ * 鐵路地圖模式：以港鐵路綫圖為底圖，點站點就會顯示站名和可轉乘路綫。
  */
 type QuizItem = {
   line: MtrLine;
@@ -20,6 +20,29 @@ type QuizItem = {
 };
 
 const ROUND = 10;
+
+type OfficialStation = {
+  zh: string;
+  en: string;
+  x: number;
+  y: number;
+  lines: { key: string; zh: string; en: string; color: string }[];
+};
+
+/** 合併轉車站，避免同一位置疊上多個點擊區。 */
+const OFFICIAL_STATIONS = Array.from(
+  MTR_MAP.reduce((stations, line) => {
+    line.stations.forEach((item) => {
+      const position = OFFICIAL_MAP_POSITIONS[item.zh];
+      if (!position) return;
+      const existing = stations.get(item.zh);
+      const lineInfo = { key: line.key, zh: line.zh, en: line.en, color: line.color };
+      if (existing) existing.lines.push(lineInfo);
+      else stations.set(item.zh, { zh: item.zh, en: item.en, ...position, lines: [lineInfo] });
+    });
+    return stations;
+  }, new Map<string, OfficialStation>()).values(),
+).sort((a, b) => a.zh.localeCompare(b.zh, "zh-Hant"));
 
 const randInt = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min;
 
@@ -64,8 +87,8 @@ export default function MtrGame() {
   const [arrived, setArrived] = useState(false);
   const [round, setRound] = useState(0);
 
-  // 鐵路地圖：目前點選的站（key = 綫key + 站名）
-  const [mapPick, setMapPick] = useState<{ zh: string; en: string; x: number; y: number; color: string } | null>(null);
+  const [mapPick, setMapPick] = useState<OfficialStation | null>(null);
+  const [mapZoom, setMapZoom] = useState(1);
 
   const line = MTR_LINES.find((item) => item.key === lineKey)!;
   const question = quiz[Math.min(step, quiz.length - 1)];
@@ -112,13 +135,13 @@ export default function MtrGame() {
   };
 
   /** 地圖模式：點站點顯示站名並朗讀 */
-  const tapMapStation = (lineColor: string, zh: string, en: string, x: number, y: number) => {
-    setMapPick({ zh, en, x, y, color: lineColor });
-    speak(zh, "zh");
+  const tapMapStation = (station: OfficialStation) => {
+    setMapPick(station);
+    speak(station.zh, "zh");
   };
 
   return (
-    <div className="game-body">
+    <div className={`game-body ${mode === "map" ? "mtr-game-body" : ""}`}>
       <div className="mx-controls">
         <div className="mx-modes">
           <button type="button" className={`mx-mode ${mode === "learn" ? "is-on" : ""}`} onClick={() => setMode("learn")}>
@@ -126,15 +149,15 @@ export default function MtrGame() {
             學站名
             <i>Learn</i>
           </button>
-          <button type="button" className={`mx-mode ${mode === "quiz" ? "is-on" : ""}`} onClick={startQuiz}>
-            <span aria-hidden="true">🚆</span>
-            下一站是哪裡
-            <i>Quiz</i>
-          </button>
           <button type="button" className={`mx-mode ${mode === "map" ? "is-on" : ""}`} onClick={() => setMode("map")}>
             <span aria-hidden="true">🗺️</span>
             全港鐵路地圖
             <i>Map</i>
+          </button>
+          <button type="button" className={`mx-mode ${mode === "quiz" ? "is-on" : ""}`} onClick={startQuiz}>
+            <span aria-hidden="true">🚆</span>
+            下一站是哪裡
+            <i>Quiz</i>
           </button>
         </div>
         <div className="mx-levels"><span>點站名就會唸給你聽</span></div>
@@ -275,77 +298,63 @@ export default function MtrGame() {
 
       {mode === "map" && (
         <>
-          <div className="mtr-map-legend">
-            {MTR_MAP.map((item) => (
-              <span key={item.key} className="mtr-legend-item">
-                <i style={{ background: item.color }} aria-hidden="true" />
-                {item.zh}
-              </span>
-            ))}
+          <div className="mtr-official-toolbar">
+            <div className="mtr-zoom-controls" aria-label="地圖縮放">
+              <button type="button" onClick={() => setMapZoom((value) => Math.max(1, +(value - .35).toFixed(2)))} disabled={mapZoom <= 1} aria-label="縮小地圖"><ZoomOut size={19} /></button>
+              <span>{Math.round(mapZoom * 100)}%</span>
+              <button type="button" onClick={() => setMapZoom((value) => Math.min(1.7, +(value + .35).toFixed(2)))} disabled={mapZoom >= 1.7} aria-label="放大地圖"><ZoomIn size={19} /></button>
+            </div>
           </div>
-          <div className="mtr-fullmap">
-            <svg viewBox="0 0 1120 900" role="img" aria-label="全港鐵路簡化地圖">
-              {MTR_MAP.map((ml) => (
-                <g key={ml.key}>
-                  <polyline
-                    points={ml.stations.map((s) => `${s.x},${s.y}`).join(" ")}
-                    fill="none"
-                    stroke={ml.color}
-                    strokeWidth={7}
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </g>
-              ))}
-              {/* 站點：畫在綫上面，點擊顯示站名 */}
-              {MTR_MAP.map((ml) =>
-                ml.stations.map((s) => {
-                  const id = `${ml.key}-${s.zh}`;
-                  const active = mapPick?.zh === s.zh;
+          {mapPick && (
+            <motion.div className="mtr-picked-station" key={mapPick.zh} initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }}>
+              <span className="mtr-picked-pin" aria-hidden="true">📍</span>
+              <div><b>{mapPick.zh}</b><i>{mapPick.en}</i></div>
+              <div className="mtr-picked-lines">
+                {mapPick.lines.map((item) => <span key={item.key} style={{ "--line": item.color } as CSSProperties}>{item.zh}</span>)}
+              </div>
+              <button type="button" onClick={() => speak(mapPick.zh, "zh")} aria-label={`聆聽 ${mapPick.zh}`}><Volume2 size={18} /></button>
+            </motion.div>
+          )}
+          <div className="mtr-fullmap" aria-label="可縮放的全港港鐵互動路綫圖">
+            <div className="mtr-official-canvas" style={{ width: `${mapZoom * 100}%` }}>
+              <img src="/images/mtr-routemap-2024.png" alt="港鐵全港路綫圖，包含重鐵、機場快綫、迪士尼綫和輕鐵" draggable={false} />
+              <svg viewBox={`0 138 ${OFFICIAL_MAP_SIZE.width} ${OFFICIAL_MAP_SIZE.height - 138}`} role="group" aria-label="可點擊的港鐵站點">
+                {OFFICIAL_STATIONS.map((station) => {
+                  const active = mapPick?.zh === station.zh;
                   return (
-                    <g key={id} className="mtr-map-station" onClick={() => tapMapStation(ml.color, s.zh, s.en, s.x, s.y)}>
-                      <circle cx={s.x} cy={s.y} r={active ? 9 : 6.5} fill="#fffdf7" stroke={ml.color} strokeWidth={3.5} style={{ cursor: "pointer" }} />
-                      <title>{`${s.zh} ${s.en}（${ml.zh}）`}</title>
+                    <g
+                      key={station.zh}
+                      className={`mtr-map-station ${active ? "is-active" : ""}`}
+                      role="button"
+                      tabIndex={0}
+                      aria-label={`${station.zh} ${station.en}，${station.lines.map((item) => item.zh).join("、")}`}
+                      onClick={() => tapMapStation(station)}
+                      onKeyDown={(event) => {
+                        if (event.key === "Enter" || event.key === " ") {
+                          event.preventDefault();
+                          tapMapStation(station);
+                        }
+                      }}
+                    >
+                      <circle className="mtr-station-hit" cx={station.x} cy={station.y} r="22" />
+                      <circle className="mtr-station-focus" cx={station.x} cy={station.y} r={active ? 15 : 11} />
+                      <title>{`${station.zh} ${station.en}（${station.lines.map((item) => item.zh).join("、")}）`}</title>
                     </g>
                   );
-                }),
-              )}
-              {mapPick && (
-                <g>
-                  <rect
-                    x={Math.min(Math.max(mapPick.x - 70, 8), 950)}
-                    y={Math.max(mapPick.y - 64, 8)}
-                    width={170}
-                    height={52}
-                    rx={12}
-                    fill="#18304c"
-                    opacity={0.95}
-                  />
-                  <text
-                    x={Math.min(Math.max(mapPick.x - 70, 8) + 85, 1035)}
-                    y={Math.max(mapPick.y - 64, 8) + 21}
-                    textAnchor="middle"
-                    fill="#fff"
-                    fontSize={20}
-                    fontWeight={900}
-                  >
-                    {mapPick.zh}
-                  </text>
-                  <text
-                    x={Math.min(Math.max(mapPick.x - 70, 8) + 85, 1035)}
-                    y={Math.max(mapPick.y - 64, 8) + 42}
-                    textAnchor="middle"
-                    fill="#c9d6e2"
-                    fontSize={13}
-                    fontWeight={700}
-                  >
-                    {mapPick.en}
-                  </text>
-                </g>
-              )}
-            </svg>
+                })}
+                {mapPick && (() => {
+                  const labelX = Math.min(Math.max(mapPick.x - 135, 20), 1630);
+                  const labelY = mapPick.y < 245 ? mapPick.y + 38 : mapPick.y - 94;
+                  return <g className="mtr-selected-label" aria-hidden="true">
+                    <rect x={labelX} y={labelY} width="270" height="76" rx="18" />
+                    <text x={labelX + 135} y={labelY + 32} textAnchor="middle" className="is-zh">{mapPick.zh}</text>
+                    <text x={labelX + 135} y={labelY + 57} textAnchor="middle" className="is-en">{mapPick.en}</text>
+                  </g>;
+                })()}
+              </svg>
+            </div>
           </div>
-          <div className="game-notice"><MapIcon size={14} /> 這是簡化的全港鐵路地圖。點任何一個站點，就會大聲唸出站名！</div>
+          <div className="game-notice"><MapIcon size={14} /> 點一下地圖上的站點，就會放大顯示、朗讀站名和轉乘路綫！</div>
         </>
       )}
     </div>

@@ -8,12 +8,12 @@ import {
   Languages,
   RotateCcw,
   Sparkles,
-  Star,
   Trophy,
   X,
 } from "lucide-react";
 import { useCallback, useState } from "react";
 import { playCorrect, playWrong } from "@/lib/sound";
+import { speak } from "@/lib/speech";
 
 type Language = "zh" | "en";
 type Question = {
@@ -96,6 +96,28 @@ const createWordBank = (answer: string[]) =>
     })),
   );
 
+const normalizeEnglish = (words: string[]) => words.map((word) => word.toLocaleLowerCase());
+const sameWords = (left: string[], right: string[]) => left.length === right.length && left.every((word, index) => word === right[index]);
+const isFriendlyEnglishAnswer = (selected: string[], expected: string[]) => {
+  const answer = normalizeEnglish(expected);
+  const attempt = normalizeEnglish(selected);
+  if (sameWords(attempt, answer)) return true;
+
+  // 常见的时间／方式副词可以自然地放在句首：Today we go… / We go… today。
+  const tail = answer.at(-1);
+  if (tail && ["today", "now", "first", "together"].includes(tail) && sameWords(attempt, [tail, ...answer.slice(0, -1)])) return true;
+
+  // 地点或时间介词短语也可以前置：In the rain the frog jumps。
+  for (let index = 1; index < answer.length; index += 1) {
+    if (["in", "at", "by"].includes(answer[index]) && sameWords(attempt, [...answer.slice(index), ...answer.slice(0, index)])) return true;
+  }
+  return false;
+};
+
+const displayWord = (word: string, index: number, language: Language) => language === "en" && index === 0
+  ? word.charAt(0).toLocaleUpperCase() + word.slice(1).toLocaleLowerCase()
+  : word;
+
 export default function SentenceGame() {
   const [questionOrder] = useState<Question[]>(() => randomize(questions));
   const [questionIndex, setQuestionIndex] = useState(0);
@@ -109,7 +131,7 @@ export default function SentenceGame() {
   const question = questionOrder[questionIndex];
   const language = question.language;
   const questionNumber = questionIndex + 1;
-  const progress = Math.round((completed.length / questions.length) * 100);
+  const sayWord = (word: string) => speak(word, language === "zh" ? "zh" : "en");
 
   const loadQuestion = useCallback(
     (index: number) => {
@@ -134,6 +156,8 @@ export default function SentenceGame() {
 
   const pickWord = (tokenId: string) => {
     if (result === "correct") return;
+    const token = wordBank.find((item) => item.id === tokenId);
+    if (token) sayWord(token.text);
     setSelectedTokenIds((current) => [...current, tokenId]);
     setWordBank((current) =>
       current.map((token) => (token.id === tokenId ? { ...token, selected: true } : token)),
@@ -144,6 +168,8 @@ export default function SentenceGame() {
 
   const removeWord = (tokenId: string) => {
     if (result === "correct") return;
+    const token = wordBank.find((item) => item.id === tokenId);
+    if (token) sayWord(token.text);
     setWordBank((current) =>
       current.map((token) => (token.id === tokenId ? { ...token, selected: false } : token)),
     );
@@ -166,7 +192,9 @@ export default function SentenceGame() {
     const selectedWords = selectedTokenIds.map(
       (tokenId) => wordBank.find((token) => token.id === tokenId)?.text ?? "",
     );
-    const isCorrect = selectedWords.every((word, index) => word === question.answer[index]);
+    const isCorrect = language === "en"
+      ? isFriendlyEnglishAnswer(selectedWords, question.answer)
+      : selectedWords.every((word, index) => word === question.answer[index]);
     setResult(isCorrect ? "correct" : "incorrect");
     setNotice(null);
     if (isCorrect) {
@@ -185,24 +213,10 @@ export default function SentenceGame() {
     loadQuestion(questionIndex + 1);
   };
 
+  const builtWords = selectedTokenIds.map((tokenId) => wordBank.find((token) => token.id === tokenId)?.text ?? "");
+
   return (
     <div className="game-body">
-      <div className="game-progress-strip">
-        <div className="progress-track"><span style={{ width: `${progress}%` }} /></div>
-        <span><Star size={13} fill="currentColor" /> 已完成 {completed.length} 題 · {progress}%</span>
-      </div>
-
-      <div className="question-dots" aria-label="題目進度">
-        {questionOrder.map((item, index) => (
-          <button
-            key={`${item.id}-${index}`}
-            aria-label={`前往第 ${index + 1} 題`}
-            onClick={() => loadQuestion(index)}
-            className={`${index === questionIndex ? "is-active" : ""} ${completed.includes(item.id) ? "is-done" : ""}`}
-          />
-        ))}
-      </div>
-
       <motion.article
         className={`task-paper ${result ? `result-${result}` : ""}`}
         key={question.id}
@@ -228,7 +242,7 @@ export default function SentenceGame() {
           {selectedTokenIds.length === 0 ? (
             <span>{language === "zh" ? "點一下下面的詞語卡，開始排句子吧！" : "Tap the word cards to build your sentence."}</span>
           ) : (
-            selectedTokenIds.map((tokenId) => {
+            selectedTokenIds.map((tokenId, index) => {
               const token = wordBank.find((item) => item.id === tokenId);
               return token ? (
                 <motion.button
@@ -239,7 +253,7 @@ export default function SentenceGame() {
                   onClick={() => removeWord(token.id)}
                   className="selected-word"
                 >
-                  {token.text}
+                  {displayWord(token.text, index, language)}
                   <X size={14} />
                 </motion.button>
               ) : null;
@@ -291,7 +305,7 @@ export default function SentenceGame() {
               <img src="/images/tiantian-success-stars_5462d800.webp" alt="" />
               <div>
                 <span>太棒了！句子發光了</span>
-                <p>{question.answer.join(language === "zh" ? "" : " ")}。</p>
+                <p>{builtWords.map((word, index) => displayWord(word, index, language)).join(language === "zh" ? "" : " ")}。</p>
               </div>
               <button onClick={nextQuestion}>下一題 <ChevronRight size={17} /></button>
             </motion.div>

@@ -11,7 +11,7 @@ type Props = {
   children: ReactNode;
 };
 
-export default function GameStage({ title, subtitle, icon, accent, onExit, children }: Props) {
+export default function GameStage({ accent, onExit, children }: Props) {
   const [isFull, setIsFull] = useState(false);
   const [barHidden, setBarHidden] = useState(false);
   const [soundOn, setSoundOnState] = useState(isSoundOn);
@@ -70,37 +70,27 @@ export default function GameStage({ title, subtitle, icon, accent, onExit, child
         <button type="button" className="stage-back" onClick={onExit}>
           <ArrowLeft size={19} /> 回到學習台
         </button>
-        <span className="stage-title-mini">
-          <span className="stage-icon" aria-hidden="true">
-            {icon}
-          </span>
-          <b>{title}</b>
+        <span className="stage-corner-actions">
+          <button
+            type="button"
+            className={`stage-full stage-sound ${soundOn ? "" : "is-off"}`}
+            onClick={() => {
+              const next = !soundOn;
+              setSoundOn(next);
+              setSoundOnState(next);
+            }}
+            aria-label={soundOn ? "關閉音效" : "開啟音效"}
+            title={soundOn ? "關閉音效" : "開啟音效"}
+          >
+            {soundOn ? <Volume2 size={18} /> : <VolumeX size={18} />}
+          </button>
+          <button type="button" className="stage-full" onClick={toggleFullscreen} aria-label={isFull ? "退出全螢幕" : "全螢幕"}>
+            {isFull ? <Minimize2 size={18} /> : <Maximize2 size={18} />}
+          </button>
         </span>
-        <button
-          type="button"
-          className={`stage-full stage-sound ${soundOn ? "" : "is-off"}`}
-          onClick={() => {
-            const next = !soundOn;
-            setSoundOn(next);
-            setSoundOnState(next);
-          }}
-          aria-label={soundOn ? "關閉音效" : "開啟音效"}
-          title={soundOn ? "關閉音效" : "開啟音效"}
-        >
-          {soundOn ? <Volume2 size={18} /> : <VolumeX size={18} />}
-        </button>
-        <button
-          type="button"
-          className="stage-full"
-          onClick={toggleFullscreen}
-          aria-label={isFull ? "退出全螢幕" : "全螢幕"}
-        >
-          {isFull ? <Minimize2 size={18} /> : <Maximize2 size={18} />}
-        </button>
       </div>
 
       <div className="stage-scroll" ref={scrollRef}>
-        <p className="stage-subtitle">{subtitle}</p>
         {children}
       </div>
     </div>

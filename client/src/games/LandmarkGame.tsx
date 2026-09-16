@@ -204,28 +204,26 @@ export default function LandmarkGame() {
             transition={{ duration: 0.3 }}
           >
             <div className="task-topline"><span>名勝任務 {String(step + 1).padStart(2, "0")}</span><span>猜猜這是哪裡？</span></div>
-            {/* 題目：只有一句英文，沒有圖片 */}
-            <div className="lm-quiz-clue">
-              <BilingualText text={question.answer.clueEn} size="lg" />
-            </div>
-            {/* 選項：只有中英文地名，沒有圖片與圖示 */}
-            <div className="lm-quiz-options">
-              {question.options.map((option) => {
-                const isRight = solved && option.zh === question.answer.zh;
-                const isWrongPick = wrongPicks.includes(option.zh);
-                return (
-                  <button
-                    key={option.zh}
-                    type="button"
-                    className={`pk-option lm-quiz-option ${isRight ? "is-right" : ""} ${isWrongPick ? "is-wrong" : ""}`}
-                    onClick={() => choose(option)}
-                    disabled={solved || isWrongPick || showAnswer}
-                  >
-                    <b>{option.zh}</b>
-                    <i>{option.en}</i>
-                  </button>
-                );
-              })}
+            <div className="lm-quiz-workspace">
+              <div>
+                <div className="lm-quiz-clue"><BilingualText text={question.answer.clueEn} size="lg" /></div>
+                <div className="lm-quiz-options">
+                  {question.options.map((option) => {
+                    const isRight = solved && option.zh === question.answer.zh;
+                    const isWrongPick = wrongPicks.includes(option.zh);
+                    return (
+                      <button key={option.zh} type="button" className={`pk-option lm-quiz-option ${isRight ? "is-right" : ""} ${isWrongPick ? "is-wrong" : ""}`} onClick={() => choose(option)} disabled={solved || isWrongPick || showAnswer}>
+                        <b>{option.zh}</b><i>{option.en}</i>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+              <aside className={`lm-answer-note ${solved ? "is-revealed" : ""}`}>
+                <span className="lm-note-tape" aria-hidden="true" />
+                <div className="lm-answer-photo">{solved ? <img src={question.answer.photo} alt={question.answer.zh} /> : <span aria-hidden="true" />}</div>
+                <b>{solved ? question.answer.zh : "答對後揭曉"}</b>
+              </aside>
             </div>
             <AnimatePresence>
               {/* 答對：綠色框只放中文，不放任何英文 */}

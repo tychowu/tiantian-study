@@ -3,16 +3,18 @@
  * 設計語言沿用「天天的奇想書桌」——米白紙張、深海軍藍、天天橙、膠帶與貼紙。
  */
 import { motion } from "framer-motion";
-import { Rocket, Sparkles, Star } from "lucide-react";
+import { Rocket, Sparkles } from "lucide-react";
 import { useState, type ComponentType, type CSSProperties } from "react";
 import GameStage from "@/components/GameStage";
 import EnglishGame from "@/games/EnglishGame";
 import FestivalGame from "@/games/FestivalGame";
+import ClockGame from "@/games/ClockGame";
 import LandmarkGame from "@/games/LandmarkGame";
 import MathGame from "@/games/MathGame";
 import MtrGame from "@/games/MtrGame";
 import PeriodicTableGame from "@/games/PeriodicTableGame";
 import SentenceGame from "@/games/SentenceGame";
+import TimesTableGame from "@/games/TimesTableGame";
 import WeatherGame from "@/games/WeatherGame";
 import { APP_VERSION, APP_VERSION_DATE } from "@/lib/version";
 
@@ -25,89 +27,130 @@ type GameMeta = {
   img?: string;
   accent: string;
   stars: string;
-  Component: ComponentType;
+  Component?: ComponentType;
+  comingSoon?: boolean;
 };
 
 const GAMES: GameMeta[] = [
   {
     id: "sentence",
-    title: "句子星球",
-    subtitle: "打亂詞語・排出完整的句子",
+    title: "句子魔法工場",
+    subtitle: "把中英文詞語變成會說話的完整句子",
     icon: "🪐",
     img: "/images/cards/sentence.png",
     accent: "#4E93AC",
-    stars: "中英混排",
+    stars: "排句子・聽發音",
     Component: SentenceGame,
   },
   {
-    id: "elements",
-    title: "元素週期表",
-    subtitle: "118 個元素・中英雙語小知識",
-    icon: "⚛️",
-    img: "/images/cards/periodic.png",
-    accent: "#FF6B3D",
-    stars: "點字看翻譯",
-    Component: PeriodicTableGame,
-  },
-  {
     id: "math",
-    title: "數字探險",
-    subtitle: "衛星・行星・恆星，三種難度闖關",
+    title: "數字宇宙站",
+    subtitle: "駕駛小火箭，穿越加減乘三座數字星球",
     icon: "🔢",
-    img: "/images/cards/math.png",
+    img: "/images/cards/math-v2.png",
     accent: "#7FA65C",
-    stars: "加減乘一站學會",
+    stars: "三種難度闖關",
     Component: MathGame,
   },
   {
+    id: "times-table",
+    title: "九九糖果陣",
+    subtitle: "用彩色點陣看懂乘法，把中文口訣唱成兒歌",
+    icon: "✖️",
+    img: "/images/cards/times-table-v3.png",
+    accent: "#EF8C2F",
+    stars: "點陣・口訣・逆向題",
+    Component: TimesTableGame,
+  },
+  {
+    id: "elements",
+    title: "元素偵探所",
+    subtitle: "打開 118 個元素檔案，發現世界由什麼組成",
+    icon: "⚛️",
+    img: "/images/cards/periodic.png",
+    accent: "#FF6B3D",
+    stars: "分類・發音・小知識",
+    Component: PeriodicTableGame,
+  },
+  {
+    id: "clock",
+    title: "時鐘小工程師",
+    subtitle: "認識長短針、親手撥鐘，學懂點、字和英文時間",
+    icon: "⏰",
+    img: "/images/cards/clock-v3.png",
+    accent: "#E9A526",
+    stars: "五關學會看時間",
+    Component: ClockGame,
+  },
+  {
     id: "english",
-    title: "英文單字",
-    subtitle: "看圖拼字・50 個入門單字",
+    title: "單字拼拼島",
+    subtitle: "看圖、聽聲音，把 50 個英文單字拼回來",
     icon: "🔤",
     img: "/images/cards/english.png",
     accent: "#6C7FD1",
-    stars: "聽發音拼出它",
+    stars: "看圖・聽音・拼字",
     Component: EnglishGame,
   },
   {
     id: "festival",
-    title: "節日派對",
-    subtitle: "名稱連圖片・內地與香港法定節日",
+    title: "節日時光機",
+    subtitle: "沿着一年四季旅行，認識日期、習俗與祝福語",
     icon: "🎉",
     img: "/images/cards/festival.png",
     accent: "#E0524E",
-    stars: "16 個節日連連看",
+    stars: "四關收集節日郵戳",
     Component: FestivalGame,
   },
   {
     id: "landmark",
-    title: "名勝探險",
-    subtitle: "中國內地與香港的名勝・博物館",
+    title: "名勝環遊號",
+    subtitle: "搭上環遊列車，尋訪內地與香港的名勝博物館",
     icon: "🗺️",
-    img: "/images/cards/landmark.png",
+    img: "/images/cards/landmark-v2.png",
     accent: "#B5712F",
-    stars: "圖鑑＋小測驗",
+    stars: "照片圖鑑・線索猜猜看",
     Component: LandmarkGame,
   },
   {
     id: "mtr",
     title: "港鐵小車長",
-    subtitle: "四條港鐵綫・學站名開火車",
+    subtitle: "沿着全港鐵路出發，認站名、找轉車線、猜下一站",
     icon: "🚆",
     img: "/images/cards/mtr.png",
     accent: "#00888A",
-    stars: "點站名聽發音",
+    stars: "真實路線圖互動",
     Component: MtrGame,
   },
   {
     id: "weather",
-    title: "天氣小站長",
-    subtitle: "天文台天氣符號・警告信號",
+    title: "天氣觀察站",
+    subtitle: "讀懂天文台符號與警告，做會保護自己的小站長",
     icon: "🌦️",
     img: "/images/cards/weather.png",
     accent: "#3E82C4",
-    stars: "認符號學安全",
+    stars: "看符號・學安全",
     Component: WeatherGame,
+  },
+  {
+    id: "hanzi",
+    title: "漢字筆順屋",
+    subtitle: "認字、聽字，再跟着筆畫把漢字一筆一畫寫漂亮",
+    icon: "✍️",
+    img: "/images/cards/hanzi-v2.png",
+    accent: "#D05B73",
+    stars: "識字・筆順・描紅",
+    comingSoon: true,
+  },
+  {
+    id: "speaking",
+    title: "故事表達家",
+    subtitle: "看圖找線索，把人物、事情和感受組成自己的故事",
+    icon: "💬",
+    img: "/images/cards/speaking-v2.png",
+    accent: "#4AA58B",
+    stars: "觀察・組織・說故事",
+    comingSoon: true,
   },
 ];
 
@@ -143,9 +186,9 @@ export default function Home() {
             把卡片翻開，<br />
             <span>就開始一場小冒險。</span>
           </h1>
-          <p>八顆學習星球已經亮起來了，點一張就會飛進全螢幕的小遊戲。</p>
+          <p>十二個學習星球正在集合，點一張就會飛進全螢幕的小遊戲。</p>
         </div>
-        <img className="hero-art" src="/images/tiantian-hero-desk_71c399ad.webp" alt="紙張、詞語卡與鉛筆火箭組成的學習書桌插畫" />
+        <img className="hero-art" src="/images/tiantian-hero-learning-v2.jpg" alt="書本、地球、星球與鉛筆火箭組成的繽紛學習冒險插畫" />
       </section>
 
       <div className="desk-wrap">
@@ -158,9 +201,10 @@ export default function Home() {
             <motion.button
               key={game.id}
               type="button"
-              className="game-card"
+              className={`game-card ${game.comingSoon ? "is-coming" : ""}`}
               style={{ "--accent": game.accent } as CSSProperties}
-              onClick={() => setActiveId(game.id)}
+              onClick={() => !game.comingSoon && setActiveId(game.id)}
+              disabled={game.comingSoon}
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.32, delay: index * 0.06, ease: [0.23, 1, 0.32, 1] }}
@@ -172,8 +216,8 @@ export default function Home() {
               <b className="game-title">{game.title}</b>
               <span className="game-sub">{game.subtitle}</span>
               <span className="game-foot">
-                <span className="game-stars"><Star size={12} fill="currentColor" /> {game.stars}</span>
-                <span className="game-go">開始 →</span>
+                <span className="game-stars">{game.stars}</span>
+                {game.comingSoon ? <span className="game-coming-sticker">打磨中 · 暫未開放</span> : <span className="game-go">開始 →</span>}
               </span>
             </motion.button>
           ))}
@@ -193,7 +237,7 @@ export default function Home() {
           accent={active.accent}
           onExit={() => setActiveId(null)}
         >
-          <active.Component />
+          {active.Component && <active.Component />}
         </GameStage>
       )}
     </main>

@@ -5,7 +5,7 @@
 
 export const SITE_ASSETS = {
   logo: "/images/tiantian-pencil-rocket-logo_94715784.webp",
-  hero: "/images/tiantian-hero-desk_71c399ad.webp",
+  hero: "/images/tiantian-hero-learning-v2.jpg",
   portrait: "/images/tiantian-portrait_29b4d9d2.png",
   successStars: "/images/tiantian-success-stars_5462d800.webp",
   wordPlanet: "/images/tiantian-word-planet_fcacffbd.webp",

@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowLeft, ChevronLeft, ChevronRight, Search, Sparkles, Volume2, X } from "lucide-react";
+import { ArrowLeft, ChevronLeft, ChevronRight, Sparkles, Volume2, X } from "lucide-react";
 import { useState, type CSSProperties, type MouseEvent } from "react";
 import BilingualText from "@/components/BilingualText";
 import SpeakableZh from "@/components/SpeakableZh";
@@ -194,7 +194,6 @@ function ElementDetail({
             <section className="pt-section">
               <span className="pt-label">影片 · Video</span>
               <SafeVideo videoId={video.id} title={video.title} />
-              <p className="pt-video-title">{video.title}</p>
             </section>
           )}
 
@@ -215,45 +214,20 @@ function ElementDetail({
 export default function PeriodicTableGame() {
   const [activeCategory, setActiveCategory] = useState<CategoryKey | null>(null);
   const [radioOnly, setRadioOnly] = useState(false);
-  const [keyword, setKeyword] = useState("");
   const [opened, setOpened] = useState<number | null>(null);
 
   const filtered = new Set(
     ELEMENTS.filter((item) => {
       const byCat = !activeCategory || item.cat === activeCategory;
       const byRadio = !radioOnly || isRadioactive(item.n);
-      const key = keyword.trim().toLowerCase();
-      const byKey =
-        !key ||
-        item.sym.toLowerCase().includes(key) ||
-        item.en.toLowerCase().includes(key) ||
-        item.zh.includes(keyword.trim()) ||
-        String(item.n) === key;
-      return byCat && byRadio && byKey;
+      return byCat && byRadio;
     }).map((item) => item.n),
   );
 
   const openedElement = opened !== null ? ELEMENT_BY_NUMBER.get(opened) : undefined;
 
   return (
-    <div className="game-body">
-      <div className="pt-toolbar">
-        <label className="pt-search">
-          <Search size={18} />
-          <input
-            value={keyword}
-            onChange={(event) => setKeyword(event.target.value)}
-            placeholder="找元素：輸入 6、C、碳 或 Carbon"
-            aria-label="搜尋元素"
-          />
-          {keyword && (
-            <button type="button" onClick={() => setKeyword("")} aria-label="清除搜尋">
-              <X size={16} />
-            </button>
-          )}
-        </label>
-      </div>
-
+    <div className="game-body pt-game-body">
       <p className="pt-tip">
         點一格，就會飛到它的小知識頁面；中文每個字、英文每個字都可以點一下聽發音，點卡片外面就關起來。
       </p>
@@ -261,7 +235,7 @@ export default function PeriodicTableGame() {
       {/* 圖例放進週期表上方的空白格：左邊大框放分類按鈕，右邊小框放「全部」「放射性」。 */}
       <div className="ptable-wrap">
         <div className="ptable">
-          <div className="pt-legend-board" style={{ gridColumn: "3 / span 4", gridRow: "1 / span 3" }}>
+          <div className="pt-legend-board" style={{ gridColumn: "4 / span 4", gridRow: "1 / span 3" }}>
             {CATEGORY_ORDER.map((key) => {
               const meta = CATEGORY_META[key];
               return (
@@ -270,33 +244,40 @@ export default function PeriodicTableGame() {
                   type="button"
                   className={`pt-chip ${activeCategory === key ? "is-on" : ""}`}
                   style={cellVars(meta.color, meta.tint)}
-                  onClick={() => setActiveCategory(activeCategory === key ? null : key)}
+                  aria-pressed={activeCategory === key}
+                  onClick={() => {
+                    setActiveCategory(activeCategory === key ? null : key);
+                    setRadioOnly(false);
+                  }}
                 >
                   <i style={{ background: meta.color }} /> {meta.zh}
                 </button>
               );
             })}
           </div>
-          <button
-            type="button"
-            className={`pt-chip pt-grid-chip ${activeCategory === null && !radioOnly ? "is-on" : ""}`}
-            style={{ gridColumn: "7 / span 2", gridRow: "1 / span 1" }}
-            onClick={() => {
-              setActiveCategory(null);
-              setRadioOnly(false);
-            }}
-          >
-            全部
-          </button>
-          <button
-            type="button"
-            className={`pt-chip pt-chip-radio pt-grid-chip ${radioOnly ? "is-on" : ""}`}
-            style={{ gridColumn: "7 / span 2", gridRow: "2 / span 1" }}
-            onClick={() => setRadioOnly(!radioOnly)}
-            title="只看有放射性的元素"
-          >
-            <img src="/images/radioactive.png" alt="" aria-hidden="true" /> 放射性
-          </button>
+          <div className="pt-quick-filters" style={{ gridColumn: "8 / span 2", gridRow: "1 / span 3" }}>
+            <button
+              type="button"
+              className={`pt-chip pt-grid-chip ${activeCategory === null && !radioOnly ? "is-on" : ""}`}
+              onClick={() => {
+                setActiveCategory(null);
+                setRadioOnly(false);
+              }}
+            >
+              全部
+            </button>
+            <button
+              type="button"
+              className={`pt-chip pt-chip-radio pt-grid-chip ${radioOnly ? "is-on" : ""}`}
+              onClick={() => {
+                setRadioOnly(!radioOnly);
+                setActiveCategory(null);
+              }}
+              title="只看有放射性的元素"
+            >
+              <img src="/images/radioactive.png" alt="" aria-hidden="true" /> 放射性
+            </button>
+          </div>
 
           {ELEMENTS.map((item) => (
             <ElementCell
@@ -311,7 +292,7 @@ export default function PeriodicTableGame() {
             return (
               <span
                 key={hint.row}
-                className="pt-series-hint"
+                className={`pt-series-hint ${radioOnly || (activeCategory !== null && activeCategory !== hint.cat) ? "is-dimmed" : ""}`}
                 style={{ gridColumn: 3, gridRow: hint.row, ...cellVars(seriesMeta.color, seriesMeta.tint) }}
               >
                 {hint.label}
@@ -323,7 +304,7 @@ export default function PeriodicTableGame() {
             return (
               <span
                 key={tag.row}
-                className="pt-series-tag"
+                className={`pt-series-tag ${radioOnly || (activeCategory !== null && activeCategory !== tag.cat) ? "is-dimmed" : ""}`}
                 style={{ gridColumn: "1 / 3", gridRow: tag.row, color: seriesMeta.color }}
                 aria-hidden="true"
               >
