@@ -354,6 +354,15 @@ export const LANDMARKS: Landmark[] = [
     clueEn: "It is an old|古老 fishing|捕魚 village|漁村 on Lantau|大嶼山 Island|島. Wooden|木製 houses|屋 stand|立 on stilts|棚架 above|在上 the water|水.",
   },
   {
+    zh: "香港地質公園",
+    en: "Hong Kong Geopark",
+    photo: "/images/landmarks/geopark.jpg",
+    region: "hongkong",
+    introZh: "地質公園的六角形岩柱好神奇，是一億多年前火山造成的，一根根排在海邊。",
+    introEn: "The park|公園 has six-sided|六角形 rock|岩石 columns|石柱. A volcano|火山 made|造成 them long ago.",
+    clueEn: "It is a park|公園 in Hong Kong|香港 with many six-sided|六角形 rock|岩石 columns|石柱 standing|矗立 by the sea|海.",
+  },
+  {
     zh: "廟街夜市",
     en: "Temple Street Night Market",
     photo: "/images/landmarks/templestreet.jpg",
