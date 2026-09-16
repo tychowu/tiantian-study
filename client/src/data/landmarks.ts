@@ -39,6 +39,15 @@ export const LANDMARKS: Landmark[] = [
     clueEn: "It is a big old palace in Beijing. The emperor|皇帝 of China|中國 lived there, and the roofs|屋頂 are golden|金色的.",
   },
   {
+    zh: "天安門",
+    en: "Tian'anmen",
+    photo: "/images/landmarks/tiananmen.jpg",
+    region: "mainland",
+    introZh: "天安門在北京的正中心，紅牆金瓦，是國家的象徵。每天早上這裡都會舉行升旗儀式。",
+    introEn: "Tian'anmen|天安門 is in the heart|中心 of Beijing|北京. It has red|紅色的 walls|城牆 and a golden|金色的 roof|屋頂. The national flag|國旗 goes up here every morning|早上.",
+    clueEn: "It is a famous|著名的 red gate tower|城樓 in the very middle|中心 of Beijing|北京. People watch|觀看 the national flag|國旗 go up here every morning|早上.",
+  },
+  {
     zh: "天壇",
     en: "The Temple of Heaven",
     photo: "/images/landmarks/templeofheaven.jpg",
