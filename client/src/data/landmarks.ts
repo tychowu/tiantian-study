@@ -1,7 +1,7 @@
 /**
  * 名勝探險：中國內地和香港小朋友值得認識的著名景點與博物館。
  * 每個名勝配一張真實的標誌性照片（client/public/images/landmarks/，
- * 攝影圖片來自維基百科／維基共享資源）。
+ * 攝影圖片來自維基百科／維基共享資源及用戶提供照片）。
  * 圖鑑模式：點卡片看雙語詳情；小測驗模式：讀一句英文提示猜名稱（無圖）。
  * 英文句子用 `word|翻譯` 標註，必須「一個英文單字」對一個翻譯。
  */
@@ -145,5 +145,86 @@ export const LANDMARKS: Landmark[] = [
     introZh: "科學館裡好多可以動手玩的展品，還有一部好大的能量穿梭機。",
     introEn: "The museum|博物館 has hands-on|動手做的 exhibits|展品 and a big|大的 energy|能量 machine|機器.",
     clueEn: "It is a museum|博物館 in Tsim Sha Tsui|尖沙咀 with many hands-on|動手做 science|科學 exhibits|展品.",
+  },
+  {
+    zh: "香港故宮文化博物館",
+    en: "Hong Kong Palace Museum",
+    photo: "/images/landmarks/hkpalacemuseum.jpg",
+    region: "hongkong",
+    introZh: "香港故宮在西九文化區海邊，樓像一個上寬下窄的大方鼎，展出北京故宮的珍寶。",
+    introEn: "The museum|博物館 shows|展出 treasures|珍寶 from the palace|宮殿 in Beijing|北京. It looks like a big|大的 vase|方鼎.",
+    clueEn: "It is a new museum|博物館 in West Kowloon|西九龍 by the harbour|海港. It shows|展出 precious|珍貴 treasures|珍寶 from the palace|宮殿 in Beijing|北京.",
+  },
+  {
+    zh: "中銀大廈",
+    en: "Bank of China Tower",
+    photo: "/images/landmarks/bankofchina.jpg",
+    region: "hongkong",
+    introZh: "中銀大廈像一支好高的竹筍，一節節玻璃幕牆直上雲霄，晚上會亮燈。",
+    introEn: "The tower|大廈 looks like bamboo|竹子 shoots|嫩芽. Its glass|玻璃 walls|牆 reach|伸向 the sky|天空.",
+    clueEn: "It is a very tall|高的 glass|玻璃 tower|大廈 on Hong Kong Island|香港島. It looks like bamboo|竹子 shoots|嫩芽 pointing|指向 the sky|天空.",
+  },
+  {
+    zh: "香港太空館",
+    en: "Hong Kong Space Museum",
+    photo: "/images/landmarks/spacemuseum.jpg",
+    region: "hongkong",
+    introZh: "太空館有個白白圓圓的蛋形屋頂，裡面的天象廳可以躺著看星空電影。",
+    introEn: "The museum|博物館 has a white|白色 dome|圓頂 like half|一半 an egg|蛋. Inside|裡面 you can watch|看 star|星星 shows|表演.",
+    clueEn: "It is a museum|博物館 in Tsim Sha Tsui|尖沙咀 with a round|圓形 white|白色 dome|圓頂 like half|一半 an egg|蛋. You can watch|看 the stars|星星 inside|裡面.",
+  },
+  {
+    zh: "黃大仙祠",
+    en: "Wong Tai Sin Temple",
+    photo: "/images/landmarks/wongtaisin.jpg",
+    region: "hongkong",
+    introZh: "黃大仙祠紅柱金瓦好熱鬧，聽說在這裡求籤有求必應。",
+    introEn: "The temple|廟 has red|紅色 pillars|柱子 and golden|金色 roofs|屋頂. People make wishes|許願 there.",
+    clueEn: "It is a temple|廟 in Kowloon|九龍 with red|紅色 pillars|柱子 and golden|金色 roofs|屋頂. People go there to make wishes|許願.",
+  },
+  {
+    zh: "山頂纜車",
+    en: "The Peak Tram",
+    photo: "/images/landmarks/peaktram.jpg",
+    region: "hongkong",
+    introZh: "山頂纜車一百三十多歲了，綠色車廂拉著大家斜斜爬上山頂。",
+    introEn: "The green|綠色 tram|纜車 has run|行駛 for over|超過 130 years|年. It climbs|爬 up the steep|陡斜 slope|山坡.",
+    clueEn: "It is a green|綠色 tram|纜車 that has run|行駛 for over|超過 130 years|年. It slowly|慢慢地 climbs|爬 up to Victoria Peak|太平山頂.",
+  },
+  {
+    zh: "星光大道",
+    en: "Avenue of Stars",
+    photo: "/images/landmarks/avenueofstars.jpg",
+    region: "hongkong",
+    introZh: "星光大道在海邊，地上有明星的手印，還有李小龍銅像可以合照。",
+    introEn: "The walkway|步道 has handprints|手印 of movie|電影 stars|明星 and a Bruce|李小龍 Lee|李小龍 statue|銅像.",
+    clueEn: "It is a seaside|海邊 walkway|步道 in Tsim Sha Tsui|尖沙咀. Movie|電影 stars'|明星 handprints|手印 are on the ground|地面.",
+  },
+  {
+    zh: "M+博物館",
+    en: "M+ Museum",
+    photo: "/images/landmarks/mplus.jpg",
+    region: "hongkong",
+    introZh: "M+是海邊一座好大的倒梯形建築，收藏好多現代藝術作品。",
+    introEn: "The museum|博物館 is shaped|形狀 like an upside-down|倒轉的 triangle|梯形. It shows|展出 modern|現代 art|藝術.",
+    clueEn: "It is a huge|巨大的 dark|深色 museum|博物館 in West Kowloon|西九龍 by the harbour|海港. It shows|展出 modern|現代 art|藝術.",
+  },
+  {
+    zh: "大澳漁村",
+    en: "Tai O Fishing Village",
+    photo: "/images/landmarks/taio.jpg",
+    region: "hongkong",
+    introZh: "大澳被叫做東方威尼斯，棚屋一間間建在水上，運氣好還能看到白海豚。",
+    introEn: "The village|漁村 has stilt|棚 houses|屋 standing|立 above|在上 the water|水. It is called|叫做 the Venice|威尼斯 of the East|東方.",
+    clueEn: "It is an old|古老 fishing|捕魚 village|漁村 on Lantau|大嶼山 Island|島. Wooden|木製 houses|屋 stand|立 on stilts|棚架 above|在上 the water|水.",
+  },
+  {
+    zh: "廟街夜市",
+    en: "Temple Street Night Market",
+    photo: "/images/landmarks/templestreet.jpg",
+    region: "hongkong",
+    introZh: "廟街一到晚上就亮起來，攤檔一個挨一個，賣小食、玩具和好玩的東西。",
+    introEn: "At night|晚上 the market|市集 lights|亮起 up. Stalls|攤檔 sell|賣 snacks|小食 and toys|玩具.",
+    clueEn: "It is a busy|熱鬧 night market|夜市 in Kowloon|九龍. Stalls|攤檔 sell|賣 snacks|小食 and toys|玩具 under|在下面 bright|明亮 lights|燈光.",
   },
 ];
