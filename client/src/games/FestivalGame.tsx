@@ -3,6 +3,7 @@ import { Link2, RotateCcw, Star } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import BilingualText from "@/components/BilingualText";
 import { FESTIVALS, PAIRS_PER_ROUND, type Festival } from "@/data/festivals";
+import { playCorrect, playWrong } from "@/lib/sound";
 import { speak } from "@/lib/speech";
 
 /**
@@ -114,11 +115,13 @@ export default function FestivalGame() {
       setMatched((current) => [...current, festival.id]);
       setLastFact(festival);
       setPickedLeft(null);
+      playCorrect();
       speak(`${festival.zh}，${festival.dateZh}`, "zh");
       window.setTimeout(() => speak(festival.factZh, "zh"), 1400);
     } else {
       drawLine(leftIndex, rightIndex, false);
       setWrongPair(festival.id);
+      playWrong();
       window.setTimeout(() => setWrongPair(null), 800);
       setPickedLeft(null);
     }

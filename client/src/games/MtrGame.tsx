@@ -3,6 +3,7 @@ import { Check, Map as MapIcon, RotateCcw, Star, Volume2 } from "lucide-react";
 import { useState, type CSSProperties } from "react";
 import { MTR_LINES, type MtrLine } from "@/data/mtrLines";
 import { MTR_MAP } from "@/data/mtrMap";
+import { playCorrect, playWrong } from "@/lib/sound";
 import { speak } from "@/lib/speech";
 
 /**
@@ -86,8 +87,10 @@ export default function MtrGame() {
     if (option === question.answer) {
       setScore((current) => current + 1);
       setArrived(true);
+      playCorrect();
       speak(`${question.line.stations[question.fromIndex].zh}，下一站，${option}`, "zh");
     } else {
+      playWrong();
       speak(`不是喔，下一站是${question.answer}`, "zh");
     }
   };

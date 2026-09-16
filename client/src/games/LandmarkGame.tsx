@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import BilingualText from "@/components/BilingualText";
 import SpeakableZh from "@/components/SpeakableZh";
 import { LANDMARKS, type Landmark } from "@/data/landmarks";
+import { playCorrect, playWrong } from "@/lib/sound";
 import { speak } from "@/lib/speech";
 
 /**
@@ -106,10 +107,12 @@ export default function LandmarkGame() {
       setSolved(true);
       setScore((current) => current + 1);
       setFireworks(true);
+      playCorrect();
       speak(`答對了！這是${question.answer.zh}。${question.answer.introZh.split("。")[0]}。`, "zh");
     } else {
       const nextWrong = [...wrongPicks, option.zh];
       setWrongPicks(nextWrong);
+      playWrong();
       // 已經錯過一次：這次不再給機會，公佈答案後繼續
       if (nextWrong.length >= 2) {
         setShowAnswer(true);

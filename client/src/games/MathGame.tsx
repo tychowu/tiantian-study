@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, RotateCcw, Star } from "lucide-react";
 import { useCallback, useMemo, useState } from "react";
+import { playCorrect, playWrong } from "@/lib/sound";
 
 /** 三種難度：衛星（兩位數加或減）→ 行星（兩位數加減混合）→ 恆星（個位乘法＋加減）。 */
 type Difficulty = "satellite" | "planet" | "star";
@@ -129,9 +130,11 @@ export default function MathGame() {
       setResult("correct");
       setScore((current) => current + 1);
       setStreak((current) => current + 1);
+      playCorrect();
     } else {
       setResult("incorrect");
       setStreak(0);
+      playWrong();
     }
   };
 

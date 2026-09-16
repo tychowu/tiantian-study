@@ -4,6 +4,7 @@ import { useState } from "react";
 import BilingualText from "@/components/BilingualText";
 import SpeakableZh from "@/components/SpeakableZh";
 import { WEATHER_ITEMS, type WeatherItem } from "@/data/weather";
+import { playCorrect, playWrong } from "@/lib/sound";
 import { speak } from "@/lib/speech";
 
 /**
@@ -38,29 +39,45 @@ export default function WeatherGame() {
   const [quiz, setQuiz] = useState<QuizItem[]>(buildQuiz);
   const [step, setStep] = useState(0);
   const [picked, setPicked] = useState<string | null>(null);
+  const [wrongPicks, setWrongPicks] = useState<string[]>([]);
   const [score, setScore] = useState(0);
   const [round, setRound] = useState(0);
 
   const question = quiz[Math.min(step, quiz.length - 1)];
-  const finished = step + 1 >= ROUND && picked === question.answer.zh;
+  // 答錯兩次才公佈答案；第一次只請小朋友再想一想。
+  const isCorrect = picked === question.answer.zh;
+  const reveal = wrongPicks.length >= 2;
+  const locked = isCorrect || reveal;
+  const finished = step + 1 >= ROUND && locked;
 
   const startQuiz = () => {
     setQuiz(buildQuiz());
     setStep(0);
     setPicked(null);
+    setWrongPicks([]);
     setScore(0);
     setRound((current) => current + 1);
     setMode("quiz");
   };
 
   const choose = (option: WeatherItem) => {
-    if (picked) return;
-    setPicked(option.zh);
+    if (locked || wrongPicks.includes(option.zh)) return;
     if (option.zh === question.answer.zh) {
+      setPicked(option.zh);
       setScore((current) => current + 1);
+      playCorrect();
       speak(`答對了，這是${question.answer.zh}。${question.answer.factZh}`, "zh");
-    } else {
+      return;
+    }
+    const nextWrong = [...wrongPicks, option.zh];
+    setWrongPicks(nextWrong);
+    setPicked(option.zh);
+    playWrong();
+    // 第一次錯：不公佈答案，請小朋友再看一次符號；錯兩次才告訴他答案。
+    if (nextWrong.length >= 2) {
       speak(`這是${question.answer.zh}。${question.answer.factZh}`, "zh");
+    } else {
+      speak("好像不是哦，小朋友再想一想", "zh");
     }
   };
 
@@ -71,6 +88,7 @@ export default function WeatherGame() {
     }
     setStep((current) => current + 1);
     setPicked(null);
+    setWrongPicks([]);
   };
 
   const weather = WEATHER_ITEMS.filter((item) => item.type === "weather");
@@ -151,7 +169,7 @@ export default function WeatherGame() {
           </div>
 
           <motion.article
-            className={`task-paper wx-quiz ${picked ? (picked === question.answer.zh ? "result-correct" : "result-incorrect") : ""}`}
+            className={`task-paper wx-quiz ${isCorrect ? "result-correct" : wrongPicks.length && !reveal ? "result-incorrect" : ""}`}
             key={`${round}-${step}`}
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
@@ -175,9 +193,9 @@ export default function WeatherGame() {
                 <button
                   key={option.zh}
                   type="button"
-                  className={`pk-option ${picked ? (option.zh === question.answer.zh ? "is-right" : option.zh === picked ? "is-wrong" : "") : ""}`}
+                  className={`pk-option ${isCorrect && option.zh === question.answer.zh ? "is-right" : ""} ${wrongPicks.includes(option.zh) ? "is-wrong" : ""}`}
                   onClick={() => choose(option)}
-                  disabled={Boolean(picked) && option.zh !== question.answer.zh && option.zh !== picked}
+                  disabled={locked || wrongPicks.includes(option.zh)}
                 >
                   <b>{option.zh}</b>
                   <i>{option.en}</i>
@@ -186,33 +204,52 @@ export default function WeatherGame() {
             </div>
 
             <AnimatePresence>
-              {picked && (
+              {/* 答對：只放中文，不放英文 */}
+              {isCorrect && (
                 <motion.div
-                  className={`feedback ${picked === question.answer.zh ? "correct-feedback" : "incorrect-feedback"}`}
+                  className="feedback correct-feedback"
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
                 >
-                  {picked === question.answer.zh ? (
-                    <>
-                      <img src="/images/tiantian-success-stars_5462d800.webp" alt="" />
-                      <div>
-                        <span>答對了！這是{question.answer.zh}</span>
-                        <p>{question.answer.factZh}</p>
-                        <div className="wx-feedback-en"><BilingualText text={question.answer.factEn} /></div>
-                      </div>
-                      <button onClick={next}>{finished ? "再玩一輪" : "下一題"} <Check size={17} /></button>
-                    </>
-                  ) : (
-                    <>
-                      <div className="retry-face">?</div>
-                      <div>
-                        <span>正確答案是「{question.answer.zh}」</span>
-                        <p>{question.answer.factZh}</p>
-                      </div>
-                      <button onClick={next}>{finished ? "再玩一輪" : "下一題"} <Check size={17} /></button>
-                    </>
-                  )}
+                  <img src="/images/tiantian-success-stars_5462d800.webp" alt="" />
+                  <div>
+                    <span>答對了！這是{question.answer.zh}</span>
+                    <p>{question.answer.factZh}</p>
+                  </div>
+                  <button onClick={next}>{finished ? "再玩一輪" : "下一題"} <Check size={17} /></button>
+                </motion.div>
+              )}
+              {/* 第一次答錯：不公佈答案，請小朋友再想一想 */}
+              {wrongPicks.length === 1 && !isCorrect && (
+                <motion.div
+                  className="feedback incorrect-feedback"
+                  key={`retry-${wrongPicks[0]}`}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <div className="retry-face">?</div>
+                  <div>
+                    <span>好像不是哦，小朋友再想一想</span>
+                    <p>再看清楚符號的樣子，還有其他可以選喔！</p>
+                  </div>
+                </motion.div>
+              )}
+              {/* 答錯兩次：公佈答案 */}
+              {reveal && (
+                <motion.div
+                  className="feedback incorrect-feedback"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <div className="retry-face">?</div>
+                  <div>
+                    <span>正確答案是「{question.answer.zh}」</span>
+                    <p>{question.answer.factZh}</p>
+                  </div>
+                  <button onClick={next}>{finished ? "再玩一輪" : "下一題"} <Check size={17} /></button>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -221,7 +258,7 @@ export default function WeatherGame() {
           <div className="lesson-footer">
             <button className="nav-question" onClick={startQuiz}><RotateCcw size={17} /> 重新開始</button>
             <span>累計答對 <b>{score}</b> 題</span>
-            <button className="nav-question" onClick={next} disabled={!picked}>下一題 →</button>
+            <button className="nav-question" onClick={next} disabled={!locked}>下一題 →</button>
           </div>
         </>
       )}

@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Eraser, Lightbulb, RotateCcw, Star, Volume2 } from "lucide-react";
 import { useMemo, useState } from "react";
+import { playCorrect, playWrong } from "@/lib/sound";
 import { speak } from "@/lib/speech";
 
 type Word = { en: string; zh: string; icon: string };
@@ -132,8 +133,10 @@ export default function EnglishGame() {
     if (built === word.en) {
       setResult("correct");
       setScore((current) => current + 1);
+      playCorrect();
     } else {
       setResult("incorrect");
+      playWrong();
     }
   };
 

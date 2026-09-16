@@ -1,5 +1,6 @@
-import { ArrowLeft, Maximize2, Minimize2 } from "lucide-react";
+import { ArrowLeft, Maximize2, Minimize2, Volume2, VolumeX } from "lucide-react";
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import { isSoundOn, setSoundOn } from "@/lib/sound";
 
 type Props = {
   title: string;
@@ -13,6 +14,7 @@ type Props = {
 export default function GameStage({ title, subtitle, icon, accent, onExit, children }: Props) {
   const [isFull, setIsFull] = useState(false);
   const [barHidden, setBarHidden] = useState(false);
+  const [soundOn, setSoundOnState] = useState(isSoundOn);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -74,6 +76,19 @@ export default function GameStage({ title, subtitle, icon, accent, onExit, child
           </span>
           <b>{title}</b>
         </span>
+        <button
+          type="button"
+          className={`stage-full stage-sound ${soundOn ? "" : "is-off"}`}
+          onClick={() => {
+            const next = !soundOn;
+            setSoundOn(next);
+            setSoundOnState(next);
+          }}
+          aria-label={soundOn ? "關閉音效" : "開啟音效"}
+          title={soundOn ? "關閉音效" : "開啟音效"}
+        >
+          {soundOn ? <Volume2 size={18} /> : <VolumeX size={18} />}
+        </button>
         <button
           type="button"
           className="stage-full"

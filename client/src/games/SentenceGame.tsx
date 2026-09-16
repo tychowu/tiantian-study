@@ -13,6 +13,7 @@ import {
   X,
 } from "lucide-react";
 import { useCallback, useState } from "react";
+import { playCorrect, playWrong } from "@/lib/sound";
 
 type Language = "zh" | "en";
 type Question = {
@@ -170,6 +171,9 @@ export default function SentenceGame() {
     setNotice(null);
     if (isCorrect) {
       setCompleted((current) => (current.includes(question.id) ? current : [...current, question.id]));
+      playCorrect();
+    } else {
+      playWrong();
     }
   };
 
