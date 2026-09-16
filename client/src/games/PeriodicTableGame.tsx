@@ -254,46 +254,50 @@ export default function PeriodicTableGame() {
         </label>
       </div>
 
-      <div className="pt-legend">
-        <button
-          type="button"
-          className={`pt-chip ${activeCategory === null && !radioOnly ? "is-on" : ""}`}
-          onClick={() => {
-            setActiveCategory(null);
-            setRadioOnly(false);
-          }}
-        >
-          全部
-        </button>
-        <button
-          type="button"
-          className={`pt-chip pt-chip-radio ${radioOnly ? "is-on" : ""}`}
-          onClick={() => setRadioOnly(!radioOnly)}
-          title="只看有放射性的元素"
-        >
-          <img src="/images/radioactive.png" alt="" aria-hidden="true" /> 放射性
-        </button>        {CATEGORY_ORDER.map((key) => {
-          const meta = CATEGORY_META[key];
-          return (
-            <button
-              key={key}
-              type="button"
-              className={`pt-chip ${activeCategory === key ? "is-on" : ""}`}
-              style={cellVars(meta.color, meta.tint)}
-              onClick={() => setActiveCategory(activeCategory === key ? null : key)}
-            >
-              <i style={{ background: meta.color }} /> {meta.zh}
-            </button>
-          );
-        })}
-      </div>
-
       <p className="pt-tip">
         點一格，就會飛到它的小知識頁面；中文每個字、英文每個字都可以點一下聽發音，點卡片外面就關起來。
       </p>
 
+      {/* 圖例放進週期表上方的空白格：左邊大框放分類按鈕，右邊小框放「全部」「放射性」。 */}
       <div className="ptable-wrap">
         <div className="ptable">
+          <div className="pt-legend-board" style={{ gridColumn: "3 / span 4", gridRow: "1 / span 3" }}>
+            {CATEGORY_ORDER.map((key) => {
+              const meta = CATEGORY_META[key];
+              return (
+                <button
+                  key={key}
+                  type="button"
+                  className={`pt-chip ${activeCategory === key ? "is-on" : ""}`}
+                  style={cellVars(meta.color, meta.tint)}
+                  onClick={() => setActiveCategory(activeCategory === key ? null : key)}
+                >
+                  <i style={{ background: meta.color }} /> {meta.zh}
+                </button>
+              );
+            })}
+          </div>
+          <button
+            type="button"
+            className={`pt-chip pt-grid-chip ${activeCategory === null && !radioOnly ? "is-on" : ""}`}
+            style={{ gridColumn: "7 / span 2", gridRow: "1 / span 1" }}
+            onClick={() => {
+              setActiveCategory(null);
+              setRadioOnly(false);
+            }}
+          >
+            全部
+          </button>
+          <button
+            type="button"
+            className={`pt-chip pt-chip-radio pt-grid-chip ${radioOnly ? "is-on" : ""}`}
+            style={{ gridColumn: "7 / span 2", gridRow: "2 / span 1" }}
+            onClick={() => setRadioOnly(!radioOnly)}
+            title="只看有放射性的元素"
+          >
+            <img src="/images/radioactive.png" alt="" aria-hidden="true" /> 放射性
+          </button>
+
           {ELEMENTS.map((item) => (
             <ElementCell
               key={item.n}

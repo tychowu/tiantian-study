@@ -36,10 +36,10 @@ button:disabled { cursor: not-allowed; opacity: .42; }
 .desk-grain { pointer-events: none; position: absolute; inset: 0; opacity: .32; background-image: radial-gradient(#d7ccb6 0.7px, transparent .7px), radial-gradient(#e6dece 0.7px, transparent .7px); background-size: 15px 15px, 19px 19px; background-position: 0 0, 6px 9px; mask-image: linear-gradient(to bottom, black, transparent 94%); }
 .topbar { position: relative; z-index: 4; max-width: 1400px; margin: auto; padding: 22px calc(42px + env(safe-area-inset-right)) 12px calc(42px + env(safe-area-inset-left)); display: flex; align-items: center; justify-content: space-between; }
 .brand { position: relative; border: 0; background: transparent; display: flex; align-items: center; gap: 5px; color: #18304c; text-align: left; cursor: pointer; }
-.brand::after { content:""; position:absolute; left:38px; bottom:-3px; width:64px; height:12px; border-top:2px solid #ff6b3d; border-radius:50%; transform:rotate(-5deg); opacity:.8; }
-.brand-wordmark { display:flex; flex-direction:column; transform:rotate(-2deg); }
-.brand-wordmark b { font: 22px/.73 "Huninn", "Noto Sans TC", sans-serif; letter-spacing:.05em; }
-.brand-wordmark i { margin:6px 0 0 3px; color:#ff6b3d; font: 800 9px/1 "Noto Sans TC", sans-serif; font-style:normal; letter-spacing:.06em; }
+.brand::after { content:""; position:absolute; left:46px; bottom:-4px; width:104px; height:12px; border-top:2px solid #ff6b3d; border-radius:50%; transform:rotate(-5deg); opacity:.8; }
+.brand-wordmark { display:flex; align-items:baseline; gap:5px; transform:rotate(-2deg); }
+.brand-wordmark b { font: 30px/1 "Huninn", "Noto Sans TC", sans-serif; letter-spacing:.05em; }
+.brand-wordmark i { margin:0 0 0 1px; color:#ff6b3d; font: 800 15px/1 "Noto Sans TC", sans-serif; font-style:normal; letter-spacing:.06em; }
 .brand-mark { width: 42px; height: 42px; display: grid; place-items: center; transform: rotate(-4deg); }
 .brand-mark img { width: 46px; height: 46px; object-fit: contain; }
 .topbar-actions { display: flex; align-items: center; gap: 12px; }
@@ -184,6 +184,13 @@ button:disabled { cursor: not-allowed; opacity: .42; }
 .game-progress-strip .progress-track { flex: 1; margin: 0; }
 .game-progress-strip > span { display: inline-flex; align-items: center; gap: 5px; color: #b47714; font-size: 12px; font-weight: 800; white-space: nowrap; }
 .game-notice { margin: 15px 0 0; padding: 9px 12px; border-radius: 9px; background: #fff0ba; color: #805916; font-size: 13px; font-weight: 800; }
+/* 圖鑑分類標籤（名勝：內地/香港；天氣：符號/警告） */
+.lm-tabs { display: flex; flex-wrap: wrap; gap: 9px; margin: 2px 0 16px; }
+.lm-tab { display: inline-flex; align-items: center; gap: 7px; padding: 9px 16px; border: 2px solid #d5c9ae; border-radius: 99px 99px 14px 99px; background: #fffdf7; color: #6d7b88; font: 900 14px/1 "Huninn", "Noto Sans TC", sans-serif; cursor: pointer; box-shadow: 2px 2px 0 rgba(214,198,162,.55); transition: transform .15s ease; }
+.lm-tab:hover { transform: translateY(-1px); }
+.lm-tab.is-on { border-color: #18304c; background: #ffe9d9; color: #18304c; box-shadow: 3px 3px 0 #18304c; }
+.lm-tab i { font: 800 11px/1 "Noto Sans TC", sans-serif; font-style: normal; padding: 3px 8px; border-radius: 99px; background: rgba(24,48,76,.08); color: #6d7b88; }
+.lm-tab.is-on i { background: #ff6b3d; color: #fff; }
 
 /* ===== 元素週期表 ===== */
 .pt-toolbar { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 12px; }
@@ -194,6 +201,11 @@ button:disabled { cursor: not-allowed; opacity: .42; }
 .pt-chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border: 1px solid #d7d0c1; border-radius: 99px; background: #fffdf7; color: #5b6a78; font-size: 12px; font-weight: 900; cursor: pointer; }
 .pt-chip i { width: 10px; height: 10px; border-radius: 50%; }
 .pt-chip.is-on { border-color: var(--cell, #18304c); background: var(--cell-tint, #eee); color: #18304c; box-shadow: 2px 2px 0 rgba(24,48,76,.16); }
+/* 圖例按鈕放進週期表左上角的空白格（表格 grid 的子項） */
+.pt-legend-board { z-index: 2; display: flex; flex-wrap: wrap; align-content: center; align-items: center; gap: 7px 8px; padding: 10px 12px; border: 2px dashed #dcd5c4; border-radius: 14px; background: rgba(255,253,247,.55); }
+.pt-legend-board .pt-chip { padding: 5px 10px; font-size: 11px; }
+.pt-legend-board .pt-chip i { width: 9px; height: 9px; }
+.pt-grid-chip { z-index: 2; align-self: center; justify-self: center; padding: 7px 16px; font-size: 12px; background: rgba(255,253,247,.9); }
 .pt-tip { margin: 0 0 14px; color: #6d7b88; font-size: 13px; font-weight: 700; }
 .ptable-wrap { overflow-x: auto; padding: 4px 2px 16px; }
 .ptable { display: grid; grid-template-columns: repeat(18, minmax(52px, 1fr)); grid-auto-rows: 68px; gap: 5px; min-width: 1010px; }
@@ -308,8 +320,8 @@ button:disabled { cursor: not-allowed; opacity: .42; }
    大字版：給 5 歲小朋友在 iPad 上閱讀（漢字優先放大）
    ============================================================ */
 body { font-size: 18px; }
-.brand-wordmark b { font-size: 27px; }
-.brand-wordmark i { font-size: 11px; }
+.brand-wordmark b { font-size: 34px; }
+.brand-wordmark i { font-size: 17px; }
 .eyebrow { font-size: 15px; }
 .hero-copy h1 { font-size: clamp(38px, 4.6vw, 58px); }
 .hero-copy p { max-width: 420px; font-size: 18px; font-weight: 700; }

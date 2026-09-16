@@ -75,6 +75,7 @@ function Fireworks({ onDone }: { onDone: () => void }) {
 
 export default function LandmarkGame() {
   const [mode, setMode] = useState<"gallery" | "quiz">("gallery");
+  const [region, setRegion] = useState<"mainland" | "hongkong">("mainland");
   const [selected, setSelected] = useState<Landmark | null>(null);
 
   const [quiz, setQuiz] = useState<QuizQuestion[]>(buildQuiz);
@@ -159,19 +160,25 @@ export default function LandmarkGame() {
 
       {mode === "gallery" && (
         <>
-          <p className="lm-group"><b aria-hidden="true">🐉</b> 中國內地的名勝</p>
-          <div className="lm-grid">
-            {mainland.map((item) => (
-              <button key={item.zh} type="button" className="lm-card" onClick={() => { setSelected(item); speak(item.zh, "zh"); }}>
-                <span className="lm-photo"><img src={item.photo} alt={item.zh} loading="lazy" /></span>
-                <i>{item.zh}</i>
-                <em>{item.en}</em>
-              </button>
-            ))}
+          {/* 內地與香港分開兩個標籤 */}
+          <div className="lm-tabs">
+            <button
+              type="button"
+              className={`lm-tab ${region === "mainland" ? "is-on" : ""}`}
+              onClick={() => { setRegion("mainland"); setSelected(null); }}
+            >
+              🐉 中國內地的名勝 <i>{mainland.length}</i>
+            </button>
+            <button
+              type="button"
+              className={`lm-tab ${region === "hongkong" ? "is-on" : ""}`}
+              onClick={() => { setRegion("hongkong"); setSelected(null); }}
+            >
+              ⛵ 香港的名勝 <i>{hongkong.length}</i>
+            </button>
           </div>
-          <p className="lm-group"><b aria-hidden="true">⛵</b> 香港的名勝</p>
           <div className="lm-grid">
-            {hongkong.map((item) => (
+            {(region === "mainland" ? mainland : hongkong).map((item) => (
               <button key={item.zh} type="button" className="lm-card" onClick={() => { setSelected(item); speak(item.zh, "zh"); }}>
                 <span className="lm-photo"><img src={item.photo} alt={item.zh} loading="lazy" /></span>
                 <i>{item.zh}</i>

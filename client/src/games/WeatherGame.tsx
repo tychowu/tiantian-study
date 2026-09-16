@@ -34,6 +34,7 @@ const buildQuiz = (): QuizItem[] => {
 
 export default function WeatherGame() {
   const [mode, setMode] = useState<"gallery" | "quiz">("gallery");
+  const [wxTab, setWxTab] = useState<"weather" | "warning">("weather");
   const [selected, setSelected] = useState<WeatherItem | null>(null);
 
   const [quiz, setQuiz] = useState<QuizItem[]>(buildQuiz);
@@ -114,28 +115,29 @@ export default function WeatherGame() {
 
       {mode === "gallery" && (
         <>
-          <p className="lm-group"><b aria-hidden="true">☀️</b> 天氣符號</p>
-          <div className="wx-grid">
-            {weather.map((item) => (
-              <button
-                key={item.zh}
-                type="button"
-                className={`wx-card ${selected?.zh === item.zh ? "is-on" : ""}`}
-                onClick={() => { setSelected(item); speak(`${item.zh}。${item.factZh}`, "zh"); }}
-              >
-                <span className={`wx-pic ${item.type === "weather" ? "is-outline" : ""}`}><img src={item.img} alt={item.zh} loading="lazy" /></span>
-                <i>{item.zh}</i>
-                <em>{item.en}</em>
-              </button>
-            ))}
+          {/* 天氣符號與警告信號分開兩個標籤 */}
+          <div className="lm-tabs">
+            <button
+              type="button"
+              className={`lm-tab ${wxTab === "weather" ? "is-on" : ""}`}
+              onClick={() => { setWxTab("weather"); setSelected(null); }}
+            >
+              ☀️ 天氣符號 <i>{weather.length}</i>
+            </button>
+            <button
+              type="button"
+              className={`lm-tab ${wxTab === "warning" ? "is-on" : ""}`}
+              onClick={() => { setWxTab("warning"); setSelected(null); }}
+            >
+              ⚠️ 警告信號 <i>{warnings.length}</i>
+            </button>
           </div>
-          <p className="lm-group"><b aria-hidden="true">⚠️</b> 警告信號</p>
           <div className="wx-grid">
-            {warnings.map((item) => (
+            {(wxTab === "weather" ? weather : warnings).map((item) => (
               <button
                 key={item.zh}
                 type="button"
-                className={`wx-card is-warning ${selected?.zh === item.zh ? "is-on" : ""}`}
+                className={`wx-card ${item.type === "warning" ? "is-warning" : ""} ${selected?.zh === item.zh ? "is-on" : ""}`}
                 onClick={() => { setSelected(item); speak(`${item.zh}。${item.factZh}`, "zh"); }}
               >
                 <span className={`wx-pic ${item.type === "weather" ? "is-outline" : ""}`}><img src={item.img} alt={item.zh} loading="lazy" /></span>

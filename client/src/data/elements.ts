@@ -20,16 +20,16 @@ export const CATEGORY_META: Record<
   CategoryKey,
   { zh: string; en: string; color: string; tint: string }
 > = {
-  alkali: { zh: "鹼金屬", en: "Alkali Metal", color: "#FF6B3D", tint: "#FFEDE3" },
-  alkaline: { zh: "鹼土金屬", en: "Alkaline Earth", color: "#E8A13C", tint: "#FDF1DC" },
-  transition: { zh: "過渡金屬", en: "Transition Metal", color: "#4E93AC", tint: "#E6F1F6" },
-  metal: { zh: "其他金屬", en: "Other Metal", color: "#7FA65C", tint: "#EDF4E4" },
-  metalloid: { zh: "類金屬", en: "Metalloid", color: "#9B7BB8", tint: "#F2ECF8" },
-  nonmetal: { zh: "非金屬", en: "Non-metal", color: "#4FA98A", tint: "#E4F4EE" },
-  halogen: { zh: "鹵素", en: "Halogen", color: "#D9705E", tint: "#FBEBE7" },
-  noble: { zh: "惰性氣體", en: "Noble Gas", color: "#6C7FD1", tint: "#EBEEFB" },
-  lanthanide: { zh: "鑭系", en: "Lanthanide", color: "#D07FA6", tint: "#FBE9F2" },
-  actinide: { zh: "錒系", en: "Actinide", color: "#A9754F", tint: "#F5EBE2" },
+  alkali: { zh: "鹼金屬", en: "Alkali Metal", color: "#2F9E44", tint: "#DFF3E1" },
+  alkaline: { zh: "鹼土金屬", en: "Alkaline Earth", color: "#4C4CA6", tint: "#E4E4F6" },
+  transition: { zh: "過渡金屬", en: "Transition Metal", color: "#5C4D91", tint: "#E9E5F3" },
+  metal: { zh: "其他金屬", en: "Other Metal", color: "#C9A227", tint: "#FBF3D2" },
+  metalloid: { zh: "類金屬", en: "Metalloid", color: "#2FA8A3", tint: "#DCF3F2" },
+  nonmetal: { zh: "非金屬", en: "Non-metal", color: "#5B9E4D", tint: "#E1F0D3" },
+  halogen: { zh: "鹵素", en: "Halogen", color: "#E09B4D", tint: "#FBE9D4" },
+  noble: { zh: "惰性氣體", en: "Noble Gas", color: "#D9284F", tint: "#FADFE4" },
+  lanthanide: { zh: "鑭系", en: "Lanthanide", color: "#E23D6D", tint: "#FBDDE7" },
+  actinide: { zh: "錒系", en: "Actinide", color: "#9E77B8", tint: "#F0E7F6" },
 };
 
 export type ElementCategory = CategoryKey;
