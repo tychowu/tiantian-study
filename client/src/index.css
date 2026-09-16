@@ -158,7 +158,7 @@ button:disabled { cursor: not-allowed; opacity: .42; }
 /* 封面插畫：整幅大圖，醒目好認 */
 .game-icon { position: relative; z-index: 1; width: 100%; height: 168px; display: grid; place-items: center; border-radius: 16px 20px 14px 18px; background: color-mix(in srgb, var(--accent, #ff6b3d) 12%, #fffdf7); overflow: hidden; }
 /* img 用絕對定位鎖進容器：grid auto row 會讓 height:100% 失效（撐成 242×242 被裁切、視覺偏下） */
-.game-icon img { position: absolute; inset: 8px; width: calc(100% - 16px); height: calc(100% - 16px); object-fit: contain; }
+.game-icon img { position: absolute; inset: 8px; width: calc(100% - 16px); height: calc(100% - 16px); object-fit: contain; transform: scale(1.2); }
 .game-icon:not(:has(img)) { font-size: 74px; }
 .game-title { position: relative; z-index: 1; margin-top: 4px; color: #18304c; font: 25px/1 "Huninn", "Noto Sans TC"; }
 .game-sub { position: relative; z-index: 1; color: #6d7b88; font-size: 13px; font-weight: 700; line-height: 1.6; min-height: calc(1.6em * 2); }
