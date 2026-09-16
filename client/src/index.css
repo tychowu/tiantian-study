@@ -161,7 +161,7 @@ button:disabled { cursor: not-allowed; opacity: .42; }
 .game-icon img { position: absolute; inset: 8px; width: calc(100% - 16px); height: calc(100% - 16px); object-fit: contain; }
 .game-icon:not(:has(img)) { font-size: 74px; }
 .game-title { position: relative; z-index: 1; margin-top: 4px; color: #18304c; font: 25px/1 "Huninn", "Noto Sans TC"; }
-.game-sub { position: relative; z-index: 1; color: #6d7b88; font-size: 13px; font-weight: 700; line-height: 1.6; }
+.game-sub { position: relative; z-index: 1; color: #6d7b88; font-size: 13px; font-weight: 700; line-height: 1.6; min-height: calc(1.6em * 2); }
 .game-foot { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; margin-top: 8px; padding-top: 11px; border-top: 2px dashed #dcd5c4; }
 .game-stars { display: inline-flex; align-items: center; gap: 5px; color: #9a895f; font-size: 11px; font-weight: 900; }
 .game-go { color: var(--accent, #ff6b3d); font-size: 13px; font-weight: 900; }
@@ -340,7 +340,7 @@ body { font-size: 18px; }
 .desk-head span { font-size: 14px; }
 .desk-star { padding: 9px 15px; font-size: 14px; }
 .game-title { font-size: 30px; }
-.game-sub { font-size: 16px; line-height: 1.65; }
+.game-sub { font-size: 16px; line-height: 1.65; min-height: calc(1.65em * 2); }
 .game-stars { font-size: 14px; }
 .game-go { font-size: 16px; }
 .stage-back { min-height: 44px; font-size: 16px; }
