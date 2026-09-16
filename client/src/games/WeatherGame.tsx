@@ -179,7 +179,6 @@ export default function WeatherGame() {
                   onClick={() => choose(option)}
                   disabled={Boolean(picked) && option.zh !== question.answer.zh && option.zh !== picked}
                 >
-                  <span className={`wx-pic wx-pic-sm ${option.type === "weather" ? "is-outline" : ""}`} aria-hidden="true"><img src={option.img} alt="" /></span>
                   <b>{option.zh}</b>
                   <i>{option.en}</i>
                 </button>

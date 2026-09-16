@@ -29,7 +29,7 @@ const WORDS: Word[] = [
   { en: "red", zh: "紅色", icon: "🔴" },
   { en: "blue", zh: "藍色", icon: "🔵" },
   { en: "green", zh: "綠色", icon: "🟢" },
-  { en: "pink", zh: "粉紅色", icon: "🌸" },
+  { en: "pink", zh: "粉紅色", icon: "🩷" },
   { en: "brown", zh: "棕色", icon: "🟤" },
   { en: "black", zh: "黑色", icon: "⚫" },
   { en: "apple", zh: "蘋果", icon: "🍎" },
@@ -79,7 +79,8 @@ const makeLetters = (word: string): Letter[] =>
 export default function EnglishGame() {
   const [queue, setQueue] = useState<Word[]>(() => shuffle(WORDS));
   const [index, setIndex] = useState(0);
-  const [letters, setLetters] = useState<Letter[]>(() => makeLetters(shuffle(WORDS)[0].en));
+  // 注意：字母盤必須與 queue[0] 同一個詞，先前各自 shuffle 造成第一題圖與字母對不上
+  const [letters, setLetters] = useState<Letter[]>(() => makeLetters(queue[0].en));
   const [slots, setSlots] = useState<string[]>([]);
   const [result, setResult] = useState<"correct" | "incorrect" | null>(null);
   const [hintCount, setHintCount] = useState(0);
