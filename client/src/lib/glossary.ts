@@ -827,6 +827,7 @@ const DICT: Record<string, string> = {
   scratch: "刮到", scratched: "刮到的", breathe: "呼吸", rust: "生鏽", rusts: "生鏽",
   melt2: "熔化的", melting: "熔化的", point: "點", point2: "溫度",
   enter: "進入", leave: "離開", slowly: "慢慢地", quickly: "快速地",
+  tall: "高的",
 };
 
 export function lookupWord(raw: string): string | undefined {
