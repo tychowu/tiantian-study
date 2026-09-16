@@ -29,7 +29,7 @@ const WORDS: Word[] = [
   { en: "red", zh: "紅色", icon: "🔴" },
   { en: "blue", zh: "藍色", icon: "🔵" },
   { en: "green", zh: "綠色", icon: "🟢" },
-  { en: "pink", zh: "粉紅色", icon: "🩷" },
+  { en: "pink", zh: "粉紅色", icon: "💗" },
   { en: "brown", zh: "棕色", icon: "🟤" },
   { en: "black", zh: "黑色", icon: "⚫" },
   { en: "apple", zh: "蘋果", icon: "🍎" },
