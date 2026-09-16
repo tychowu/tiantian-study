@@ -4,7 +4,7 @@
  */
 import { motion } from "framer-motion";
 import { Rocket, Sparkles } from "lucide-react";
-import { useState, type ComponentType, type CSSProperties } from "react";
+import { useEffect, useState, type ComponentType, type CSSProperties } from "react";
 import GameStage from "@/components/GameStage";
 import EnglishGame from "@/games/EnglishGame";
 import FestivalGame from "@/games/FestivalGame";
@@ -17,6 +17,7 @@ import SentenceGame from "@/games/SentenceGame";
 import TimesTableGame from "@/games/TimesTableGame";
 import WeatherGame from "@/games/WeatherGame";
 import { APP_VERSION, APP_VERSION_DATE } from "@/lib/version";
+import { getChineseVoiceInfo, onVoicesReady } from "@/lib/speech";
 
 type GameMeta = {
   id: string;
@@ -157,6 +158,10 @@ const GAMES: GameMeta[] = [
 export default function Home() {
   const [activeId, setActiveId] = useState<string | null>(null);
   const active = GAMES.find((item) => item.id === activeId);
+  const [voice, setVoice] = useState<ReturnType<typeof getChineseVoiceInfo>>(null);
+
+  // 語音清單是非同步載入的（iOS 尤其慢），載好後才知道這台裝置有沒有廣東話。
+  useEffect(() => onVoicesReady((ready) => setVoice(ready ? getChineseVoiceInfo() : null)), []);
 
   return (
     <main className="learning-shell">
@@ -222,6 +227,17 @@ export default function Home() {
             </motion.button>
           ))}
         </div>
+
+        {voice && !voice.cantonese && (
+          <div className="voice-reminder">
+            <span>發音小提醒</span>
+            <p>
+              這台裝置還沒安裝廣東話語音，目前會用「{voice.name}」發音。
+              iPhone / iPad 請到「設定 → 輔助使用 → 朗讀內容 → 聲音 → 中文」下載「善怡」（粵語），
+              裝好後重新開啟就會是廣東話囉。
+            </p>
+          </div>
+        )}
 
         <div className="tiny-reminder desk-reminder">
           <span>小提醒</span>
