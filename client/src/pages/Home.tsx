@@ -128,11 +128,6 @@ export default function Home() {
             <i>的學習台</i>
           </span>
         </div>
-        <div className="topbar-actions">
-          <span className="desk-star">
-            <Star size={14} fill="currentColor" /> 今天的學習護照
-          </span>
-        </div>
       </header>
 
       <section className="hero-strip">
@@ -150,7 +145,6 @@ export default function Home() {
       <div className="desk-wrap">
         <div className="desk-head">
           <h2><Rocket size={20} /> 學習星球</h2>
-          <span>已完成 0 / 8 顆</span>
         </div>
 
         <div className="game-grid">
