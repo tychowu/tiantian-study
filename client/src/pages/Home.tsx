@@ -3,8 +3,8 @@
  * 設計語言沿用「天天的奇想書桌」——米白紙張、深海軍藍、天天橙、膠帶與貼紙。
  */
 import { motion } from "framer-motion";
-import { Rocket, Sparkles } from "lucide-react";
-import { useEffect, useState, type ComponentType, type CSSProperties } from "react";
+import { GripVertical, LockKeyhole, Rocket, Sparkles, UnlockKeyhole } from "lucide-react";
+import { useEffect, useRef, useState, type ComponentType, type CSSProperties, type DragEvent, type FormEvent } from "react";
 import GameStage from "@/components/GameStage";
 import EnglishGame from "@/games/EnglishGame";
 import FestivalGame from "@/games/FestivalGame";
@@ -16,6 +16,9 @@ import PeriodicTableGame from "@/games/PeriodicTableGame";
 import SentenceGame from "@/games/SentenceGame";
 import TimesTableGame from "@/games/TimesTableGame";
 import WeatherGame from "@/games/WeatherGame";
+import MatterLabGame from "@/games/MatterLabGame";
+import RampLabGame from "@/games/RampLabGame";
+import HanziGame from "@/games/HanziGame";
 import { APP_VERSION, APP_VERSION_DATE } from "@/lib/version";
 import { getChineseVoiceInfo, onVoicesReady } from "@/lib/speech";
 
@@ -30,15 +33,37 @@ type GameMeta = {
   stars: string;
   Component?: ComponentType;
   comingSoon?: boolean;
+  testOnly?: boolean;
 };
 
 const GAMES: GameMeta[] = [
+  {
+    id: "matter-lab",
+    title: "物質粒子實驗室",
+    subtitle: "加熱、冷卻和追蹤小粒子，看懂固體、液體與氣體",
+    icon: "🧪",
+    img: "/images/cards/matter-lab.webp",
+    accent: "#16A9B6",
+    stars: "八關・預測・粒子模型",
+    Component: MatterLabGame,
+  },
+  {
+    id: "ramp-lab",
+    title: "斜坡實驗室",
+    subtitle: "讓兩輛小車一起出發，用公平實驗找出運動規律",
+    icon: "🏎️",
+    img: "/images/cards/ramp-lab.webp",
+    accent: "#F06A3E",
+    stars: "九關・運動・控制變量",
+    Component: RampLabGame,
+    testOnly: true,
+  },
   {
     id: "sentence",
     title: "句子魔法工場",
     subtitle: "把中英文詞語變成會說話的完整句子",
     icon: "🪐",
-    img: "/images/cards/sentence.png",
+    img: "/images/cards/sentence.webp",
     accent: "#4E93AC",
     stars: "排句子・聽發音",
     Component: SentenceGame,
@@ -136,12 +161,12 @@ const GAMES: GameMeta[] = [
   {
     id: "hanzi",
     title: "漢字筆順屋",
-    subtitle: "認字、聽字，再跟着筆畫把漢字一筆一畫寫漂亮",
+    subtitle: "四冊八十個繁體字，從基本筆畫到部件組合，跟着故事練寫字",
     icon: "✍️",
     img: "/images/cards/hanzi-v2.webp",
     accent: "#D05B73",
-    stars: "識字・筆順・描紅",
-    comingSoon: true,
+    stars: "看筆順・沿線寫・自己寫",
+    Component: HanziGame,
   },
   {
     id: "speaking",
@@ -155,13 +180,72 @@ const GAMES: GameMeta[] = [
   },
 ];
 
+const DEFAULT_GAMES = [...GAMES.filter((game) => !game.testOnly), ...GAMES.filter((game) => game.testOnly)];
+const GAME_ORDER_KEY = "tiantian-game-order-v1";
+const TEST_UNLOCK_KEY = "tiantian-science-test-unlocked";
+const TEST_PASSWORD = "wd12345";
+
+function loadGameOrder() {
+  if (typeof window === "undefined") return DEFAULT_GAMES;
+  try {
+    const saved = JSON.parse(window.localStorage.getItem(GAME_ORDER_KEY) ?? "[]") as string[];
+    const ordered = saved.map((id) => GAMES.find((game) => game.id === id)).filter((game): game is GameMeta => Boolean(game));
+    const missing = DEFAULT_GAMES.filter((game) => !ordered.some((item) => item.id === game.id));
+    return [...ordered, ...missing];
+  } catch {
+    return DEFAULT_GAMES;
+  }
+}
+
 export default function Home() {
   const [activeId, setActiveId] = useState<string | null>(null);
   const active = GAMES.find((item) => item.id === activeId);
   const [voice, setVoice] = useState<ReturnType<typeof getChineseVoiceInfo>>(null);
+  const [games, setGames] = useState<GameMeta[]>(loadGameOrder);
+  const [draggedId, setDraggedId] = useState<string | null>(null);
+  const [showTestUnlock, setShowTestUnlock] = useState(false);
+  const [testPassword, setTestPassword] = useState("");
+  const [testError, setTestError] = useState(false);
+  const [testUnlocked, setTestUnlocked] = useState(() => typeof window !== "undefined" && window.sessionStorage.getItem(TEST_UNLOCK_KEY) === "1");
+  const passwordRef = useRef<HTMLInputElement>(null);
 
   // 語音清單是非同步載入的（iOS 尤其慢），載好後才知道這台裝置有沒有廣東話。
   useEffect(() => onVoicesReady((ready) => setVoice(ready ? getChineseVoiceInfo() : null)), []);
+
+  const openTestUnlock = () => {
+    setShowTestUnlock(true);
+    setTestError(false);
+    window.setTimeout(() => passwordRef.current?.focus(), 0);
+  };
+
+  const submitTestPassword = (event: FormEvent) => {
+    event.preventDefault();
+    if (testPassword !== TEST_PASSWORD) {
+      setTestError(true);
+      return;
+    }
+    window.sessionStorage.setItem(TEST_UNLOCK_KEY, "1");
+    setTestUnlocked(true);
+    setShowTestUnlock(false);
+    setTestPassword("");
+    setTestError(false);
+  };
+
+  const dropCard = (event: DragEvent<HTMLButtonElement>, targetId: string) => {
+    event.preventDefault();
+    const sourceId = event.dataTransfer.getData("text/plain") || draggedId;
+    if (!sourceId || sourceId === targetId) return;
+    setGames((current) => {
+      const next = [...current];
+      const from = next.findIndex((game) => game.id === sourceId);
+      const to = next.findIndex((game) => game.id === targetId);
+      if (from < 0 || to < 0) return current;
+      const [moved] = next.splice(from, 1);
+      next.splice(to, 0, moved);
+      window.localStorage.setItem(GAME_ORDER_KEY, JSON.stringify(next.map((game) => game.id)));
+      return next;
+    });
+  };
 
   return (
     <main className="learning-shell">
@@ -191,7 +275,7 @@ export default function Home() {
             把卡片翻開，<br />
             <span>就開始一場小冒險。</span>
           </h1>
-          <p>十二個學習星球正在集合，點一張就會飛進全螢幕的小遊戲。</p>
+          <p>十四個學習星球正在集合，點一張就會飛進全螢幕的小遊戲。</p>
         </div>
         <img className="hero-art" src="/images/tiantian-hero-learning-v2.jpg" alt="書本、地球、星球與鉛筆火箭組成的繽紛學習冒險插畫" />
       </section>
@@ -199,22 +283,56 @@ export default function Home() {
       <div className="desk-wrap">
         <div className="desk-head">
           <h2><Rocket size={20} /> 學習星球</h2>
+          <div className="desk-actions">
+            <span className="drag-tip"><GripVertical size={15} /> 拖曳卡片可自由排列</span>
+            <button type="button" className={`test-entry ${testUnlocked ? "is-unlocked" : ""}`} onClick={() => {
+              if (testUnlocked) {
+                window.sessionStorage.removeItem(TEST_UNLOCK_KEY);
+                setTestUnlocked(false);
+              } else {
+                openTestUnlock();
+              }
+            }}>
+              {testUnlocked ? <UnlockKeyhole size={15} /> : <LockKeyhole size={15} />}
+              {testUnlocked ? "測試模式已開啟" : "測試入口"}
+            </button>
+          </div>
         </div>
 
+        {showTestUnlock && !testUnlocked && (
+          <form className={`test-unlock ${testError ? "has-error" : ""}`} onSubmit={submitTestPassword}>
+            <div><LockKeyhole size={20} /><span><b>新遊戲測試入口</b><i>輸入測試密碼後，本次瀏覽期間可以開啟。</i></span></div>
+            <input ref={passwordRef} type="password" value={testPassword} onChange={(event) => { setTestPassword(event.target.value); setTestError(false); }} placeholder="輸入測試密碼" autoComplete="off" aria-label="測試密碼" />
+            <button type="submit">解鎖測試</button>
+            <button type="button" className="test-cancel" onClick={() => { setShowTestUnlock(false); setTestPassword(""); setTestError(false); }}>取消</button>
+            {testError && <p>密碼不正確，請再試一次。</p>}
+          </form>
+        )}
+
         <div className="game-grid">
-          {GAMES.map((game, index) => (
+          {games.map((game, index) => {
+            const testLocked = Boolean(game.testOnly && !testUnlocked);
+            const locked = Boolean(game.comingSoon || testLocked);
+            return (
             <motion.button
               key={game.id}
               type="button"
-              className={`game-card ${game.comingSoon ? "is-coming" : ""}`}
+              className={`game-card ${locked ? "is-coming" : ""} ${testLocked ? "is-test-locked" : ""} ${draggedId === game.id ? "is-dragging" : ""}`}
               style={{ "--accent": game.accent } as CSSProperties}
-              onClick={() => !game.comingSoon && setActiveId(game.id)}
-              disabled={game.comingSoon}
+              onClick={() => testLocked ? openTestUnlock() : !game.comingSoon && setActiveId(game.id)}
+              aria-disabled={locked}
+              draggable
+              onDragStartCapture={(event) => { setDraggedId(game.id); event.dataTransfer.effectAllowed = "move"; event.dataTransfer.setData("text/plain", game.id); }}
+              onDragOver={(event) => { event.preventDefault(); event.dataTransfer.dropEffect = "move"; }}
+              onDrop={(event) => dropCard(event, game.id)}
+              onDragEndCapture={() => setDraggedId(null)}
+              layout
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.32, delay: index * 0.06, ease: [0.23, 1, 0.32, 1] }}
-              whileHover={{ y: -5, rotate: -0.6 }}
+              whileHover={draggedId ? undefined : { y: -5, rotate: -0.6 }}
             >
+              <span className="game-drag-handle" aria-hidden="true"><GripVertical size={18} /></span>
               <span className="game-icon" aria-hidden="true">
                 {game.img ? <img src={game.img} alt="" loading="lazy" /> : game.icon}
               </span>
@@ -222,10 +340,10 @@ export default function Home() {
               <span className="game-sub">{game.subtitle}</span>
               <span className="game-foot">
                 <span className="game-stars">{game.stars}</span>
-                {game.comingSoon ? <span className="game-coming-sticker">打磨中 · 暫未開放</span> : <span className="game-go">開始 →</span>}
+                {testLocked ? <span className="game-coming-sticker">暫未開放 · 輸入密碼</span> : game.testOnly ? <span className="game-test-sticker">測試模式 · 可開啟</span> : game.comingSoon ? <span className="game-coming-sticker">打磨中 · 暫未開放</span> : <span className="game-go">開始 →</span>}
               </span>
             </motion.button>
-          ))}
+          );})}
         </div>
 
         {voice && !voice.cantonese && (

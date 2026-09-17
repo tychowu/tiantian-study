@@ -76,7 +76,7 @@ function buildQuestion(): QuizItem {
 const buildQuiz = (): QuizItem[] => Array.from({ length: ROUND }, buildQuestion);
 
 export default function MtrGame() {
-  const [mode, setMode] = useState<"learn" | "quiz" | "map">("learn");
+  const [mode, setMode] = useState<"learn" | "quiz" | "map">("map");
   const [lineKey, setLineKey] = useState(MTR_LINES[0].key);
   const [trainAt, setTrainAt] = useState(0);
 
@@ -144,15 +144,15 @@ export default function MtrGame() {
     <div className={`game-body ${mode === "map" ? "mtr-game-body" : ""}`}>
       <div className="mx-controls">
         <div className="mx-modes">
-          <button type="button" className={`mx-mode ${mode === "learn" ? "is-on" : ""}`} onClick={() => setMode("learn")}>
-            <span aria-hidden="true">🎧</span>
-            學站名
-            <i>Learn</i>
-          </button>
           <button type="button" className={`mx-mode ${mode === "map" ? "is-on" : ""}`} onClick={() => setMode("map")}>
             <span aria-hidden="true">🗺️</span>
             全港鐵路地圖
             <i>Map</i>
+          </button>
+          <button type="button" className={`mx-mode ${mode === "learn" ? "is-on" : ""}`} onClick={() => setMode("learn")}>
+            <span aria-hidden="true">🎧</span>
+            學站名
+            <i>Learn</i>
           </button>
           <button type="button" className={`mx-mode ${mode === "quiz" ? "is-on" : ""}`} onClick={startQuiz}>
             <span aria-hidden="true">🚆</span>
@@ -343,12 +343,14 @@ export default function MtrGame() {
                   );
                 })}
                 {mapPick && (() => {
-                  const labelX = Math.min(Math.max(mapPick.x - 135, 20), 1630);
-                  const labelY = mapPick.y < 245 ? mapPick.y + 38 : mapPick.y - 94;
+                  const labelWidth = 176;
+                  const labelHeight = 70;
+                  const labelX = Math.min(Math.max(mapPick.x - labelWidth / 2, 20), OFFICIAL_MAP_SIZE.width - labelWidth - 20);
+                  const labelY = mapPick.y < 245 ? mapPick.y + 38 : mapPick.y - 88;
                   return <g className="mtr-selected-label" aria-hidden="true">
-                    <rect x={labelX} y={labelY} width="270" height="76" rx="18" />
-                    <text x={labelX + 135} y={labelY + 32} textAnchor="middle" className="is-zh">{mapPick.zh}</text>
-                    <text x={labelX + 135} y={labelY + 57} textAnchor="middle" className="is-en">{mapPick.en}</text>
+                    <rect x={labelX} y={labelY} width={labelWidth} height={labelHeight} rx="15" />
+                    <text x={labelX + labelWidth / 2} y={labelY + 27} textAnchor="middle" dominantBaseline="middle" className="is-zh">{mapPick.zh}</text>
+                    <text x={labelX + labelWidth / 2} y={labelY + 51} textAnchor="middle" dominantBaseline="middle" className="is-en">{mapPick.en}</text>
                   </g>;
                 })()}
               </svg>
