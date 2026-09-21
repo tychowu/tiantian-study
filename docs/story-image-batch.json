@@ -1,0 +1,68 @@
+[
+  {
+    "id": "typhoon-flat",
+    "source": "/Users/tychowu/.codex/generated_images/01a0ab6e-b6ac-7490-a736-d3e59ce57013/exec-e7e9f69e-cb66-45eb-a9bd-f1ce13eb6ae8.png",
+    "destination": "client/public/images/stories/typhoon-flat.webp",
+    "prompt": "Use case: illustration-story. Asset: full-page picture-talk illustration for ages 5–6, landscape 3:2. Match supplied style reference ONLY: simple flat 2D textbook cartoon, crisp dark brown outlines, solid cheerful colours, very limited flat cel shading, rounded expressive East Asian people, easy-to-read actions, uncluttered backgrounds. NOT 3D, not clay, not photorealistic, no volumetric light, no gradients. No words, letters, captions, numerals, speech bubbles, watermark. Full bleed opaque scene. ONE SINGLE wide scene, Hong Kong apartment during typhoon. Through CLOSED left window see slanting rain and bending trees, distant apartment blocks. Father inside checks closed window latch (no tape or wood). Centre mother and pink-shirt girl watch television displaying weather presenter and simple cyclone graphic, no writing. Right blue-shirt boy puts his basketball in basket beside firmly CLOSED front door and looks at mother. Indoor potted plant safely away from window, flashlight on table. Calm family, no people outside, no broken glass. Show entire room."
+  },
+  {
+    "id": "market-flat",
+    "source": "/Users/tychowu/.codex/generated_images/01a0ab6e-b6ac-7490-a736-d3e59ce57013/exec-afba6c9b-a3f7-4258-9d19-28f1dca915dc.png",
+    "destination": "client/public/images/stories/market-flat.webp",
+    "prompt": "Use case: illustration-story. Asset: full-page picture-talk illustration for ages 5–6, landscape 3:2. Match supplied style reference ONLY: simple flat 2D textbook cartoon, crisp dark brown outlines, solid cheerful colours, very limited flat cel shading, rounded expressive East Asian people, easy-to-read actions, uncluttered backgrounds. NOT 3D, not clay, not photorealistic, no volumetric light, no gradients. No words, letters, captions, numerals, speech bubbles, watermark. Full bleed opaque scene. ONE SINGLE scene: cheerful Hong Kong vegetable market. Left girl in pink shirt holds reusable cloth shopping bag. Centre friendly female stallholder offers a carrot to girl. Right grandfather in blue shirt points to tomatoes. Neat separate baskets carrots tomatoes leafy greens, a small scale. No prices or written signs. Clear hands and expressions."
+  },
+  {
+    "id": "library-flat",
+    "source": "/Users/tychowu/.codex/generated_images/01a0ab6e-b6ac-7490-a736-d3e59ce57013/exec-b4079cae-014a-472f-bfc8-004ecf2cd00f.png",
+    "destination": "client/public/images/stories/library-flat.webp",
+    "prompt": "Use case: illustration-story. Asset: full-page picture-talk illustration for ages 5–6, landscape 3:2. Match supplied style reference ONLY: simple flat 2D textbook cartoon, crisp dark brown outlines, solid cheerful colours, very limited flat cel shading, rounded expressive East Asian people, easy-to-read actions, uncluttered backgrounds. NOT 3D, not clay, not photorealistic, no volumetric light, no gradients. No words, letters, captions, numerals, speech bubbles, watermark. Full bleed opaque scene. ONE SINGLE scene: children's library. Left seated boy in orange shirt turns picture-book pages at low table. Centre girl in pink shirt reaches to return a blue book to low shelf. Right librarian crouches and shows an open animal picture book to a smaller child. Quiet friendly room, books, no lettering."
+  },
+  {
+    "id": "seaside-flat",
+    "source": "/Users/tychowu/.codex/generated_images/01a0ab6e-b6ac-7490-a736-d3e59ce57013/exec-de629ee8-a70d-415c-bdc9-ea280027337a.png",
+    "destination": "client/public/images/stories/seaside-flat.webp",
+    "prompt": "Use case: illustration-story. Asset: full-page picture-talk illustration for ages 5–6, landscape 3:2. Match supplied style reference ONLY: simple flat 2D textbook cartoon, crisp dark brown outlines, solid cheerful colours, very limited flat cel shading, rounded expressive East Asian people, easy-to-read actions, uncluttered backgrounds. NOT 3D, not clay, not photorealistic, no volumetric light, no gradients. No words, letters, captions, numerals, speech bubbles, watermark. Full bleed opaque scene. ONE SINGLE scene: sunny Hong Kong seaside promenade. Left girl with helmet rides pink scooter on clearly separate green cycling lane in foreground; centre boy with helmet rides small blue bicycle in same lane. Behind railing and hedge, mother and grandfather walk on pedestrian path, grandfather points to distant ferry in harbour. Simple bridge in distance. No text or signs."
+  },
+  {
+    "id": "picnic-flat",
+    "source": "/Users/tychowu/.codex/generated_images/01a0ab6e-b6ac-7490-a736-d3e59ce57013/exec-c4e20630-88fb-4442-a19d-ec55c33c9d1e.png",
+    "destination": "client/public/images/stories/picnic-flat.webp",
+    "prompt": "Use case: illustration-story. Asset: full-page picture-talk illustration for ages 5–6, landscape 3:2. Match supplied style reference ONLY: simple flat 2D textbook cartoon, crisp dark brown outlines, solid cheerful colours, very limited flat cel shading, rounded expressive East Asian people, easy-to-read actions, uncluttered backgrounds. NOT 3D, not clay, not photorealistic, no volumetric light, no gradients. No words, letters, captions, numerals, speech bubbles, watermark. Full bleed opaque scene. ONE SINGLE scene: family picnic park. Left mother opens lunchbox on picnic mat. Centre boy in blue shirt pours water from bottle into cup. Right girl in pink shirt holds napkin near her lunchbox, an empty napkin drifting a little above grass nearby; small dog on lead beside father. Trees and picnic basket. Clear interaction and room to imagine what happens next."
+  },
+  {
+    "id": "moon-flat",
+    "source": "/Users/tychowu/.codex/generated_images/01a0ab6e-b6ac-7490-a736-d3e59ce57013/exec-f06e81a0-7bbf-47cd-90dc-e10b82588720.png",
+    "destination": "client/public/images/stories/moon-flat.webp",
+    "prompt": "Use case: illustration-story. Asset: full-page picture-talk illustration for ages 5–6, landscape 3:2. Match supplied style reference ONLY: simple flat 2D textbook cartoon, crisp dark brown outlines, solid cheerful colours, very limited flat cel shading, rounded expressive East Asian people, easy-to-read actions, uncluttered backgrounds. NOT 3D, not clay, not photorealistic, no volumetric light, no gradients. No words, letters, captions, numerals, speech bubbles, watermark. Full bleed opaque scene. ONE SINGLE scene: Mid-Autumn family courtyard evening. Left girl in pink shirt carries glowing rabbit-shaped battery lantern; centre grandfather seated tells story gesturing toward round moon. Right boy in teal shirt shares sliced mooncake on plate with mother. Paper lanterns overhead, no candles, no fire, warm flat colours, clear uncluttered subjects."
+  },
+  {
+    "id": "boat-four",
+    "source": "/Users/tychowu/.codex/generated_images/01a0ab6e-b6ac-7490-a736-d3e59ce57013/exec-84e06060-f887-44c2-91b5-4e1fff6d002c.png",
+    "destination": "client/public/images/stories/boat-four.webp",
+    "prompt": "Use case: illustration-story. Asset: full-page picture-talk illustration for ages 5–6, landscape 3:2. Match supplied style reference ONLY: simple flat 2D textbook cartoon, crisp dark brown outlines, solid cheerful colours, very limited flat cel shading, rounded expressive East Asian people, easy-to-read actions, uncluttered backgrounds. NOT 3D, not clay, not photorealistic, no volumetric light, no gradients. No words, letters, captions, numerals, speech bubbles, watermark. Full bleed opaque scene. FOUR PANELS EXACT 2x2 grid equal rectangles white gutters. Same black-haired boy blue shirt and girl pink shirt throughout. Top-left both fold a sheet of paper at indoor table. Top-right show completed little paper boat in boy's hands girl smiles. Bottom-left in courtyard both kneel and place paper boat into shallow transparent plastic basin of water, supervised mother behind. Bottom-right children gently blow toward floating boat in basin, boat moved to opposite side. No river, no text."
+  },
+  {
+    "id": "lost-four",
+    "source": "/Users/tychowu/.codex/generated_images/01a0ab6e-b6ac-7490-a736-d3e59ce57013/exec-80e014d9-f285-48d6-abe1-06ae235b89c3.png",
+    "destination": "client/public/images/stories/lost-four.webp",
+    "prompt": "Use case: illustration-story. Asset: full-page picture-talk illustration for ages 5–6, landscape 3:2. Match supplied style reference ONLY: simple flat 2D textbook cartoon, crisp dark brown outlines, solid cheerful colours, very limited flat cel shading, rounded expressive East Asian people, easy-to-read actions, uncluttered backgrounds. NOT 3D, not clay, not photorealistic, no volumetric light, no gradients. No words, letters, captions, numerals, speech bubbles, watermark. Full bleed opaque scene. FOUR PANELS EXACT 2x2 grid equal rectangles white gutters. Same pink-shirt black-bob-haired girl and brown teddy. Top-left girl sitting on park bench with teddy beside her. Top-right girl walking away hand in hand with mother, teddy visibly left alone on bench behind. Bottom-left blue-shirt boy notices teddy on bench and points it out to uniformed park attendant standing beside him. Bottom-right at same bench attendant returns teddy to girl accompanied by mother while boy smiles. No text."
+  },
+  {
+    "id": "sandwich-four",
+    "source": "/Users/tychowu/.codex/generated_images/01a0ab6e-b6ac-7490-a736-d3e59ce57013/exec-1acaeba9-5cdb-4b0a-8673-36e8617a8e98.png",
+    "destination": "client/public/images/stories/sandwich-four.webp",
+    "prompt": "Use case: illustration-story. Asset: full-page picture-talk illustration for ages 5–6, landscape 3:2. Match supplied style reference ONLY: simple flat 2D textbook cartoon, crisp dark brown outlines, solid cheerful colours, very limited flat cel shading, rounded expressive East Asian people, easy-to-read actions, uncluttered backgrounds. NOT 3D, not clay, not photorealistic, no volumetric light, no gradients. No words, letters, captions, numerals, speech bubbles, watermark. Full bleed opaque scene. FOUR PANELS EXACT 2x2 grid equal rectangles white gutters. Same black-haired girl pink shirt and father teal shirt in kitchen. Top-left girl washes hands with soap at sink. Top-right at low table girl puts lettuce and tomato slices on bread, father beside her; no knives. Bottom-left girl places second bread slice on top to complete sandwich. Bottom-right girl and father seated eating sandwiches from plates smiling. No text."
+  },
+  {
+    "id": "bridge-four",
+    "source": "/Users/tychowu/.codex/generated_images/01a0ab6e-b6ac-7490-a736-d3e59ce57013/exec-80779aae-7d10-4b20-ba93-602a18fa7c2b.png",
+    "destination": "client/public/images/stories/bridge-four.webp",
+    "prompt": "Use case: illustration-story. Asset: full-page picture-talk illustration for ages 5–6, landscape 3:2. Match supplied style reference ONLY: simple flat 2D textbook cartoon, crisp dark brown outlines, solid cheerful colours, very limited flat cel shading, rounded expressive East Asian people, easy-to-read actions, uncluttered backgrounds. NOT 3D, not clay, not photorealistic, no volumetric light, no gradients. No words, letters, captions, numerals, speech bubbles, watermark. Full bleed opaque scene. FOUR PANELS EXACT 2x2 grid equal rectangles white gutters. Same orange-shirt boy and teal-shirt boy in playroom. Top-left boys try rolling red toy car toward a gap between two low block platforms. Top-right orange boy places flat long blue block across gap as bridge while teal boy holds red car. Bottom-left teal boy rolls red car across blue bridge orange boy watches. Bottom-right boys add yellow block railings along blue bridge and smile with red car on bridge. Toy scale on floor no real traffic. No text."
+  },
+  {
+    "id": "butterfly-four",
+    "source": "/Users/tychowu/.codex/generated_images/01a0ab6e-b6ac-7490-a736-d3e59ce57013/exec-3f164b58-a463-4a0c-8123-a224370af046.png",
+    "destination": "client/public/images/stories/butterfly-four.webp",
+    "prompt": "Use case: illustration-story. Asset: full-page picture-talk illustration for ages 5–6, landscape 3:2. Match supplied style reference ONLY: simple flat 2D textbook cartoon, crisp dark brown outlines, solid cheerful colours, very limited flat cel shading, rounded expressive East Asian people, easy-to-read actions, uncluttered backgrounds. NOT 3D, not clay, not photorealistic, no volumetric light, no gradients. No words, letters, captions, numerals, speech bubbles, watermark. Full bleed opaque scene. FOUR PANELS EXACT 2x2 grid equal rectangles white gutters. Same pink-shirt girl observing garden butterfly life stages over time. Top-left girl points without touching at green caterpillar on leaf. Top-right girl draws hanging green chrysalis attached to twig in notebook. Bottom-left butterfly with orange wings perched beside now empty chrysalis, girl watches with hands down. Bottom-right butterfly flies above flowers, girl waves from distance. No magic sparkles or instant transformation, no touching insects. No text."
+  }
+]

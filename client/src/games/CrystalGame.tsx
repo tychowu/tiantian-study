@@ -44,7 +44,6 @@ export default function CrystalGame() {
   };
   const material = SPECIMENS[specimen];
   return <div className="game-body crystal-game">
-    <header className="crystal-hero"><div><small>CRYSTAL GARDEN · 晶體小花園</small><h1>一杯水，種出閃亮小森林</h1><p>升溫、降溫、等一天，看看粒子怎樣排隊！</p></div><img src="/images/cards/crystal-garden.webp" alt="立體晶體小花園"/></header>
     <nav className="crystal-tabs">{["① 調一杯晶體水", "② 晶體形狀館"].map((title, i) => <button key={title} aria-pressed={tab === i} onClick={() => setTab(i)}>{title}</button>)}</nav>
     {tab === 0 ? <div className="crystal-workspace">
       <section className="crystal-scene"><div className="crystal-scene-top"><b>第 {sample.day} 天</b><span>🌡 {sample.temp}°C · 💧 {sample.water} ml 毫升</span></div>

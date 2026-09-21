@@ -187,10 +187,6 @@ export default function HanziGame() {
 
   return (
     <div className="game-body hanzi-game">
-      <header className="hanzi-hero">
-        <div><span>漢字筆順屋 · Stroke Order House</span><h1>先看結構，再讓每一筆回家</h1><p>四冊八十個繁體字 · 從基本筆畫到多部件組合</p></div>
-        <div className="hanzi-hero-seal">筆順<br /><b>有路線</b></div>
-      </header>
 
       <nav className="hanzi-book-tabs" aria-label="選擇漢字冊數">
         {HANZI_BOOKS.map((item, i) => <button key={item.title} aria-pressed={bookIndex === i} className={bookIndex === i ? "is-on" : ""} onClick={() => { setBookIndex(i); goTo(0); }}>

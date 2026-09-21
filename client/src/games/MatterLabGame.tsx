@@ -113,28 +113,14 @@ export default function MatterLabGame() {
   const choosePrediction = (next: WaterState) => { setPrediction(next); setRevealed(false); speak(`我猜是${STATE_COPY[next].zh}`, "zh"); };
   const reveal = () => { setRevealed(true); prediction === state ? playCorrect() : playWrong(); };
 
-  const levelCopy = [
-    ["把溫度和狀態對準", "試按 −10、0、42 和 100°C；每個溫度都有可解釋的狀態。"],
-    ["0°C 是一道轉換門", "在標準氣壓下，冰到 0°C 開始融化，冰和水可以共存。"],
-    ["42°C 是液態水，也會蒸發", "蒸發只發生在水面，不需要等到 100°C。"],
-    ["沸騰和蒸發哪裡不同？", "在 1 atm 下到 100°C，水的內部也會形成水蒸氣氣泡。"],
-    ["水蒸氣沒有憑空消失", "水蒸氣碰到較冷的蓋子，會凝結成看得見的小水滴。"],
-    ["密閉系統裡，一個也不少", "追蹤粒子：水、蒸氣和蓋上水滴都是同一批 H₂O。"],
-    ["一次只改一個條件", "比較溫度、水面面積或氣流，才知道哪個條件造成差別。"],
-    ["像科學家一樣自由探索", "自由調整四個條件，先預測，再用兩個畫面解釋。"],
-  ][level];
 
   return (
     <div className="game-body science-game matter-game matter-redesign">
-      <header className="science-hero matter-hero-new">
-        <div><span>物質粒子實驗室 · Matter Lab</span><h1>{levelCopy[0]}</h1><p>{levelCopy[1]}</p></div>
-        <div className="matter-pressure"><b>1 atm</b><span>標準大氣壓</span></div>
-      </header>
       <nav className="science-levels" aria-label="物質粒子實驗室關卡">{LEVELS.map(([zh, en], index) => <button key={zh} type="button" className={level === index ? "is-on" : ""} onClick={() => configureLevel(index)}><em>{index + 1}</em><span><b>{zh}</b><i>{en}</i></span></button>)}</nav>
 
       <section className="matter-dashboard">
         <div className="matter-observation">
-          <div className="matter-toolbar"><button onClick={() => setPaused((value) => !value)}>{paused ? <Play size={16} /> : <Pause size={16} />}{paused ? "播放" : "暫停"}</button><button className={tracked ? "is-on" : ""} onClick={() => setTracked((value) => !value)}><Eye size={16} />追蹤一粒 H₂O</button></div>
+          <div className="matter-toolbar"><span>1 atm · 標準大氣壓</span><button onClick={() => setPaused((value) => !value)}>{paused ? <Play size={16} /> : <Pause size={16} />}{paused ? "播放" : "暫停"}</button><button className={tracked ? "is-on" : ""} onClick={() => setTracked((value) => !value)}><Eye size={16} />追蹤一粒 H₂O</button></div>
           <div className="matter-two-views"><Beaker temperature={temperature} lid={lid} surface={surface} airflow={airflow} /><ParticleLens temperature={temperature} paused={paused} lid={lid} tracked={tracked} /></div>
           <div className="phase-readout"><div className={`phase-symbol is-${state}`}>{state === "ice" ? "🧊" : state === "melting" ? "🧊💧" : state === "water" ? "💧" : "♨️"}</div><div><small>此刻的狀態 · Current state</small><strong>{stateCopy.zh}</strong><i>{stateCopy.en}</i><p>{stateCopy.note}</p></div><b className="phase-temperature">{temperature}<span>°C</span></b></div>
         </div>

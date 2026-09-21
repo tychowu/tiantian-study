@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { Check, ChevronLeft, ChevronRight, Flag, Gauge, LockKeyhole, Play, RotateCcw, Sparkles } from "lucide-react";
+import { Check, ChevronLeft, ChevronRight, Flag, LockKeyhole, Play, RotateCcw, Sparkles } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { playCorrect } from "@/lib/sound";
 import { speak } from "@/lib/speech";
@@ -99,17 +99,6 @@ export default function RampLabGame() {
     setB({ ...a }); setFairFixed(true); setPrediction("same"); speak("現在只有一個條件不同，這是一個公平實驗", "zh");
   };
 
-  const levelCopy = [
-    ["兩輛車會一起到嗎？", "先用完全相同的條件，學會甚麼叫公平起點。"],
-    ["坡度會改變速度嗎？", "只改變斜坡 Slope，其他條件自動鎖定。"],
-    ["從高處出發會怎樣？", "比較釋放高度 Height，不把距離和速度混在一起。"],
-    ["哪種表面阻力更大？", "觀察摩擦力 Friction 怎樣改變運動。"],
-    ["重車一定更快嗎？", "質量 Mass 改變了，理想情況下到達時間仍很接近。"],
-    ["最快、最遠、先到一樣嗎？", "用證據分清速度 Speed、距離 Distance 和時間 Time。"],
-    ["看運動，找出神秘表面", "軌道資料被遮住了，請從結果推測原因。"],
-    ["修好不公平的實驗", "找出同時改變的條件，再按一下讓它們一致。"],
-    ["讓車停在目標區", "調整坡度與表面，把發現變成工程設計。"],
-  ][level];
 
   const setCar = (which: "A" | "B", patch: Partial<CarSettings>) => {
     const setter = which === "A" ? setA : setB;
@@ -118,7 +107,6 @@ export default function RampLabGame() {
 
   return (
     <div className="game-body science-game ramp-game">
-      <header className="science-hero ramp-hero"><div><span>斜坡實驗室 · Ramp Lab</span><h1>{levelCopy[0]}</h1><p>{levelCopy[1]}</p></div><div className="science-badge"><Gauge size={18} /> 預測 · 比較 · 找證據</div></header>
 
       <nav className="science-levels" aria-label="斜坡實驗室關卡">
         {LEVELS.map(([zh, en], index) => <button key={zh} type="button" className={level === index ? "is-on" : ""} onClick={() => configureLevel(index)}><em>{index + 1}</em><span><b>{zh}</b><i>{en}</i></span></button>)}

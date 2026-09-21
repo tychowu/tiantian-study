@@ -2,9 +2,9 @@
  * 天天的學習台：挑一張星球卡，就會飛進全螢幕的小遊戲。
  * 設計語言沿用「天天的奇想書桌」——米白紙張、深海軍藍、天天橙、膠帶與貼紙。
  */
-import { motion } from "framer-motion";
+import GameShelf from "@/components/GameShelf";
 import { GripVertical, LockKeyhole, Rocket, Sparkles, UnlockKeyhole } from "lucide-react";
-import { useEffect, useRef, useState, type ComponentType, type CSSProperties, type DragEvent, type FormEvent } from "react";
+import { useEffect, useRef, useState, type ComponentType, type FormEvent } from "react";
 import GameStage from "@/components/GameStage";
 import EnglishGame from "@/games/EnglishGame";
 import FestivalGame from "@/games/FestivalGame";
@@ -20,6 +20,7 @@ import MatterLabGame from "@/games/MatterLabGame";
 import RampLabGame from "@/games/RampLabGame";
 import HanziGame from "@/games/HanziGame";
 import CrystalGame from "@/games/CrystalGame";
+import SpeakingGame from "@/games/SpeakingGame";
 import { APP_VERSION, APP_VERSION_DATE } from "@/lib/version";
 import { getChineseVoiceInfo, onVoicesReady } from "@/lib/speech";
 
@@ -175,10 +176,10 @@ const GAMES: GameMeta[] = [
     title: "故事表達家",
     subtitle: "看圖找線索，把人物、事情和感受組成自己的故事",
     icon: "💬",
-    img: "/images/cards/speaking-v2.webp",
+    img: "/images/cards/speaking-v3.webp",
     accent: "#4AA58B",
     stars: "觀察・組織・說故事",
-    comingSoon: true,
+    Component: SpeakingGame,
   },
 ];
 
@@ -190,8 +191,9 @@ const TEST_PASSWORD = "wd12345";
 function loadGameOrder() {
   if (typeof window === "undefined") return DEFAULT_GAMES;
   try {
-    const saved = JSON.parse(window.localStorage.getItem(GAME_ORDER_KEY) ?? "[]") as string[];
-    const ordered = saved.map((id) => GAMES.find((game) => game.id === id)).filter((game): game is GameMeta => Boolean(game));
+    const saved: unknown = JSON.parse(window.localStorage.getItem(GAME_ORDER_KEY) ?? "[]");
+    const ids = Array.isArray(saved) ? Array.from(new Set(saved.filter((id): id is string => typeof id === "string"))) : [];
+    const ordered = ids.map((id) => GAMES.find((game) => game.id === id)).filter((game): game is GameMeta => Boolean(game));
     const missing = DEFAULT_GAMES.filter((game) => !ordered.some((item) => item.id === game.id));
     return [...ordered, ...missing];
   } catch {
@@ -203,15 +205,12 @@ export default function Home() {
   const [activeId, setActiveId] = useState<string | null>(null);
   const active = GAMES.find((item) => item.id === activeId);
   const [voice, setVoice] = useState<ReturnType<typeof getChineseVoiceInfo>>(null);
-  const [games, setGames] = useState<GameMeta[]>(loadGameOrder);
-  const [draggedId, setDraggedId] = useState<string | null>(null);
+  const [games] = useState<GameMeta[]>(loadGameOrder);
   const [showTestUnlock, setShowTestUnlock] = useState(false);
   const [testPassword, setTestPassword] = useState("");
   const [testError, setTestError] = useState(false);
   const [testUnlocked, setTestUnlocked] = useState(() => typeof window !== "undefined" && window.sessionStorage.getItem(TEST_UNLOCK_KEY) === "1");
   const passwordRef = useRef<HTMLInputElement>(null);
-  const lastDragTarget = useRef<string | null>(null);
-  const suppressClick = useRef(false);
 
   // 語音清單是非同步載入的（iOS 尤其慢），載好後才知道這台裝置有沒有廣東話。
   useEffect(() => onVoicesReady((ready) => setVoice(ready ? getChineseVoiceInfo() : null)), []);
@@ -233,26 +232,6 @@ export default function Home() {
     setShowTestUnlock(false);
     setTestPassword("");
     setTestError(false);
-  };
-
-  const dropCard = (event: DragEvent<HTMLButtonElement>, targetId: string) => {
-    event.preventDefault();
-    const sourceId = event.dataTransfer.getData("text/plain") || draggedId;
-    reorderCard(sourceId, targetId);
-  };
-
-  const reorderCard = (sourceId: string | null, targetId: string) => {
-    if (!sourceId || sourceId === targetId) return;
-    setGames((current) => {
-      const next = [...current];
-      const from = next.findIndex((game) => game.id === sourceId);
-      const to = next.findIndex((game) => game.id === targetId);
-      if (from < 0 || to < 0) return current;
-      const [moved] = next.splice(from, 1);
-      next.splice(to, 0, moved);
-      window.localStorage.setItem(GAME_ORDER_KEY, JSON.stringify(next.map((game) => game.id)));
-      return next;
-    });
   };
 
   return (
@@ -317,58 +296,11 @@ export default function Home() {
           </form>
         )}
 
-        <div className="game-grid">
-          {games.map((game, index) => {
-            const testLocked = Boolean(game.testOnly && !testUnlocked);
-            const locked = Boolean(game.comingSoon || testLocked);
-            return (
-            <motion.button
-              key={game.id}
-              data-game-id={game.id}
-              type="button"
-              className={`game-card ${locked ? "is-coming" : ""} ${testLocked ? "is-test-locked" : ""} ${draggedId === game.id ? "is-dragging" : ""}`}
-              style={{ "--accent": game.accent } as CSSProperties}
-              onClick={() => { if (suppressClick.current) return; testLocked ? openTestUnlock() : !game.comingSoon && setActiveId(game.id); }}
-              aria-disabled={locked}
-              draggable
-              onDragStartCapture={(event) => { setDraggedId(game.id); suppressClick.current = true; lastDragTarget.current = game.id; event.dataTransfer.effectAllowed = "move"; event.dataTransfer.setData("text/plain", game.id); event.dataTransfer.setDragImage(event.currentTarget, 100, 80); }}
-              onDragOver={(event) => { event.preventDefault(); event.dataTransfer.dropEffect = "move"; if (draggedId && draggedId !== game.id && lastDragTarget.current !== game.id) { lastDragTarget.current = game.id; dropCard(event, game.id); } }}
-              onDrop={(event) => { event.preventDefault(); setDraggedId(null); }}
-              onDragEndCapture={() => { setDraggedId(null); lastDragTarget.current = null; window.setTimeout(() => { suppressClick.current = false; }, 150); }}
-              layout
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ layout: { type: "spring", stiffness: 340, damping: 30 }, opacity: { duration: .2 }, y: { duration: .2 } }}
-              whileHover={draggedId ? undefined : { y: -5, rotate: -0.6 }}
-            >
-              <span className="game-drag-handle" aria-label="拖曳排列" onPointerDown={(event) => {
-                if (event.pointerType === "mouse") return;
-                event.preventDefault(); event.stopPropagation(); event.currentTarget.setPointerCapture(event.pointerId);
-                setDraggedId(game.id); suppressClick.current = true; lastDragTarget.current = game.id;
-              }} onPointerMove={(event) => {
-                if (event.pointerType === "mouse" || !event.currentTarget.hasPointerCapture(event.pointerId)) return;
-                event.preventDefault();
-                const target = document.elementFromPoint(event.clientX, event.clientY)?.closest<HTMLElement>("[data-game-id]")?.dataset.gameId;
-                if (target && target !== game.id && target !== lastDragTarget.current) { lastDragTarget.current = target; reorderCard(game.id, target); }
-                if (event.clientY < 90) window.scrollBy(0, -14);
-                if (event.clientY > window.innerHeight - 90) window.scrollBy(0, 14);
-              }} onPointerUp={(event) => {
-                if (event.pointerType === "mouse") return;
-                if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
-                setDraggedId(null); lastDragTarget.current = null; window.setTimeout(() => { suppressClick.current = false; }, 150);
-              }} onPointerCancel={() => { setDraggedId(null); suppressClick.current = false; lastDragTarget.current = null; }}><GripVertical size={18} /></span>
-              <span className="game-icon" aria-hidden="true">
-                {game.img ? <img src={game.img} alt="" loading="lazy" draggable={false} /> : game.icon}
-              </span>
-              <b className="game-title">{game.title}</b>
-              <span className="game-sub">{game.subtitle}</span>
-              <span className="game-foot">
-                <span className="game-stars">{game.stars}</span>
-                {testLocked ? <span className="game-coming-sticker">暫未開放 · 輸入密碼</span> : game.testOnly ? <span className="game-test-sticker">測試模式 · 可開啟</span> : game.comingSoon ? <span className="game-coming-sticker">打磨中 · 暫未開放</span> : <span className="game-go">開始 →</span>}
-              </span>
-            </motion.button>
-          );})}
-        </div>
+        <GameShelf initialGames={games} testUnlocked={testUnlocked} onOpen={(id) => {
+          const game = GAMES.find(g => g.id === id);
+          if (game?.testOnly && !testUnlocked) openTestUnlock();
+          else setActiveId(id);
+        }} />
 
         {voice && !voice.cantonese && (
           <div className="voice-reminder">
