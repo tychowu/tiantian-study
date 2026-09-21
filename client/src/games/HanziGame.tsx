@@ -54,6 +54,10 @@ const ALL_CHARACTERS: HanziCard[] = [...CHARACTERS, ...EXTRA_HANZI.map(([char, m
 }))];
 
 function StructureGuide({ kind, character }: { kind: HanziCard["guide"]; character: string }) {
+  if (kind === "generic") {
+    const layout = "明休林好朋河你海洋晴球植物校讀".includes(character) ? "左右" : "字安早草花青家森葉雪雲電星學書".includes(character) ? "上下" : "田目白園".includes(character) ? "包圍" : "我戲遊".includes(character) ? "舒展" : "中線";
+    return <div className={`hanzi-position-guide guide-${layout}`} aria-hidden="true"><i /><i /><span>{layout === "左右" ? "左邊留位　右邊舒展" : layout === "上下" ? "上下對齊　中間留空" : layout === "包圍" ? "框內留空間" : layout === "舒展" ? "向外舒展，不碰邊" : "重心靠中線"}</span></div>;
+  }
   return <div className={`hanzi-structure-guide is-${kind}`} data-character={character} aria-hidden="true"><i /><i /><i /></div>;
 }
 
@@ -71,7 +75,6 @@ export default function HanziGame() {
   const characters = useMemo(() => ALL_CHARACTERS.slice(bookIndex * 20, bookIndex * 20 + 20), [bookIndex]);
   const card = characters[index];
   const book = HANZI_BOOKS[bookIndex];
-  const groupCounts = useMemo(() => characters.reduce<Record<string, number>>((all, item) => ({ ...all, [item.group]: (all[item.group] ?? 0) + 1 }), {}), [characters]);
 
   const startMode = (nextMode: PracticeMode) => {
     setMode(nextMode);
@@ -145,8 +148,14 @@ export default function HanziGame() {
       },
     });
     writerRef.current = writer;
+    const resize = new ResizeObserver(() => {
+      const width = Math.min(430, host.clientWidth);
+      if (width > 0) writer.updateDimensions({ width, height: width, padding: 23 });
+    });
+    resize.observe(host);
     return () => {
       cancelled = true;
+      resize.disconnect();
       writer.cancelQuiz();
       host.innerHTML = "";
     };
@@ -191,12 +200,7 @@ export default function HanziGame() {
       <div className="hanzi-layout">
         <aside className="hanzi-library">
           <div className="hanzi-library-title"><span>{book.title}</span><b>20 個字</b></div>
-          {Object.keys(groupCounts).map((group) => (
-            <section key={group}>
-              <h3>{group}<small>{groupCounts[group]} 字</small></h3>
-              <div>{characters.map((item, itemIndex) => item.group === group && <button key={item.char} className={index === itemIndex ? "is-on" : ""} onClick={() => goTo(itemIndex)}>{item.char}</button>)}</div>
-            </section>
-          ))}
+          <div className="hanzi-flat-list">{characters.map((item, itemIndex) => <button key={item.char} aria-label={item.char} className={index === itemIndex ? "is-on" : ""} onClick={() => goTo(itemIndex)}>{item.char}</button>)}</div>
           <p><Sparkles size={15} /> 小祕訣：字不要碰到田字格的邊，四周都要留呼吸位。</p>
         </aside>
 

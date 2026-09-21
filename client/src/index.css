@@ -1425,6 +1425,47 @@ body { overflow-x: hidden; }
 }
 
 /* ===== 漢字筆順屋 ===== */
+@media(min-width:701px) and (max-width:900px) {
+  .crystal-game .crystal-workspace { grid-template-columns:1fr 1fr; gap:12px; }
+  .crystal-game .crystal-scene,.crystal-game .crystal-panel { padding:12px; }
+  .crystal-game .crystal-vessel { width:210px; height:260px; }
+  .crystal-game .crystal-tools { gap:7px; }
+  .crystal-game .crystal-tools button { font-size:13px; padding:9px 4px; }
+}
+.game-card img { pointer-events:none; user-select:none; -webkit-user-drag:none; }
+.game-card .game-drag-handle { pointer-events:auto; touch-action:none; width:40px; height:40px; cursor:grab; }
+.game-card { user-select:none; }.game-card.is-dragging { outline:3px dashed #ff6b3d; outline-offset:5px; }
+.hanzi-flat-list { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:8px; margin:16px 0; }
+.hanzi-flat-list button { min-width:0; padding:0; aspect-ratio:1; min-height:34px; border:1px solid #dbc9b7; border-radius:9px; background:white; font:24px serif; cursor:pointer; }
+.hanzi-flat-list button.is-on { background:#d95d74; color:white; border:2px solid #18304c; box-shadow:2px 3px 0 #18304c; }
+.hanzi-game .hanzi-story p,.hanzi-game .hanzi-watch p { font-size:18px; line-height:1.8; }
+.hanzi-game .hanzi-story small,.hanzi-game .hanzi-watch small { font-size:13px; }
+.hanzi-position-guide { position:absolute; z-index:2; inset:10%; pointer-events:none; }
+.hanzi-position-guide i { position:absolute; border:2px dashed #d7a34d; border-radius:12px; background:#ffd36315; }
+.hanzi-position-guide span { position:absolute; bottom:-10%; width:100%; text-align:center; color:#997038; font-size:12px; }
+.guide-左右 i:first-child { inset:6% 62% 6% 0; }.guide-左右 i:nth-child(2) { inset:6% 0 6% 42%; background:#72c9c015; border-color:#78aaa1; }
+.guide-上下 i:first-child { inset:0 10% 58%; }.guide-上下 i:nth-child(2) { inset:46% 4% 0; border-color:#78aaa1; }
+.guide-包圍 i:first-child { inset:1% 10%; }.guide-包圍 i:nth-child(2) { inset:22% 29%; }
+.guide-中線 i:first-child { inset:2% 43%; }.guide-中線 i:nth-child(2) { inset:76% 7% 5%; }
+.guide-舒展 i:first-child { inset:5% 6%; }.guide-舒展 i:nth-child(2) { inset:25% 37% 25%; }
+@media(min-width:701px) and (max-width:1000px) { .hanzi-flat-list { grid-template-columns:repeat(10,1fr); } }
+
+.crystal-game { max-width:1320px; width:100%; }
+.crystal-game button { cursor:pointer; min-height:46px; border:2px solid #18304c; border-radius:12px; padding:10px 14px; background:#fffdf7; color:#18304c; font-weight:800; transition:background .2s,transform .2s; }
+.crystal-game button:hover { background:#fff0d6; transform:translateY(-2px); }.crystal-game button:disabled { opacity:.45; cursor:default; transform:none; }
+.crystal-hero { display:flex; justify-content:space-between; align-items:center; padding:22px 30px; border:2px solid #baa3dc; border-radius:24px 9px 24px 12px; background:linear-gradient(120deg,#f1e8ff,#fffae9); }
+.crystal-hero h1 { font:32px "Huninn"; margin:10px 0; }.crystal-hero small { color:#7852a3; font-weight:900; }.crystal-hero img { width:210px; max-width:30%; }.crystal-hero p { color:#697186; }
+.crystal-tabs { display:flex; gap:12px; margin:20px 0; }.crystal-tabs button[aria-pressed=true] { background:#decaf8; box-shadow:3px 4px 0 #18304c; }
+.crystal-workspace { display:grid; grid-template-columns:1.25fr 1fr; gap:20px; }.crystal-scene { padding:22px; border:2px solid #a9cfd1; border-radius:24px; background:radial-gradient(ellipse at 50% 20%,#fff,#e8f5f7 65%,#ecdfcf); }
+.crystal-scene-top { display:flex; justify-content:space-between; color:#436a7c; }.crystal-vessel { position:relative; width:260px; height:300px; margin:28px auto 20px; border:7px solid #79aebb; border-top:3px solid #bce6ea; border-radius:10px 10px 45px 45px; overflow:hidden; background:#ffffff85; box-shadow:inset 12px 0 0 #ffffff85,0 18px 20px #5b859b20; }
+.crystal-water { position:absolute; bottom:0; width:100%; background:linear-gradient(#65dadd99,#62aeda99); border-top:4px solid #b5ffff; }.crystal-water i { position:absolute; width:10px; height:10px; border-radius:50%; background:#9971dd; box-shadow:0 0 0 3px #ffffff55; }
+.crystal-bed { position:absolute; bottom:6px; left:8%; right:8%; display:flex; flex-wrap:wrap; justify-content:center; gap:3px; }.crystal-bed i { width:12px; height:9px; background:#8863b9; border-radius:3px; }
+.growing-gem { position:absolute; width:145px; left:50%; margin-left:-72px; bottom:5px; transform-origin:bottom; }.growing-gem svg { width:100%; display:block; }
+.crystal-status { padding:15px; border-radius:16px; background:#ffffffcf; }.crystal-status h2 { margin:0; color:#7852a3; }.crystal-status small { font-size:13px; }.crystal-status p { margin:8px 0 0; font-size:18px; line-height:1.6; }
+.crystal-counts { display:grid; grid-template-columns:repeat(4,1fr); gap:7px; margin-top:15px; }.crystal-counts span { padding:10px 4px; text-align:center; background:#ffffff9c; border-radius:10px; font-size:12px; }.crystal-counts b { display:block; font:900 26px "Nunito"; }
+.crystal-panel { display:flex; flex-direction:column; gap:14px; padding:22px; background:#fffaf0; border:2px solid #d7c8af; border-radius:18px; }.crystal-panel h2 { margin:0; }.crystal-tools { display:grid; grid-template-columns:1fr 1fr; gap:10px; }.crystal-tools button { box-shadow:2px 3px 0 #18304c; }.crystal-hint { padding:16px; background:#f0e6fa; color:#624285; border-radius:14px; font-size:18px; line-height:1.7; margin:0; }.crystal-panel small,.crystal-exhibit small { color:#79828b; line-height:1.7; font-size:13px; }.crystal-mission { background:#fff0c8; padding:14px; border-radius:14px; }.crystal-mission h3 { margin:0; }.crystal-mission p { line-height:1.7; margin:7px 0; }
+.crystal-specimens { display:grid; grid-template-columns:repeat(4,1fr); gap:15px; }.crystal-specimens svg { height:140px; width:100%; }.crystal-specimens b,.crystal-specimens small { display:block; }.crystal-specimens button[aria-pressed=true] { background:#eee0ff; box-shadow:3px 4px 0 #18304c; }.crystal-exhibit { margin-top:22px; padding:24px; display:grid; grid-template-columns:1fr 1.4fr; gap:28px; border:2px solid #d1bfe3; border-radius:24px; background:#fffdf7; }.crystal-exhibit p { font-size:19px; line-height:1.8; }.crystal-exhibit button { margin:0 8px 16px 0; }.crystal-large-gem { display:grid; place-items:center; background:radial-gradient(#e8deff,#eff9f7); border-radius:50%; min-height:340px; }.crystal-large-gem svg { width:230px; }.crystal-notes { padding:20px; margin-top:22px; color:#657080; font-size:14px; line-height:1.8; }.crystal-notes a { text-decoration:underline; }
+@media(max-width:800px) { .crystal-workspace,.crystal-exhibit { grid-template-columns:1fr; }.crystal-hero { padding:18px; }.crystal-hero h1 { font-size:25px; }.crystal-specimens { grid-template-columns:repeat(2,1fr); }.crystal-large-gem { min-height:280px; }.crystal-tabs button { font-size:14px; }.crystal-vessel { max-width:85%; } }
 .hanzi-book-tabs { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin:0 0 20px; }
 .hanzi-book-tabs button { min-height:96px; padding:14px; border:1px solid #d9cdbb; border-radius:10px 20px 10px 14px; background:#fffdf7; color:#6a6370; cursor:pointer; text-align:left; transition:transform .2s; }
 .hanzi-book-tabs button:hover { transform:translateY(-2px); }

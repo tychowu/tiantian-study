@@ -19,6 +19,7 @@ import WeatherGame from "@/games/WeatherGame";
 import MatterLabGame from "@/games/MatterLabGame";
 import RampLabGame from "@/games/RampLabGame";
 import HanziGame from "@/games/HanziGame";
+import CrystalGame from "@/games/CrystalGame";
 import { APP_VERSION, APP_VERSION_DATE } from "@/lib/version";
 import { getChineseVoiceInfo, onVoicesReady } from "@/lib/speech";
 
@@ -37,6 +38,7 @@ type GameMeta = {
 };
 
 const GAMES: GameMeta[] = [
+  { id: "crystal", title: "晶體小花園", subtitle: "加粉、降溫、放晶種，發現晶體長大的祕密", icon: "💎", img: "/images/cards/crystal-garden.webp", accent: "#8b68c7", stars: "飽和・結晶・形狀探險", Component: CrystalGame },
   {
     id: "matter-lab",
     title: "物質粒子實驗室",
@@ -208,6 +210,8 @@ export default function Home() {
   const [testError, setTestError] = useState(false);
   const [testUnlocked, setTestUnlocked] = useState(() => typeof window !== "undefined" && window.sessionStorage.getItem(TEST_UNLOCK_KEY) === "1");
   const passwordRef = useRef<HTMLInputElement>(null);
+  const lastDragTarget = useRef<string | null>(null);
+  const suppressClick = useRef(false);
 
   // 語音清單是非同步載入的（iOS 尤其慢），載好後才知道這台裝置有沒有廣東話。
   useEffect(() => onVoicesReady((ready) => setVoice(ready ? getChineseVoiceInfo() : null)), []);
@@ -234,6 +238,10 @@ export default function Home() {
   const dropCard = (event: DragEvent<HTMLButtonElement>, targetId: string) => {
     event.preventDefault();
     const sourceId = event.dataTransfer.getData("text/plain") || draggedId;
+    reorderCard(sourceId, targetId);
+  };
+
+  const reorderCard = (sourceId: string | null, targetId: string) => {
     if (!sourceId || sourceId === targetId) return;
     setGames((current) => {
       const next = [...current];
@@ -275,7 +283,7 @@ export default function Home() {
             把卡片翻開，<br />
             <span>就開始一場小冒險。</span>
           </h1>
-          <p>十四個學習星球正在集合，點一張就會飛進全螢幕的小遊戲。</p>
+          <p>{GAMES.length} 個學習星球正在集合，點一張就會飛進全螢幕的小遊戲。</p>
         </div>
         <img className="hero-art" src="/images/tiantian-hero-learning-v2.jpg" alt="書本、地球、星球與鉛筆火箭組成的繽紛學習冒險插畫" />
       </section>
@@ -316,25 +324,41 @@ export default function Home() {
             return (
             <motion.button
               key={game.id}
+              data-game-id={game.id}
               type="button"
               className={`game-card ${locked ? "is-coming" : ""} ${testLocked ? "is-test-locked" : ""} ${draggedId === game.id ? "is-dragging" : ""}`}
               style={{ "--accent": game.accent } as CSSProperties}
-              onClick={() => testLocked ? openTestUnlock() : !game.comingSoon && setActiveId(game.id)}
+              onClick={() => { if (suppressClick.current) return; testLocked ? openTestUnlock() : !game.comingSoon && setActiveId(game.id); }}
               aria-disabled={locked}
               draggable
-              onDragStartCapture={(event) => { setDraggedId(game.id); event.dataTransfer.effectAllowed = "move"; event.dataTransfer.setData("text/plain", game.id); }}
-              onDragOver={(event) => { event.preventDefault(); event.dataTransfer.dropEffect = "move"; }}
-              onDrop={(event) => dropCard(event, game.id)}
-              onDragEndCapture={() => setDraggedId(null)}
+              onDragStartCapture={(event) => { setDraggedId(game.id); suppressClick.current = true; lastDragTarget.current = game.id; event.dataTransfer.effectAllowed = "move"; event.dataTransfer.setData("text/plain", game.id); event.dataTransfer.setDragImage(event.currentTarget, 100, 80); }}
+              onDragOver={(event) => { event.preventDefault(); event.dataTransfer.dropEffect = "move"; if (draggedId && draggedId !== game.id && lastDragTarget.current !== game.id) { lastDragTarget.current = game.id; dropCard(event, game.id); } }}
+              onDrop={(event) => { event.preventDefault(); setDraggedId(null); }}
+              onDragEndCapture={() => { setDraggedId(null); lastDragTarget.current = null; window.setTimeout(() => { suppressClick.current = false; }, 150); }}
               layout
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.32, delay: index * 0.06, ease: [0.23, 1, 0.32, 1] }}
+              transition={{ layout: { type: "spring", stiffness: 340, damping: 30 }, opacity: { duration: .2 }, y: { duration: .2 } }}
               whileHover={draggedId ? undefined : { y: -5, rotate: -0.6 }}
             >
-              <span className="game-drag-handle" aria-hidden="true"><GripVertical size={18} /></span>
+              <span className="game-drag-handle" aria-label="拖曳排列" onPointerDown={(event) => {
+                if (event.pointerType === "mouse") return;
+                event.preventDefault(); event.stopPropagation(); event.currentTarget.setPointerCapture(event.pointerId);
+                setDraggedId(game.id); suppressClick.current = true; lastDragTarget.current = game.id;
+              }} onPointerMove={(event) => {
+                if (event.pointerType === "mouse" || !event.currentTarget.hasPointerCapture(event.pointerId)) return;
+                event.preventDefault();
+                const target = document.elementFromPoint(event.clientX, event.clientY)?.closest<HTMLElement>("[data-game-id]")?.dataset.gameId;
+                if (target && target !== game.id && target !== lastDragTarget.current) { lastDragTarget.current = target; reorderCard(game.id, target); }
+                if (event.clientY < 90) window.scrollBy(0, -14);
+                if (event.clientY > window.innerHeight - 90) window.scrollBy(0, 14);
+              }} onPointerUp={(event) => {
+                if (event.pointerType === "mouse") return;
+                if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
+                setDraggedId(null); lastDragTarget.current = null; window.setTimeout(() => { suppressClick.current = false; }, 150);
+              }} onPointerCancel={() => { setDraggedId(null); suppressClick.current = false; lastDragTarget.current = null; }}><GripVertical size={18} /></span>
               <span className="game-icon" aria-hidden="true">
-                {game.img ? <img src={game.img} alt="" loading="lazy" /> : game.icon}
+                {game.img ? <img src={game.img} alt="" loading="lazy" draggable={false} /> : game.icon}
               </span>
               <b className="game-title">{game.title}</b>
               <span className="game-sub">{game.subtitle}</span>
