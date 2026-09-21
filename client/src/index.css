@@ -1450,6 +1450,21 @@ body { overflow-x: hidden; }
 .guide-舒展 i:first-child { inset:5% 6%; }.guide-舒展 i:nth-child(2) { inset:25% 37% 25%; }
 @media(min-width:701px) and (max-width:1000px) { .hanzi-flat-list { grid-template-columns:repeat(10,1fr); } }
 
+.crystal-cluster { position:absolute; inset:auto 0 -15px; width:100%; height:90%; pointer-events:none; filter:drop-shadow(0 5px 3px #57448230); }
+.crystal-graduations { position:absolute; right:8px; top:17%; bottom:11%; display:flex; flex-direction:column; justify-content:space-between; color:#37788a; font:12px "Nunito"; }
+.crystal-action-effect { position:absolute; left:20%; top:35%; z-index:3; font-size:24px; font-weight:900; color:#754595; pointer-events:none; text-shadow:0 2px white; }
+.crystal-capacity-chart { padding:12px; margin-bottom:12px; border-radius:16px; background:#ffffffb8; text-align:center; }
+.crystal-capacity-chart>div { display:flex; align-items:end; justify-content:center; gap:12px; margin:12px 0 5px; }
+.crystal-capacity-chart span { display:flex; flex-direction:column; align-items:center; padding:5px 8px; border-radius:8px; color:#6f7287; }
+.crystal-capacity-chart span.active { background:#fff0ce; color:#18304c; outline:2px solid #e6b865; }
+.crystal-capacity-chart i { width:25px; background:linear-gradient(#edbf88,#9e8cdd); border-radius:5px 5px 0 0; }
+.crystal-capacity-chart small { font-size:12px; }.crystal-status[data-status="過飽和"] { background:#fff0d4; outline:2px solid #e9b45f; }
+.crystal-specimens img { width:100%; height:140px; object-fit:contain; border-radius:10px; margin-bottom:10px; background:#edf0f1; }
+.crystal-photo { margin:0; min-width:0; display:flex; flex-direction:column; justify-content:center; gap:14px; }
+.crystal-photo>img { width:100%; height:360px; object-fit:contain; background:#eff2f3; border-radius:18px; }
+.crystal-photo figcaption { font-size:12px; color:#697186; line-height:1.7; text-align:center; }.crystal-photo a { text-decoration:underline; }
+@media(max-width:600px) { .crystal-capacity-chart>div { gap:3px; }.crystal-photo>img { height:280px; }.crystal-scene-top { flex-wrap:wrap; gap:8px; } }
+@media(prefers-reduced-motion:reduce) { .crystal-game *, .crystal-game *::before { animation:none!important; transition:none!important; } }
 .crystal-game { max-width:1320px; width:100%; }
 .crystal-game button { cursor:pointer; min-height:46px; border:2px solid #18304c; border-radius:12px; padding:10px 14px; background:#fffdf7; color:#18304c; font-weight:800; transition:background .2s,transform .2s; }
 .crystal-game button:hover { background:#fff0d6; transform:translateY(-2px); }.crystal-game button:disabled { opacity:.45; cursor:default; transform:none; }
@@ -1458,7 +1473,7 @@ body { overflow-x: hidden; }
 .crystal-tabs { display:flex; gap:12px; margin:20px 0; }.crystal-tabs button[aria-pressed=true] { background:#decaf8; box-shadow:3px 4px 0 #18304c; }
 .crystal-workspace { display:grid; grid-template-columns:1.25fr 1fr; gap:20px; }.crystal-scene { padding:22px; border:2px solid #a9cfd1; border-radius:24px; background:radial-gradient(ellipse at 50% 20%,#fff,#e8f5f7 65%,#ecdfcf); }
 .crystal-scene-top { display:flex; justify-content:space-between; color:#436a7c; }.crystal-vessel { position:relative; width:260px; height:300px; margin:28px auto 20px; border:7px solid #79aebb; border-top:3px solid #bce6ea; border-radius:10px 10px 45px 45px; overflow:hidden; background:#ffffff85; box-shadow:inset 12px 0 0 #ffffff85,0 18px 20px #5b859b20; }
-.crystal-water { position:absolute; bottom:0; width:100%; background:linear-gradient(#65dadd99,#62aeda99); border-top:4px solid #b5ffff; }.crystal-water i { position:absolute; width:10px; height:10px; border-radius:50%; background:#9971dd; box-shadow:0 0 0 3px #ffffff55; }
+.crystal-water { position:absolute; bottom:0; width:100%; background:linear-gradient(#65dadd55,#62aeda99); border-top:4px solid #b5ffff; transition:height 1s; }.crystal-water i { position:absolute; width:8px; height:8px; border-radius:50%; background:#9971dd; box-shadow:0 0 0 3px #ffffff55; }
 .crystal-bed { position:absolute; bottom:6px; left:8%; right:8%; display:flex; flex-wrap:wrap; justify-content:center; gap:3px; }.crystal-bed i { width:12px; height:9px; background:#8863b9; border-radius:3px; }
 .growing-gem { position:absolute; width:145px; left:50%; margin-left:-72px; bottom:5px; transform-origin:bottom; }.growing-gem svg { width:100%; display:block; }
 .crystal-status { padding:15px; border-radius:16px; background:#ffffffcf; }.crystal-status h2 { margin:0; color:#7852a3; }.crystal-status small { font-size:13px; }.crystal-status p { margin:8px 0 0; font-size:18px; line-height:1.6; }

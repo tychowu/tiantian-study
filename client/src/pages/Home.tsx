@@ -38,7 +38,7 @@ type GameMeta = {
 };
 
 const GAMES: GameMeta[] = [
-  { id: "crystal", title: "晶體小花園", subtitle: "加粉、降溫、放晶種，發現晶體長大的祕密", icon: "💎", img: "/images/cards/crystal-garden.webp", accent: "#8b68c7", stars: "飽和・結晶・形狀探險", Component: CrystalGame },
+  { id: "crystal", title: "晶體小花園", subtitle: "升溫、降溫、放晶種，種出閃亮的晶簇", icon: "💎", img: "/images/cards/crystal-garden.webp", accent: "#8b68c7", stars: "過飽和・結晶・實物圖鑑", Component: CrystalGame },
   {
     id: "matter-lab",
     title: "物質粒子實驗室",

@@ -1,0 +1,35 @@
+import ts from 'typescript';
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+const code = ts.transpile(fs.readFileSync('client/src/lib/crystalModel.ts', 'utf8'), { module: ts.ModuleKind.ESNext });
+const { initial, step, capacity } = await import('data:text/javascript;base64,' + Buffer.from(code).toString('base64'));
+let s = { ...initial };
+assert.equal(s.temp, 25);
+s = step(step(s, 'heat'), 'heat');
+assert.equal(s.temp, 55);
+for (let i = 0; i < 6; i++) s = step(s, 'add');
+s = step(s, 'stir');
+assert.equal(s.dissolved, 12);
+s = step(step(s, 'cool'), 'cool');
+assert.equal(capacity(s), 6);
+assert.equal(s.dissolved, 12);
+s = step(step(s, 'seed'), 'day');
+assert.equal(s.water, 65);
+assert.equal(s.crystal, 7);
+s = step(s, 'water');
+assert.equal(s.water, 80);
+assert.equal(s.crystal, 6);
+const total = s.dissolved + s.powder + s.crystal;
+for (let i = 0; i < 1000; i++) {
+  s = step(s, ['heat', 'cool', 'water', 'day', 'seed', 'stir'][i % 6]);
+  assert.equal(s.dissolved + s.powder + s.crystal, total);
+  assert.ok(s.water >= 0 && s.water <= 140);
+  assert.ok(s.temp >= 25 && s.temp <= 85);
+}
+s = { ...initial };
+for (let i = 0; i < 20; i++) s = step(s, 'day');
+assert.equal(s.water, 5);
+assert.equal(s.day, 5);
+for (let i = 0; i < 20; i++) s = step(s, 'water');
+assert.equal(s.water, 140);
+console.log('PASS: supersaturation, temperature, 15 ml steps, dissolution, conservation, bounds');
