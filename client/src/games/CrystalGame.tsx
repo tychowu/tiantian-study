@@ -31,6 +31,7 @@ function Cluster({ amount, seeded }: { amount: number; seeded: boolean }) {
 export default function CrystalGame() {
   const [sample, setSample] = useState(initial);
   const [tab, setTab] = useState(0);
+  useGameBack(tab !== 0, () => setTab(0));
   const [specimen, setSpecimen] = useState(0);
   const [hint, setHint] = useState("從 25°C、80 ml 水開始。先猜猜：升溫能溶進更多晶粉嗎？");
   const [effect, setEffect] = useState({ action: "", tick: 0 });
@@ -75,3 +76,4 @@ export default function CrystalGame() {
     <details className="crystal-notes"><summary>給大人的實驗筆記與資料來源</summary><p>套裝照片未列晶粉成分，不能判定是磷酸二氫銨。請依原說明，由成人處理熱水和晶粉，勿品嚐。過飽和是暫時狀態，也可能自行成核；本遊戲用晶種與時間按鈕放慢過程。未溶粉末也能提供成核表面。</p><p>食鹽溶解度隨溫度變化較小；水晶（二氧化矽）的形成條件與套裝實驗不同。</p><a href="https://www.mrsec.psu.edu/education-outreach/public/nano-activities-kids/liquid-metal/growing-crystals" target="_blank" rel="noreferrer">Penn State：晶體生長</a> · <a href="https://www.jstage.jst.go.jp/article/jcrsj1940/5/1-2/5_1-2_21/_article" target="_blank" rel="noreferrer">ADP 晶體結構研究</a> · <a href="https://www.mindat.org/min-3337.html" target="_blank" rel="noreferrer">水晶晶形資料</a></details>
   </div>;
 }
+import { useGameBack } from "@/lib/gameBack";

@@ -42,6 +42,7 @@ function DotArray({ rows, cols, compact = false }: { rows: number; cols: number;
 
 export default function TimesTableGame() {
   const [mode, setMode] = useState<Mode>("understand");
+  useGameBack(mode !== "understand", () => setMode("understand"));
   const [rows, setRows] = useState(3); const [cols, setCols] = useState(4);
   const [mastery, setMastery] = useState<Mastery>({});
   const savePractice = (a: number, b: number, correct: boolean) => {
@@ -86,3 +87,4 @@ export default function TimesTableGame() {
     {mode === "stars" && <section className="tt-panel"><header><span>關卡 4 · 平時不計時</span><h2>按難度闖關拿星星</h2><p>2、5、9 先走，再挑戰 3、4、6，最後攻克 7 和 8。</p></header><div className="tt-factor-tabs">{ORDER.map(factor=><button key={factor} type="button" className={starFactor===factor?"is-on":""} onClick={()=>{setStarFactor(factor);setStarQuestion(randomPair(factor));setStreak(0);setRoundCount(0);}}>{factor} 的關</button>)}</div><div className="tt-star-board"><div className="tt-stars">{Array.from({length:Math.max(2,stars)},(_,index)=><Star key={index} size={34} fill={index<stars?"#ffb400":"transparent"} color="#d89a00"/>)}</div><h3>{starQuestion[0]} × {starQuestion[1]} = ?</h3><div className="tt-quiz-options">{choicesFor(starQuestion[0]*starQuestion[1]).map(value=><button key={value} type="button" onClick={()=>answerStar(value)}>{value}</button>)}</div><p>第 {Math.min(roundCount+1,10)} / 10 題 · 连对 {streak} · 每連對 5 題亮一顆星</p>{roundCount>=10&&<button type="button" className="tt-next" onClick={()=>{setRoundCount(0);setStreak(0);setStars(0);}}><RotateCcw size={16}/> 再闖一次</button>}</div></section>}
   </div>;
 }
+import { useGameBack } from "@/lib/gameBack";

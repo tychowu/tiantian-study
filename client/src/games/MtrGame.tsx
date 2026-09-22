@@ -88,6 +88,8 @@ export default function MtrGame() {
   const [round, setRound] = useState(0);
 
   const [mapPick, setMapPick] = useState<OfficialStation | null>(null);
+  useGameBack(mapPick !== null, () => setMapPick(null), 30);
+  useGameBack(mode !== "map", () => setMode("map"));
   const [mapZoom, setMapZoom] = useState(1);
 
   const line = MTR_LINES.find((item) => item.key === lineKey)!;
@@ -362,3 +364,4 @@ export default function MtrGame() {
     </div>
   );
 }
+import { useGameBack } from "@/lib/gameBack";

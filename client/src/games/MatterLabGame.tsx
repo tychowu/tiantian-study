@@ -90,6 +90,7 @@ function Beaker({ temperature, lid, surface, airflow }: { temperature: number; l
 
 export default function MatterLabGame() {
   const [level, setLevel] = useState(0);
+  useGameBack(level !== 0, () => setLevel(0));
   const [temperature, setTemperature] = useState(22);
   const [prediction, setPrediction] = useState<Prediction>(null);
   const [revealed, setRevealed] = useState(false);
@@ -147,3 +148,4 @@ export default function MatterLabGame() {
     </div>
   );
 }
+import { useGameBack } from "@/lib/gameBack";

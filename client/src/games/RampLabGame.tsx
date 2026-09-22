@@ -55,6 +55,7 @@ function RampLane({ name, color, car, duration, running, runId, mystery }: { nam
 
 export default function RampLabGame() {
   const [level, setLevel] = useState(0);
+  useGameBack(level !== 0, () => setLevel(0));
   const [a, setA] = useState<CarSettings>(baseA);
   const [b, setB] = useState<CarSettings>(baseB);
   const [prediction, setPrediction] = useState<Winner | null>(null);
@@ -148,3 +149,4 @@ export default function RampLabGame() {
     </div>
   );
 }
+import { useGameBack } from "@/lib/gameBack";

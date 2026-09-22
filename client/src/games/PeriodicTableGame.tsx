@@ -215,6 +215,8 @@ export default function PeriodicTableGame() {
   const [activeCategory, setActiveCategory] = useState<CategoryKey | null>(null);
   const [radioOnly, setRadioOnly] = useState(false);
   const [opened, setOpened] = useState<number | null>(null);
+  useGameBack(opened !== null, () => setOpened(null), 30);
+  useGameBack(activeCategory !== null, () => setActiveCategory(null));
 
   const filtered = new Set(
     ELEMENTS.filter((item) => {
@@ -335,3 +337,4 @@ export default function PeriodicTableGame() {
     </div>
   );
 }
+import { useGameBack } from "@/lib/gameBack";

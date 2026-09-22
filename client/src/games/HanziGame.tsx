@@ -66,6 +66,7 @@ export default function HanziGame() {
   const [bookIndex, setBookIndex] = useState(0);
   const [strokeCount, setStrokeCount] = useState<number | null>(null);
   const [mode, setMode] = useState<PracticeMode>("watch");
+  useGameBack(mode !== "watch", () => setMode("watch"));
   const [message, setMessage] = useState("先看清楚每一筆從哪裡出發。");
   const [completed, setCompleted] = useState(false);
   const [mistakes, setMistakes] = useState(0);
@@ -234,3 +235,4 @@ export default function HanziGame() {
     </div>
   );
 }
+import { useGameBack } from "@/lib/gameBack";

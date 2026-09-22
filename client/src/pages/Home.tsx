@@ -315,7 +315,7 @@ export default function Home() {
 
         <div className="tiny-reminder desk-reminder">
           <span>小提醒</span>
-          <p>慢慢玩沒關係，每一個嘗試都很棒。想換遊戲，按左上角的「回到學習台」就可以了。</p>
+          <p>慢慢玩沒關係，每一個嘗試都很棒。按左上角的「Back」返回上一層；在遊戲最外層再按一次，就回到學習台。</p>
         </div>
       </div>
 

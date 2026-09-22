@@ -77,6 +77,8 @@ export default function LandmarkGame() {
   const [mode, setMode] = useState<"gallery" | "quiz">("gallery");
   const [region, setRegion] = useState<"mainland" | "hongkong">("mainland");
   const [selected, setSelected] = useState<Landmark | null>(null);
+  useGameBack(selected !== null, () => setSelected(null), 30);
+  useGameBack(mode !== "gallery", () => setMode("gallery"));
 
   const [quiz, setQuiz] = useState<QuizQuestion[]>(buildQuiz);
   const [step, setStep] = useState(0);
@@ -313,3 +315,4 @@ export default function LandmarkGame() {
     </div>
   );
 }
+import { useGameBack } from "@/lib/gameBack";

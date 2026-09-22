@@ -40,6 +40,7 @@ function ClockFace({ time, interactive=false, showMinuteRing=false, activeHand, 
 
 export default function ClockGame(){
   const [mode,setMode]=useState<Mode>("face"); const [difficulty,setDifficulty]=useState(1);
+  useGameBack(mode !== "face", () => setMode("face"));
   const [faceTime,setFaceTime]=useState<Time>({h:3,m:20}); const [activeHand,setActiveHand]=useState<"hour"|"minute"|null>(null); const [showRing,setShowRing]=useState(false);
   const [readTime,setReadTime]=useState(()=>randomTime(1)); const [readPick,setReadPick]=useState<string|null>(null); const readChoices=useMemo(()=>choices(readTime),[readTime]);
   const [target,setTarget]=useState<Time>(()=>({h:8,m:30})); const [setTime,setSetTime]=useState<Time>({h:8,m:0}); const [setMessage,setSetMessage]=useState<string|null>(null);
@@ -61,3 +62,4 @@ export default function ClockGame(){
     {mode==="challenge"&&<section className="clock-panel"><header><span>關卡 5 · 可選速度挑戰</span><h2>看誰最快讀對</h2><p>平時不開計時；想挑戰時再打開，不讓速度蓋過理解。</p></header><label className="clock-timer-toggle"><input type="checkbox" checked={timed} onChange={e=>{setTimed(e.target.checked);setTimeLeft(60);setChallengeScore(0);setChallengeRound(0);}}/> 開啟 60 秒挑戰</label><div className="clock-question"><ClockFace time={challengeTime}/><div className="clock-options"><strong><Star fill="#ffb400"/> {challengeScore} 分 · 第 {challengeRound+1} 题 {timed?`· ${timeLeft} 秒`:""}</strong>{timed&&timeLeft===0&&<p>時間到！你答對了 {challengeScore} 題。</p>}{challengeOptions.map(v=><button key={v} type="button" disabled={timed&&timeLeft===0} onClick={()=>answerChallenge(v)}>{v}</button>)}</div></div></section>}
   </div>;
 }
+import { useGameBack } from "@/lib/gameBack";

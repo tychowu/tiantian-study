@@ -1,0 +1,20 @@
+[
+  {
+    "id": "english-garden",
+    "source": "/Users/tychowu/.codex/generated_images/01a0ab6e-b6ac-7490-a736-d3e59ce57013/exec-e63c7a0f-3a80-4683-9184-2d9b886722a0.png",
+    "destination": "client/public/images/stories/english-garden.webp",
+    "prompt": "Use case: illustration-story. Original landscape 3:2 single-page educational picture-talk scene. Match supplied image ONLY for style: simple flat 2D textbook cartoon, clean dark outlines, cheerful solid colours, minimal cel shading, expressive East Asian family and children, clear objects. NO 3D, no photorealism, no words or letters, no watermark, no panels. A family gardening. Left mother kneels planting flowers in soil, centre little pink-shirt girl watering plants with small yellow watering can, right father holds spade upright with blade resting on ground. Blue bucket next to father, green grass foreground, white fence behind, sunny sky. All actions clearly visible."
+  },
+  {
+    "id": "english-living-room",
+    "source": "/Users/tychowu/.codex/generated_images/01a0ab6e-b6ac-7490-a736-d3e59ce57013/exec-75ecee7d-b39d-4bd9-a2ec-46cf532b29dc.png",
+    "destination": "client/public/images/stories/english-living-room.webp",
+    "prompt": "Use case: illustration-story. Original landscape 3:2 single-page educational picture-talk scene. Match supplied image ONLY for style: simple flat 2D textbook cartoon, clean dark outlines, cheerful solid colours, minimal cel shading, expressive East Asian family and children, clear objects. NO 3D, no photorealism, no words or letters, no watermark, no panels. A family reading in living room. Father on middle sofa holds open red storybook and reads aloud; mother and little daughter sitting beside him listen smiling. Small brown puppy on separate armchair left. Floor lamp right of sofa, leafy potted plant beside it, framed family pictures on wall, television switched off on right-hand low cabinet. Cozy uncluttered room. Book has pictures not text."
+  },
+  {
+    "id": "english-canteen",
+    "source": "/Users/tychowu/.codex/generated_images/01a0ab6e-b6ac-7490-a736-d3e59ce57013/exec-01329a63-4edc-499f-9044-c55fb7fccd27.png",
+    "destination": "client/public/images/stories/english-canteen.webp",
+    "prompt": "Use case: illustration-story. Original landscape 3:2 single-page educational picture-talk scene. Match supplied image ONLY for style: simple flat 2D textbook cartoon, clean dark outlines, cheerful solid colours, minimal cel shading, expressive East Asian family and children, clear objects. NO 3D, no photorealism, no words or letters, no watermark, no panels. School canteen at lunchtime. Left friendly adult server behind food counter serving a plate of rice and vegetables to standing boy holding tray. Centre seated girl eating rice and vegetables at table, right seated boy drinking milk from plain carton. Bowl of apples and bananas on table. One girl waits behind boy near counter. Simple windows background. No ice cream or text."
+  }
+]

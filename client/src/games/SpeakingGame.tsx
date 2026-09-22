@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import EnglishPictureTalk from "./EnglishPictureTalk";
+import { StageLanguageContext } from "@/components/GameStage";
 import { motion, useReducedMotion } from "framer-motion";
 import { Volume2, ArrowLeft, ArrowRight, RotateCcw } from "lucide-react";
 import { speak, stopSpeaking } from "@/lib/speech";
@@ -48,11 +50,20 @@ function StorySession({ story, onBack, onComplete }: { story: Story; onBack: () 
     <details className="story-parent-note"><summary>給陪伴的大人：怎樣接住孩子的話</summary><p>先聽完，再問一個問題：「你從哪裡看出來？」孩子只說「小貓」，可以接成「小貓躲在椅子下面」，再邀請他補充。不急着糾正猜想，也不要把示範當成背誦答案。</p><p>五歲可以從一句完整描述開始；想多說時，再加上「因為」「後來」。孩子不想用情節卡，可以直接編自己的故事。完成足印只代表孩子按了「我說好了」，不是能力評分。</p></details>
   </>;
 }
-export default function SpeakingGame() {
+function ChineseSpeakingGame() {
   const [format, setFormat] = useState<"single" | "four">("single");
   const [selected, setSelected] = useState<string | null>(null);
+  useGameBack(selected !== null, () => setSelected(null), 30);
   const [completed, setCompleted] = useState<string[]>(() => { try { const v = JSON.parse(localStorage.getItem("tiantian-story-footprints-v1") ?? "[]"); return Array.isArray(v) ? v.filter(id => STORIES.some(s => s.id === id)) : []; } catch { return []; } });
   const story = STORIES.find(s => s.id === selected);
   const complete = (id: string) => { setCompleted(current => { const next = current.includes(id) ? current : [...current, id]; try { localStorage.setItem("tiantian-story-footprints-v1", JSON.stringify(next)); } catch { /* Optional local progress only. */ } return next; }); };
   return <div className="game-body story-game">{story ? <StorySession key={story.id} story={story} onBack={() => setSelected(null)} onComplete={complete}/> : <><div className="story-picker-heading"><h1>挑一幅圖，說你的故事</h1><Voice text="挑一幅喜歡的圖。先看一看，再想一想，把事情接起來，說出你的故事。沒有倒數，也沒有唯一答案。" label="怎樣玩"/></div><p className="story-picker-intro">👀 找線索 → 💭 說想法 → 🚂 排先後 → 💬 講故事</p><nav className="story-format-tabs" aria-label="圖片類型"><button aria-pressed={format === "single"} onClick={() => setFormat("single")}>🖼️ 單頁看圖</button><button aria-pressed={format === "four"} onClick={() => setFormat("four")}>▦ 一頁四格</button></nav><p className="story-format-hint">{format === "single" ? "一幅大圖：找人物、動作、表情和位置。" : "四格連續圖：按順序觀察，說清楚事情怎樣發生。"}</p><div className="story-selection">{STORIES.filter(s => s.format === format).map((s, i) => <button key={s.id} onClick={() => setSelected(s.id)}><img src={`/images/stories/${s.image}.webp`} alt={s.alt}/><span className="story-selection-copy"><small>故事 {i + 1} · {s.focus}</small><strong>{s.emoji} {s.title}</strong><span>{completed.includes(s.id) ? "🌟 已留下故事足印 · 再說新版本" : "打開圖片，一起說說看 →"}</span></span></button>)}</div><p className="story-picker-intro">可以說一句，也可以說一整段。你的想法，和別人不同也沒關係。</p></>}</div>;
 }
+
+export default function SpeakingGame() {
+  const [language, setLanguage] = useState<"zh" | "en">("zh");
+  const setStageLanguage = useContext(StageLanguageContext);
+  useEffect(() => { setStageLanguage(language); return () => setStageLanguage("zh"); }, [language, setStageLanguage]);
+  return <div className="story-language-shell"><nav className="story-language-tabs" aria-label={language === "en" ? "Language" : "語言"}><button aria-pressed={language === "zh"} onClick={() => { stopSpeaking(); setLanguage("zh"); }}>{language === "en" ? "Chinese" : "中文看圖說話"}</button><button aria-pressed={language === "en"} onClick={() => { stopSpeaking(); setLanguage("en"); }}>English Picture Talk</button></nav>{language === "en" ? <div className="game-body story-game"><EnglishPictureTalk/></div> : <ChineseSpeakingGame/>}</div>;
+}
+import { useGameBack } from "@/lib/gameBack";

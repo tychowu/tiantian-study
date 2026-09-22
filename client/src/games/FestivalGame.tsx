@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import {
   BookOpen, CalendarDays, Check, ChevronLeft, ChevronRight,
-  Link2, MapPin, Moon, PartyPopper, Sparkles, Star, Sun, Utensils, Volume2,
+  Link2, MapPin, Moon, PartyPopper, Sparkles, Star, Sun, Utensils,
 } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { FESTIVAL_PROFILES, PAIRS_PER_ROUND, type FestivalProfile } from "@/data/festivals";
@@ -55,6 +55,7 @@ const seasonForMonth = (month: number) => month <= 2 || month === 12 ? "winter" 
 
 export default function FestivalGame() {
   const [level, setLevel] = useState<Level>("files");
+  useGameBack(level !== "files", () => setLevel("files"));
   const [fileIndex, setFileIndex] = useState(0);
   const [stamps, setStamps] = useState<Set<string>>(() => new Set<string>());
 
@@ -170,9 +171,9 @@ export default function FestivalGame() {
     {level === "files" && <section className="festival-stage">
       <StageHead eyebrow="關卡 1 · 純學習，不計分" title="節日小檔案" copy="先看圖、聽故事，再把節日郵戳收進你的日曆。" side={`${fileIndex + 1} / ${FESTIVAL_PROFILES.length}`} />
       <motion.article className="festival-file" key={currentFile.id} initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }}>
-        <figure className="festival-file-visual"><img src={currentFile.img} alt={`${currentFile.zh}：${currentFile.activities.join("、")}`} /><figcaption><span>{currentFile.stamp}</span>{currentFile.foodPlay}</figcaption></figure>
+        <figure className="festival-file-visual"><img src={currentFile.img} alt={`${currentFile.zh}：${currentFile.activities.join("、")}`} /></figure>
         <div className="festival-file-info">
-          <div className="festival-file-title"><span className={`festival-region region-${currentFile.region}`}>{currentFile.where}</span><h3><button type="button" onClick={() => speak(currentFile.zh, "zh")}>{currentFile.zh} <Volume2 size={17} /></button></h3><button type="button" className="festival-en-name" onClick={() => speak(currentFile.en, "en")}>{currentFile.en} <Volume2 size={14} /></button></div>
+          <div className="festival-file-title"><span className={`festival-region region-${currentFile.region}`}>{currentFile.where}</span><h3><button type="button" onClick={() => speak(currentFile.zh, "zh")}>{currentFile.zh}</button></h3><button type="button" className="festival-en-name" lang="en" onClick={() => speak(currentFile.en, "en")}>{currentFile.en}</button><small className="festival-read-hint">點文字，聽發音</small></div>
           <dl className="festival-five-grid">
             <InfoField wide icon={currentFile.calendar === "lunar" ? <Moon size={19} /> : <Sun size={19} />} label="什麼時候" text={currentFile.dateGuideZh} />
             <InfoField icon={<PartyPopper size={19} />} label="做什麼" text={currentFile.activities.join("、")} />
@@ -206,7 +207,7 @@ export default function FestivalGame() {
       {matchMode !== "region" ? <><p className="ft-hint"><Link2 size={15} /> 先點左邊，再點右邊，把正確答案連起來。</p><div className={`ft-board mode-${matchMode}`} ref={boardRef}><svg className="ft-lines" aria-hidden="true">{lines.map((line) => <line key={line.key} x1={line.x1} y1={line.y1} x2={line.x2} y2={line.y2} className="is-ok" />)}</svg><div className="ft-col">{leftOrder.map((festival, index) => <button key={festival.id} type="button" ref={(element) => { leftRefs.current[index] = element; }} className={`ft-name ${pickedLeft === festival.id ? "is-picked" : ""} ${matched.includes(festival.id) ? "is-matched" : ""}`} onClick={() => !matched.includes(festival.id) && setPickedLeft(festival.id)}>{matchMode === "picture" && <><b>{festival.zh}</b><i>{festival.en}</i></>}{matchMode === "date" && <><b>{festival.calendar === "lunar" ? "🌙" : "☀️"} {festival.dateZh}</b><i>{festival.dateGuideZh}</i></>}{matchMode === "custom" && <><b>{festival.foodPlay}</b><i>{festival.activities[0]}</i></>}</button>)}</div><div className="ft-col ft-col-pics">{rightOrder.map((festival, index) => <motion.button key={festival.id} type="button" ref={(element) => { rightRefs.current[index] = element; }} className={`ft-pic ${matchMode !== "picture" ? "is-text" : ""} ${matched.includes(festival.id) ? "is-matched" : ""} ${wrongPair === festival.id ? "is-wrong" : ""}`} onClick={() => tapMatchRight(festival, index)} animate={wrongPair === festival.id ? { x: [0, -7, 7, -5, 5, 0] } : { x: 0 }}>{matchMode === "picture" ? <img src={festival.img} alt={festival.zh} /> : <><b>{festival.zh}</b><i>{festival.en}</i></>}</motion.button>)}</div></div>{matched.length === matchItems.length && <Complete text="全部連對了！" action="下一組 →" onClick={() => setMatchRound((round) => (round + 1) % Math.ceil(FESTIVAL_PROFILES.length / PAIRS_PER_ROUND))} />}</> : <><p className="ft-hint"><MapPin size={15} /> 拖動卡片到地區；iPad 可以先點卡片，再點地區。</p><div className="festival-region-cards">{regionItems.filter((festival) => !regionPlaced.includes(festival.id)).map((festival) => <button key={festival.id} type="button" draggable className={regionPick === festival.id ? "is-picked" : ""} onClick={() => setRegionPick(festival.id)} onDragStart={(event) => event.dataTransfer.setData("text/plain", festival.id)}><img src={festival.img} alt="" /><b>{festival.zh}</b></button>)}</div><div className="festival-region-buckets">{(["mainland", "hongkong", "both"] as const).map((region) => <button key={region} type="button" className={`region-${region}`} onClick={() => regionPick && placeInRegion(regionPick, region)} onDragOver={(event) => event.preventDefault()} onDrop={(event) => { event.preventDefault(); placeInRegion(event.dataTransfer.getData("text/plain"), region); }}><span>{region === "mainland" ? "🏮" : region === "hongkong" ? "🌺" : "🤝"}</span><b>{REGION_LABELS[region]}</b><i>{regionPlaced.filter((id) => regionItems.find((item) => item.id === id)?.region === region).map((id) => FESTIVAL_PROFILES.find((item) => item.id === id)?.zh).join("、") || "放到這裡"}</i></button>)}</div>{regionMessage && <div className="festival-feedback is-ok">{regionMessage}</div>}{regionPlaced.length === regionItems.length && <Complete text="地區也分對了！" action="下一組 →" onClick={() => setRegionRound((round) => (round + 1) % Math.ceil(regionPool.length / 4))} />}</>}
     </section>}
 
-    <section className="festival-calendar-card"><header><div><span>我的節日曆</span><p>每次進入都會開始一張新的節日曆；認識或答對節日就留下郵戳。</p></div><b>{stamps.size} / {FESTIVAL_PROFILES.length}</b></header><div className="festival-calendar-wheel">{MONTHS.map((month, index) => <div key={month}><b>{month}</b><span>{FESTIVAL_PROFILES.filter((festival) => festival.month === index + 1 && stamps.has(festival.id)).map((festival) => <i key={festival.id} title={festival.zh}>{festival.stamp}</i>)}</span></div>)}</div></section>
+    <section className="festival-calendar-card"><header><div><span>我的節日曆</span><p>每次進入都會開始一張新的節日曆；認識或答對節日就記下名稱。</p></div><b>{stamps.size} / {FESTIVAL_PROFILES.length}</b></header><div className="festival-calendar-wheel">{MONTHS.map((month, index) => <div key={month}><b>{month}</b><span>{FESTIVAL_PROFILES.filter((festival) => festival.month === index + 1 && stamps.has(festival.id)).map((festival) => <button type="button" key={festival.id} onClick={() => speak(festival.zh, "zh")}>{festival.zh}</button>)}</span></div>)}</div></section>
   </div>;
 }
 
@@ -217,10 +218,11 @@ function StageHead({ eyebrow, title, copy, side }: { eyebrow: string; title: str
 function InfoField({ wide = false, icon, label, text }: { wide?: boolean; icon: ReactNode; label: string; text: string }) {
   return <div className={wide ? "is-wide" : ""}>
     <dt>{icon} {label}</dt>
-    <dd><span>{text}</span><button type="button" onClick={() => speak(text, "zh")} aria-label={`播放${label}`}><Volume2 size={17} /></button></dd>
+    <dd><button type="button" onClick={() => speak(text, "zh")} title="點文字，聽發音">{text}</button></dd>
   </div>;
 }
 
 function Complete({ text, action, onClick }: { text: string; action: string; onClick: () => void }) {
   return <div className="festival-complete"><Check size={20} /> {text}<button type="button" onClick={onClick}>{action}</button></div>;
 }
+import { useGameBack } from "@/lib/gameBack";

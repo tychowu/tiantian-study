@@ -36,6 +36,8 @@ export default function WeatherGame() {
   const [mode, setMode] = useState<"gallery" | "quiz">("gallery");
   const [wxTab, setWxTab] = useState<"weather" | "warning">("weather");
   const [selected, setSelected] = useState<WeatherItem | null>(null);
+  useGameBack(selected !== null, () => setSelected(null), 30);
+  useGameBack(mode !== "gallery", () => setMode("gallery"));
 
   const [quiz, setQuiz] = useState<QuizItem[]>(buildQuiz);
   const [step, setStep] = useState(0);
@@ -267,3 +269,4 @@ export default function WeatherGame() {
     </div>
   );
 }
+import { useGameBack } from "@/lib/gameBack";
