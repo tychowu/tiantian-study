@@ -1,0 +1,87 @@
+# id|question about sentence 1|question about sentence 2|sample personal answer / final model reflection
+supermarket|What is Mum pushing?|What is the girl holding?|I would buy fruit for a healthy snack.
+bathroom|What is the child playing with?|What is in the bath?|I use soap and water to wash my hands.
+wildlife|What is the giraffe eating?|Where is the zebra standing?|I would like to learn how tall giraffes grow.
+clothes-shop|What is the girl looking at?|What is Mum holding?|I like wearing a T-shirt because it is comfortable.
+music-lesson|What is the boy playing?|What is the girl playing?|I would like to play the drums.
+aquarium|What are the children looking at?|Where is the shark swimming?|I like rays because they look as if they are flying.
+park|What is the woman doing?|What is the boy doing?|I like walking in the park with my family.
+farm|What is the farmer carrying?|Where is the cow standing?|I like sheep because they have soft wool.
+vet|What is the vet doing?|Where is the girl standing?|I can give my pet fresh water and gentle care.
+playground|What is the girl doing?|Where is the boy sitting?|I like the slide because it is fun.
+camping|Where is the family camping?|What is Dad playing?|I would take a torch and a sleeping bag.
+snow-day|What is the girl making?|What is the boy pulling?|I would like to build a snowman.
+water-park|What is the child coming down?|What is the girl doing?|I would take a towel and goggles to the pool.
+campervan|What is the family doing?|What is Dad cooking on?|I would pack sandwiches and water for a picnic.
+aeroplane|Where are the passengers sitting?|What is the flight attendant bringing?|I would like to fly to visit my family.
+garage|What is the mechanic checking?|What is the other worker carrying?|A mechanic can help fix a broken car.
+police-station|Who is the woman talking to?|What is the officer writing in?|I could ask a police officer to help me find my family.
+firefighters|What are the firefighters doing?|What is one firefighter holding?|Firefighters help people during a fire.
+hospital|Who is the nurse helping?|Who is the doctor talking to?|I can tell an adult when someone feels unwell.
+new-baby|Who is Mum holding?|Where is Dad sitting?|I can use a quiet voice when a baby is sleeping.
+dentist|Where is the boy sitting?|What is the boy doing with his mouth?|I brush my teeth twice a day.
+bank|How are the people waiting?|Who is the cashier helping?|I can wait for my turn without pushing.
+office|What are the four people doing?|What is one person pointing at?|People can use a pen and a notebook to write notes.
+cooking-show|What is the cook making?|What is she using to stir the pot?|I would like to learn to make soup with an adult.
+fishing|What are Dad and his daughter doing?|What are they wearing?|I might see birds and fish on a boat trip.
+film-studio|What is the actor wearing?|What is the director doing?|I would like to make a funny space film.
+cafe|What are the two friends doing?|What is the waiter bringing?|I would order a sandwich and a drink.
+funfair|Who are the children walking with?|What is one child holding?|I would choose the big wheel to see the view.
+school-play|What are the children doing?|What is the girl wearing?|I would like to play a rabbit in a school play.
+museum|What is the guide talking about?|What are the children looking at?|I would like to learn about dinosaurs.
+classroom|What is the teacher showing the class?|What is the girl doing?|I like science because I enjoy finding things out.
+petrol-station|What is the driver doing?|Is the car engine on or off?|Some cars need petrol and others use electricity.
+science-lesson|What is the class making?|What is the teacher adding?|I think more foam will flow out of the model.
+dog-show|Who are the dogs standing with?|What is the judge holding?|A dog can learn to sit and wait.
+bakery|What is the baker holding?|Who is the girl choosing a cake with?|I would choose a bun to share with my family.
+nursery|What is one child building with?|What is another child drawing?|I would like to build a tower with blocks.
+road-accident|Why have the car and van stopped?|What is the police officer doing?|I would stay away so I can be safe and helpers have space.
+ambulance|What has arrived at the hospital?|What are the paramedics moving?|An ambulance needs room to reach people who need help.
+library|What is the girl choosing?|Where is the boy reading?|I like books about animals.
+laundry|What are Mum and her son doing?|What is Mum folding?|I can help put clean socks together.
+sightseeing|What is the guide showing the visitors?|What is she holding?|I would like to visit an old castle.
+new-year|What is the family celebrating?|What is Grandma giving the girl?|I enjoy visiting my family at Chinese New Year.
+sleepover|What are the friends having?|Where are they sitting?|I would take my pyjamas and my favourite teddy bear.
+egg-hunt|What are the children looking for?|Where has the girl found an egg?|I would hide an egg beside a flowerpot.
+cinema|What are the friends watching?|How are they sitting?|Funny animal films make me laugh.
+dragon-boats|What is on TV?|How are the paddlers moving?|I would like to watch a race and hear the drums.
+japanese-restaurant|What kind of meal is the family having?|What is Dad holding?|I would like to try a bowl of noodles.
+bowling|What is the boy rolling?|Where is the ball going?|I can cheer for my friend while waiting for my turn.
+fireworks|What is the family watching?|What fills the night sky?|I can see red and yellow fireworks.
+strawberry-farm|What are Mum and her daughter picking?|What is the girl putting in her basket?|I would like to pick ripe strawberries.
+mothers-day|Who is the surprise for?|What are the children giving Mum?|I could make a card to say thank you.
+dim-sum|What is the family eating together?|What is Grandpa pouring?|I would choose dumplings and a soft bun.
+water-sports|What are the two people paddling?|What is the family riding on?|I would like to try canoeing with an instructor.
+hair-salon|What is the hairdresser doing?|How is the boy sitting?|I feel calm when I know what the hairdresser will do.
+beach|What is the girl building?|What is her brother collecting?|I would like to make a big sandcastle.
+bouncy-castle|What are the children doing?|What is one child coming down?|Children can give each other space and take turns.
+typhoon|What is the strong wind doing?|Where is the rain falling?|I can read a book safely indoors on a stormy day.
+moving-house|What is the family doing?|What are the movers carrying?|I would pack my books and toys in my moving box.
+baking|What is the family baking?|What is the girl mixing?|I would like to bake cookies with an adult.
+christmas-market|Where is the family walking?|What does the stall sell?|I would like to see the bright Christmas lights.
+pe|What lesson are the children having?|What is one group practising with?|I enjoy playing ball games in PE.
+beach-cleanup|What are the children helping to do?|What are they wearing?|I can take my rubbish home and leave shells on the beach.
+go-karts|What are the children driving?|What are they wearing?|Helmets and seat belts help the drivers stay safe.
+graduation|What are the children celebrating?|What are they wearing?|I am proud of learning to read new words.
+thailand|What is the family visiting?|What is the guide telling them about?|I would like to see a beautiful temple on a trip.
+badminton|What game are the children playing?|What is the girl hitting?|I would like to play badminton with a friend.
+skiing|Who is the ski teacher helping?|What are they wearing?|I would take a warm coat, gloves and a scarf.
+zoo|Who is the zookeeper talking to?|What is the zebra doing?|Keeping a safe distance protects people and animals.
+wedding|Where are the bride and groom standing?|What is the bride holding?|People can share food and good wishes on a special day.
+sports-games|What are people enjoying?|What are the two players playing?|I would like to learn table tennis.
+painting|What is the girl doing?|What is she wearing?|I would like to paint a picture of flowers.
+dolphins|What is the dolphin doing?|Where is the trainer standing?|I would like to learn how dolphins talk to each other.
+hiking|Where is the family walking?|What is Mum looking at?|I would pack water, a hat and a snack.
+orchestra|What is the orchestra doing?|Who is the conductor guiding?|I would like to hear the gentle sound of a harp.
+board-games|What is the family playing?|What is the girl rolling?|I like playing board games with my family.
+toy-shop|What is the family looking at?|What is the boy pointing at?|I would choose blocks because I like building things.
+buffet|What is the family choosing?|What is Dad putting on his plate?|I can take a little food first and get more if I need it.
+talent-show|What is the girl doing?|Who is watching her?|I would like to sing a song at a talent show.
+gym|What are the adults doing?|What is the woman walking on?|I enjoy walking and stretching.
+concert|What is the singer doing?|What is one musician playing?|I like singing happy songs with my friends.
+mtr|How are the people travelling?|What is the child holding?|I can keep the doors clear and offer a seat to someone who needs it.
+rainy-day|What is falling on the street?|What is the girl wearing?|I take an umbrella and wear boots on a rainy day.
+bookshop|What is the girl choosing?|What is her brother looking at?|I would choose a funny storybook for a friend.
+sharing|What do both children want?|What is Mum helping them talk about?|I could say, "May I have a turn when you finish?"
+lost-child|Who can the boy not find?|Who is he asking for help?|I could ask a police officer or a staff member for help.
+stranger-safety|What is someone offering the girl?|Who is the girl staying beside?|I could say, "I need to check with my parent first."

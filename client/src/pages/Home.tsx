@@ -21,6 +21,7 @@ import RampLabGame from "@/games/RampLabGame";
 import HanziGame from "@/games/HanziGame";
 import CrystalGame from "@/games/CrystalGame";
 import SpeakingGame from "@/games/SpeakingGame";
+import CalendarGame from "@/games/CalendarGame";
 import { APP_VERSION, APP_VERSION_DATE } from "@/lib/version";
 import { getChineseVoiceInfo, onVoicesReady } from "@/lib/speech";
 
@@ -39,6 +40,7 @@ type GameMeta = {
 };
 
 const GAMES: GameMeta[] = [
+  { id: "calendar", title: "日期小探險家", subtitle: "從今天出發，探索年月日、四季和二月的秘密", icon: "📅", img: "/images/cards/calendar-explorer.webp", accent: "#4E93AC", stars: "日曆・月份天數・閏年", Component: CalendarGame },
   { id: "crystal", title: "晶體小花園", subtitle: "升溫、降溫、放晶種，種出閃亮的晶簇", icon: "💎", img: "/images/cards/crystal-garden.webp", accent: "#8b68c7", stars: "過飽和・結晶・實物圖鑑", Component: CrystalGame },
   {
     id: "matter-lab",

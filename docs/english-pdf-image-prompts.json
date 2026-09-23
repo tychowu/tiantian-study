@@ -1,0 +1,604 @@
+[
+  {
+    "id": "supermarket",
+    "prompt": "Use case: illustration-story. Create one NEW landscape 1536x1024 educational picture-talk illustration for ages 5-8. Reference image is STYLE ONLY: match simple flat 2D children's textbook cartoon, clear dark outlines, bright cheerful solid colours, rounded friendly faces, minimal shading, no 3D. Scene: supermarket. Left: a mother pushes a shopping trolley containing a loaf of bread, apples and a milk carton. Centre: a young girl holding a shopping basket looks at a shelf of cans. Right: a male cashier behind checkout scans a bottle of cooking oil while Dad pays. Shelf background neatly spaced groceries. Every main object large and recognisable. No printed words, no title, no logo, no watermark, no inset panels. One coherent eye-level scene, all figures fully clothed. Distinct spatial positions to support clickable vocabulary.",
+    "image": "client/public/images/stories/english-pdf-supermarket.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "bathroom",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene in the bathroom. A child is playing with a toy duck. There are bubbles in the bath. Mum is holding a towel nearby. The soap is beside the sink. Include these clearly visible vocabulary subjects: a bath, bubbles, a duck, a towel, a sink, a mirror, soap, shampoo. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-bathroom.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "wildlife",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene beside a river in the wild. A giraffe is eating leaves. A zebra is standing on the grass. A hippo is resting in the river. A monkey is sitting in a tree. Include these clearly visible vocabulary subjects: a giraffe, a zebra, a hippo, a monkey, a tree, grass, a river, a bird. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-wildlife.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "clothes-shop",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a clothes shop. A girl is looking at a dress. Mum is holding a shirt. Dad is trying on a coat. The cashier is standing behind the counter. Include these clearly visible vocabulary subjects: a dress, a shirt, shoes, a mirror, a coat, a bag, a hanger, a cashier. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-clothes-shop.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "music-lesson",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene in a music room. A boy is playing a drum. A girl is playing a flute. Another child is playing a cello. The teacher is holding a violin. Include these clearly visible vocabulary subjects: a drum, a flute, a cello, a violin, a teacher, a chair, music, a bow. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-music-lesson.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "aquarium",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at an aquarium. The children are looking into a big tank. A shark is swimming near the top. A ray is swimming near the sand. Colourful fish are swimming around the coral. Include these clearly visible vocabulary subjects: a shark, a ray, a fish, a seahorse, a jellyfish, coral, a tank, a child. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-aquarium.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "park",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene in a park. A woman is walking her dog. A boy wearing a helmet is skating. A man is reading on a bench. A swan is swimming in the pond. Include these clearly visible vocabulary subjects: a dog, a pond, a swan, a bench, a book, a tree, a helmet, skates. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-park.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "farm",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene on a farm. The farmer is carrying some hay. A cow is standing beside the barn. A pig is resting in its pen. A cat is sitting near the tractor. Include these clearly visible vocabulary subjects: a farmer, a tractor, a barn, a cow, a pig, a sheep, hay, a cat. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-farm.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "vet",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at the vet's clinic. The vet is checking a dog. A girl is standing beside her pet. A cat is waiting in a pet carrier. Dad is sitting on a chair. Include these clearly visible vocabulary subjects: a vet, a dog, a cat, a table, a basket, a chair, a bandage, a pet carrier. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-vet.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "playground",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a playground. A girl is going down the slide. A boy is sitting on a swing. Two children are on a seesaw. Another child is making a sandcastle. Include these clearly visible vocabulary subjects: a slide, a swing, a seesaw, sand, a bucket, a spade, a ball, a bench. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-playground.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "camping",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a campsite. The family is camping in the hills. Dad is playing a guitar. Mum is looking at a map. The children are sitting safely away from the small fire. Include these clearly visible vocabulary subjects: a tent, a guitar, a map, a torch, a backpack, a sleeping bag, a mountain, a campfire. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-camping.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "snow-day",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene in a snowy park. A girl is making a snowman. A boy is pulling a sledge. Two children are skating on the ice. Everyone is wearing warm clothes. Include these clearly visible vocabulary subjects: a snowman, a sledge, skates, a scarf, gloves, a hat, snow, a tree. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-snow-day.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "water-park",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a water park. A child is coming down a water slide. A girl is floating in the pool. Dad is staying close to his child. A lifeguard is watching the swimmers. Include these clearly visible vocabulary subjects: a slide, a pool, a float, goggles, a towel, a sunbed, an umbrella, a lifeguard. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-water-park.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "campervan",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene beside a lake. The family is having a picnic. Dad is cooking food on a barbecue. The children are throwing a frisbee. Mum is putting plates on a picnic table. Include these clearly visible vocabulary subjects: a campervan, a lake, a barbecue, a cooler, a plate, a frisbee, a chair, a tree. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-campervan.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "aeroplane",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene on an aeroplane. The passengers are sitting in their seats. A flight attendant is bringing drinks. A girl is looking out of the window. Her seat belt is fastened. Include these clearly visible vocabulary subjects: a seat, a window, a tray, a cup, a trolley, a seat belt, a bag, a flight attendant. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-aeroplane.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "garage",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a garage. A mechanic is checking a car. Another worker is carrying a tyre. The bonnet is open. Tools are ready in a toolbox. Include these clearly visible vocabulary subjects: a mechanic, a car, a tyre, a toolbox, a spanner, a battery, a jack, a wheel. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-garage.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "police-station",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a police station. A woman is talking to a police officer. The officer is writing in a notebook. Another officer is answering the phone. A child is sitting beside her dad. Include these clearly visible vocabulary subjects: a police officer, a desk, a chair, a phone, a computer, a notebook, a clock, a bag. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-police-station.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "firefighters",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene outside a house. Firefighters are putting out a fire. One firefighter is holding a hose. Water is spraying towards the flames. The family is waiting safely far away. Include these clearly visible vocabulary subjects: a firefighter, a fire engine, a hose, a ladder, a helmet, water, smoke, a hydrant. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-firefighters.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "hospital",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a hospital. A nurse is helping a man in a wheelchair. A doctor is talking to a girl. The girl has a bandage on her arm. Her mum is sitting beside her. Include these clearly visible vocabulary subjects: a doctor, a nurse, a wheelchair, a chair, a desk, a bandage, a bag, a clock. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-hospital.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "new-baby",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene in a hospital room. Mum is holding her new baby. Dad is sitting beside the bed. The baby is wrapped in a soft blanket. There are flowers on a small table. Include these clearly visible vocabulary subjects: a baby, a blanket, a bed, a pillow, a chair, flowers, a balloon, a teddy bear. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-new-baby.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "dentist",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at the dentist's clinic. A boy is sitting in a dental chair. He is opening his mouth. The dentist is checking his teeth. Mum is waiting beside him. Include these clearly visible vocabulary subjects: a dentist, a mask, gloves, a chair, a lamp, a mirror, teeth, a toothbrush. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-dentist.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "bank",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a bank. People are waiting in a queue. A cashier is helping a customer. A woman is using a cash machine. A child is sitting beside his dad. Include these clearly visible vocabulary subjects: a counter, a cashier, a queue, a clock, a machine, a card, a bag, a chair. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-bank.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "office",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene in an office. Four people are having a meeting. One person is pointing at a chart. Another person is writing notes. There are laptops on the table. Include these clearly visible vocabulary subjects: a laptop, a table, a chair, a chart, a cup, a notebook, a pen, a window. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-office.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "cooking-show",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene in a television studio. A cook is making soup. She is stirring a pot with a spoon. A camera operator is filming her. Vegetables are ready on the table. Include these clearly visible vocabulary subjects: a cook, a pot, a spoon, a camera, a light, an apron, vegetables, a bowl. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-cooking-show.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "fishing",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene on a boat. Dad and his daughter are fishing. They are wearing life jackets. A fish is splashing beside the boat. Mum is taking a photo. Include these clearly visible vocabulary subjects: a boat, a fishing rod, a bucket, a fish, a life jacket, a camera, a bird, water. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-fishing.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "film-studio",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene in a film studio. An actor is wearing a space costume. The director is giving instructions. A camera operator is filming the scene. Another worker is holding a microphone. Include these clearly visible vocabulary subjects: a camera, a microphone, a light, a chair, a screen, a costume, a megaphone, a cable. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-film-studio.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "cafe",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a cafe. Two friends are talking at a table. A waiter is bringing drinks. A slice of cake is on a plate. Another customer is using a laptop. Include these clearly visible vocabulary subjects: a cup, a cake, a table, a chair, a menu, a tray, a plant, a laptop. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-cafe.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "funfair",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a funfair. The children are walking with their parents. One child is holding a balloon. A clown is waving to them. People are waiting for a ride. Include these clearly visible vocabulary subjects: a big wheel, a balloon, popcorn, a ticket, a tent, a clown, a ride, a stall. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-funfair.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "school-play",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene on a school stage. The children are acting in a play. A girl is wearing a crown. A boy is dressed as a rabbit. The audience is watching quietly. Include these clearly visible vocabulary subjects: a stage, a curtain, a crown, a costume, a microphone, a rabbit, a tree, an audience. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-school-play.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "museum",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a museum. A guide is talking about a dinosaur. The children are looking at its huge bones. A boy is pointing at a footprint. A girl is taking a photo. Include these clearly visible vocabulary subjects: a dinosaur, a bone, a guide, a camera, a child, a display, a footprint, a sign. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-museum.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "classroom",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene in a classroom. The teacher is showing the class a globe. A girl is raising her hand. A boy is reading a book. The children are learning about the world. Include these clearly visible vocabulary subjects: a teacher, a book, a globe, a map, a desk, a chair, a pencil, a school bag. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-classroom.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "petrol-station",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a petrol station. A driver is filling the car with petrol. The car engine is off. A worker is standing near the shop. A family is waiting inside their van. Include these clearly visible vocabulary subjects: a car, a pump, a hose, a shop, a van, a sign, a worker, a bin. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-petrol-station.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "science-lesson",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene in a science classroom. The class is making a model volcano. The teacher is adding vinegar to baking soda. Foam is flowing out of the model. The children are watching through safety goggles. Include these clearly visible vocabulary subjects: a volcano, foam, goggles, a tray, a bottle, a spoon, a bowl, a teacher. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-science-lesson.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "dog-show",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a dog show. Three dogs are standing with their owners. A judge is holding a trophy. One dog is wearing a ribbon. People are clapping for the dogs. Include these clearly visible vocabulary subjects: a dog, a lead, a trophy, a ribbon, a judge, a podium, a ball, an owner. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-dog-show.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "bakery",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a bakery. A baker is holding a tray of buns. A girl is choosing a cake with her mum. Fresh bread is on the shelf. The cashier is putting a bun in a bag. Include these clearly visible vocabulary subjects: a baker, bread, a cake, a bun, a tray, a bag, a counter, cupcakes. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-bakery.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "nursery",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a nursery. One child is building with blocks. Another child is drawing a picture. A girl is playing with soft clay. The teacher is helping the children. Include these clearly visible vocabulary subjects: a teacher, blocks, crayons, paper, a teddy bear, clay, a toy car, a mat. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-nursery.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "road-accident",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene beside a road. A car and a van have stopped after a crash. A police officer is keeping people away. An adult is calling for help. The children are waiting safely on the pavement. Include these clearly visible vocabulary subjects: a car, a van, a police officer, a phone, a cone, a helmet, a motorbike, a pavement. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-road-accident.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "ambulance",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene outside a hospital. An ambulance has arrived at the hospital. Two paramedics are moving a stretcher. A patient is covered with a blanket. A nurse is waiting at the door. Include these clearly visible vocabulary subjects: an ambulance, a stretcher, a blanket, a paramedic, a door, a wheel, a bag, a light. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-ambulance.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "library",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a library. A girl is choosing a book. A boy is reading at a table. The librarian is helping a family. Everyone is using a quiet voice. Include these clearly visible vocabulary subjects: a book, a shelf, a table, a chair, a librarian, a lamp, a bag, a bookmark. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-library.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "laundry",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene in a laundry room. Mum and her son are doing the laundry. Mum is folding a towel. The boy is putting socks together. Clean shirts are hanging on a rail. Include these clearly visible vocabulary subjects: a washing machine, a basket, a shirt, a towel, a sock, a peg, a hanger, a shelf. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-laundry.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "sightseeing",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at an old building. A guide is showing visitors an old building. She is holding a small flag. A man is taking a photo. The children are listening with their parents. Include these clearly visible vocabulary subjects: a guide, a flag, a camera, a hat, a map, a pillar, a backpack, a gate. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-sightseeing.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "new-year",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at home for Chinese New Year. The family is celebrating Chinese New Year. Grandma is giving a girl a red packet. The girl is smiling and saying thank you. There are oranges and sweets on the table. Include these clearly visible vocabulary subjects: a red packet, a lantern, oranges, sweets, flowers, a tray, a sofa, a family. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-new-year.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "sleepover",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene in a bedroom. Three friends are having a sleepover. They are sitting together on a bed. One child is telling a funny story. Their teddy bears are beside them. Include these clearly visible vocabulary subjects: pyjamas, a pillow, a blanket, a bed, a lamp, a teddy bear, a book, the moon. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-sleepover.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "egg-hunt",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene in a garden at Easter. The children are looking for colourful eggs. A girl has found an egg by a tree. A boy is putting an egg in his basket. Their parents are watching nearby. Include these clearly visible vocabulary subjects: an egg, a basket, a rabbit, flowers, grass, a tree, a hat, a fence. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-egg-hunt.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "cinema",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a cinema. Three friends are watching a film. They are sitting side by side. One child is holding some popcorn. They are looking at the big screen. Include these clearly visible vocabulary subjects: popcorn, a cup, a seat, a screen, a ticket, a curtain, a bag, a straw. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-cinema.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "dragon-boats",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at home during Dragon Boat Festival. The family is watching a dragon boat race on TV. The paddlers are moving together. Mum is holding a rice dumpling. Grandpa is showing the children how to wrap one. Include these clearly visible vocabulary subjects: a television, a dragon boat, a paddle, a drum, a rice dumpling, a leaf, a plate, a family. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-dragon-boats.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "japanese-restaurant",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a Japanese restaurant. The family is having a Japanese meal. Dad is holding chopsticks. A girl is eating noodles. Mum is sharing a plate of sushi. Include these clearly visible vocabulary subjects: sushi, noodles, chopsticks, a bowl, a plate, a cup, rice, a menu. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-japanese-restaurant.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "bowling",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a bowling alley. A boy is rolling a bowling ball. The ball is moving towards the pins. A girl is waiting for her turn. They are wearing bowling shoes. Include these clearly visible vocabulary subjects: a ball, pins, a lane, shoes, a bench, a screen, a girl, a boy. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-bowling.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "fireworks",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene beside Victoria Harbour. The family is watching fireworks. Bright colours fill the night sky. The lights shine on the water. A boat is passing in the harbour. Include these clearly visible vocabulary subjects: fireworks, a boat, a building, water, a railing, a camera, a child, the sky. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-fireworks.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "strawberry-farm",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene on a strawberry farm. Mum and her daughter are picking strawberries. The girl is putting a ripe berry in a basket. Rows of green plants grow in the field. There is jam and juice at a nearby stall. Include these clearly visible vocabulary subjects: strawberries, a basket, leaves, a hat, a plant, jam, juice, a stall. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-strawberry-farm.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "mothers-day",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at home on Mother's Day. The children have a surprise for Mum. They are giving her flowers and a card. Mum is giving them a big hug. A small cake is ready on the table. Include these clearly visible vocabulary subjects: flowers, a card, a cake, a table, a hug, a vase, a heart, a family. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-mothers-day.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "dim-sum",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a dim sum restaurant. The family is having dim sum together. Grandpa is pouring tea. Mum is opening a bamboo steamer. The children are sharing some dumplings. Include these clearly visible vocabulary subjects: a teapot, a cup, dumplings, a bun, chopsticks, a plate, a steamer, a table. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-dim-sum.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "water-sports",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a lake. Two people are paddling a canoe. A family is riding on a banana boat. Everyone on the water is wearing a life jacket. An instructor is watching from the beach. Include these clearly visible vocabulary subjects: a canoe, a paddle, a life jacket, a boat, a helmet, a rope, water, a beach. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-water-sports.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "hair-salon",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a hair salon. A hairdresser is cutting a boy's hair. The boy is sitting still in a chair. A woman is having her hair washed. Another worker is holding a hairdryer. Include these clearly visible vocabulary subjects: a mirror, a comb, scissors, a chair, a towel, a hairdryer, a sink, a hairdresser. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-hair-salon.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "beach",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a beach. A girl is building a sandcastle. Her brother is collecting shells. Mum is sitting under an umbrella. Dad is watching the children near the water. Include these clearly visible vocabulary subjects: sand, a bucket, a spade, a sandcastle, an umbrella, a towel, a shell, the sea. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-beach.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "bouncy-castle",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at an outdoor play area. The children are jumping on a bouncy castle. One child is coming down its small slide. Their shoes are off on the mat. A parent is watching at the entrance. Include these clearly visible vocabulary subjects: a bouncy castle, a slide, a child, a mat, shoes, a fence, a tree, a parent. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-bouncy-castle.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "typhoon",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at home on a typhoon day. Strong wind is bending a tree outside. Rain is falling against the closed window. The family is staying indoors away from the glass. Dad is listening to the weather report. Include these clearly visible vocabulary subjects: rain, a tree, a window, a sofa, a torch, a radio, a blanket, a family. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-typhoon.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "moving-house",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene outside a new home. The family is moving to a new home. Two movers are carrying a sofa. Dad is pushing a trolley of boxes. A child is carrying a small plant. Include these clearly visible vocabulary subjects: a van, a box, a chair, a lamp, a plant, a trolley, a sofa, a door. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-moving-house.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "baking",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene in a kitchen. The family is baking cookies. A girl is mixing dough in a bowl. Dad is putting cookies on a tray. Mum is using oven gloves to hold a hot tray. Include these clearly visible vocabulary subjects: flour, eggs, a bowl, a spoon, an apron, a tray, cookies, oven gloves. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-baking.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "christmas-market",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a Christmas market. The family is walking around a Christmas market. A stall sells gingerbread biscuits. A child is pointing at the big tree. Small lights are shining above the stalls. Include these clearly visible vocabulary subjects: a tree, a star, a wreath, a stall, a gift, gingerbread, a scarf, lights. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-christmas-market.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "pe",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene in a school sports hall. The children are having a PE lesson. One group is practising with basketballs. Another group is stretching on mats. The teacher is showing them what to do. Include these clearly visible vocabulary subjects: a teacher, a basketball, a football, a mat, a cone, a bench, a whistle, a hoop. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-pe.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "beach-cleanup",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a beach clean-up. The children are helping to clean the beach. They are wearing gloves. A girl is picking up a bottle with tongs. An adult is helping them sort the rubbish. Include these clearly visible vocabulary subjects: gloves, tongs, a bag, a bottle, a bucket, a bin, a shell, sand. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-beach-cleanup.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "go-karts",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a go-kart track. The children are driving small go-karts. They are wearing helmets and seat belts. A marshal is standing beside the track. A chequered flag marks the finish. Include these clearly visible vocabulary subjects: a go-kart, a helmet, a seat belt, a wheel, a track, a flag, a cone, a marshal. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-go-karts.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "graduation",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a graduation party. The children are celebrating graduation. They are wearing caps and gowns. One child is holding a certificate. Their families are taking photos. Include these clearly visible vocabulary subjects: a gown, a cap, a ribbon, flowers, a balloon, a photo, a stage, a certificate. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-graduation.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "thailand",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene in Thailand. A family is visiting a temple in Thailand. The guide is telling them about the building. A boy is looking at the golden roof. A sightseeing bus is waiting nearby. Include these clearly visible vocabulary subjects: a temple, a bus, a guide, a hat, a camera, a map, a tree, a backpack. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-thailand.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "badminton",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene on a badminton court. Two children are playing badminton. A girl is hitting the shuttlecock. Her friend is ready on the other side. Their water bottles are beside the court. Include these clearly visible vocabulary subjects: a racket, a shuttlecock, a net, shoes, a line, a bottle, a bag, a player. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-badminton.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "skiing",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a ski resort. A ski teacher is helping two children. They are wearing helmets and goggles. The children are practising on a gentle slope. Snow covers the mountains behind them. Include these clearly visible vocabulary subjects: skis, poles, a helmet, goggles, snow, a mountain, a chalet, a scarf. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-skiing.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "zoo",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a zoo. A zookeeper is talking to a family. A zebra is eating in a grassy area. A tiger is resting in a separate enclosure. The children are watching from behind the fence. Include these clearly visible vocabulary subjects: a zookeeper, a zebra, a tiger, a monkey, a pond, a fence, a tree, a sign. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-zoo.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "wedding",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a wedding. The bride and groom are standing under an arch. The bride is holding flowers. Their families are smiling at them. A wedding cake is on a nearby table. Include these clearly visible vocabulary subjects: a bride, a groom, flowers, a ring, a ribbon, a cake, a chair, an arch. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-wedding.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "sports-games",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a sports centre. Many people are enjoying different sports. Two players are playing table tennis. A jumper is jumping over a bar. Swimmers are racing in a nearby pool. Include these clearly visible vocabulary subjects: a table tennis bat, a ball, a net, a high jump bar, a mat, a medal, a whistle, a swimmer. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-sports-games.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "painting",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene in an art room. A girl is painting a picture. She is wearing an apron. She is holding a brush and a palette. A vase of flowers is beside her easel. Include these clearly visible vocabulary subjects: a brush, paint, a palette, an easel, paper, an apron, a jar, flowers. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-painting.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "dolphins",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a marine park. A dolphin is jumping out of the water. A trainer is standing beside the pool. Visitors are watching from behind a railing. There is a bucket of fish nearby. Include these clearly visible vocabulary subjects: a dolphin, a pool, a hoop, a trainer, a fish, a bucket, a ball, a railing. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-dolphins.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "hiking",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene on a hill path. The family is walking in the hills. Mum is looking at a map. Dad is holding a compass. The children are staying on the path. Include these clearly visible vocabulary subjects: a map, a compass, a backpack, a hat, a bottle, a path, a mountain, a tree. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-hiking.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "orchestra",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene in a concert hall. An orchestra is playing music. The conductor is guiding the musicians. Some musicians are playing violins. Others are playing the flute and trumpet. Include these clearly visible vocabulary subjects: a conductor, a violin, a flute, a trumpet, a harp, a drum, music, a bow. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-orchestra.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "board-games",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene in a living room. The family is playing a board game. A girl is rolling the dice. Her brother is moving a counter. Mum and Dad are waiting for their turns. Include these clearly visible vocabulary subjects: a board game, dice, a counter, a card, a mat, a sofa, a cushion, a plant. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-board-games.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "toy-shop",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a toy shop. A family is looking at toys. A boy is pointing at a robot. A girl is holding a teddy bear. Their dad is carrying a shopping basket. Include these clearly visible vocabulary subjects: a robot, a doll, blocks, a toy car, a ball, a teddy bear, a basket, a shelf. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-toy-shop.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "buffet",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a hotel buffet. The family is choosing food at a buffet. Dad is putting salad on his plate. A girl is choosing some fruit. Mum is carrying a glass of juice. Include these clearly visible vocabulary subjects: a plate, a tray, salad, bread, fruit, juice, a cake, a spoon. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-buffet.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "talent-show",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a school talent show. A girl is dancing on the stage. Three judges are watching her. The audience is clapping. Bright lights shine on the dancer. Include these clearly visible vocabulary subjects: a dancer, a stage, a curtain, a judge, a table, a microphone, a light, an audience. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-talent-show.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "gym",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a gym. Adults are exercising at the gym. A woman is walking on a treadmill. A man is lifting small weights. A trainer is showing someone how to stretch. Include these clearly visible vocabulary subjects: a treadmill, weights, a mat, a bench, a bottle, a towel, a trainer, a clock. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-gym.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "concert",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a concert. A singer is singing on the stage. One musician is playing a guitar. Another musician is playing the drums. The audience is clapping along. Include these clearly visible vocabulary subjects: a singer, a guitar, a drum, a microphone, a light, a stage, a speaker, an audience. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-concert.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "mtr",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene on an MTR train. People are travelling on an MTR train. A child is standing beside a parent and holding a handrail. An older passenger is sitting with a walking stick. Everyone is keeping the doors clear. Include these clearly visible vocabulary subjects: a seat, a handrail, a door, a window, a bag, a map, headphones, a walking stick. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-mtr.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "rainy-day",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a bus stop on a rainy day. Rain is falling on the street. A girl is wearing boots and a raincoat. People are waiting under a bus shelter. A bus is coming towards the stop. Include these clearly visible vocabulary subjects: an umbrella, boots, a puddle, a bus, a raincoat, a bag, a shelter, rain. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-rainy-day.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "bookshop",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene at a bookshop. A girl is choosing a storybook. Her brother is looking at a comic. Mum is paying at the counter. Books fill the shelves around them. Include these clearly visible vocabulary subjects: a book, a shelf, a cashier, a bag, a bookmark, a comic, a counter, a child. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-bookshop.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "sharing",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene in a living room. Two children both want the same teddy bear. Mum is helping them talk about their feelings. The children are learning to take turns. There are other toys they can play with together. Include these clearly visible vocabulary subjects: a teddy bear, a toy box, a cushion, a sofa, blocks, a book, a girl, a boy. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-sharing.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "lost-child",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene in a park. A boy cannot find his family. He is asking a police officer for help. The officer is kneeling down to listen. They are staying in the park while help is arranged. Include these clearly visible vocabulary subjects: a police officer, a child, a bench, a path, a tree, a fountain, a backpack, a notebook. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-lost-child.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  },
+  {
+    "id": "stranger-safety",
+    "prompt": "Use case: illustration-story. Asset: one landscape 1536x1024 picture-talk illustration for children aged 5-8. Input image is STYLE REFERENCE ONLY, not subject: match the existing flat 2D children's textbook cartoon, friendly rounded faces, clear dark outlines, bright clean solid colours, minimal shading, no 3D, no painterly texture. One coherent spacious scene, recognisable objects, no inset panels, no printed words, no titles, no logo or watermark. Scene near a playground. Someone is offering a girl a sweet. The girl is staying beside her parent. She is checking with her parent first. She does not need to take the sweet or go anywhere. Include these clearly visible vocabulary subjects: a child, a parent, a sweet, a bag, a bench, a gate, a slide, a tree. Child-safety: adults supervise, no graphic injury, no unsafe behaviour; bathing subject concealed by bath and bubbles, caregiver nearby.",
+    "image": "client/public/images/stories/english-pdf-stranger-safety.webp",
+    "method": "built-in image_gen",
+    "reference": "/Users/tychowu/WorkBuddy/天天学习空间/client/public/images/stories/english-garden.webp"
+  }
+]

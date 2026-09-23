@@ -7,6 +7,7 @@ export type Story = {
   ending: string; example: string;
 };
 import { MORE_STORIES } from "./storiesMore";
+import chinesePdfStories from "./chinesePdfStories.json";
 export const STORIES: Story[] = [
   {
     id: "rain", title: "雨天的紅雨傘", focus: "人物・動作・關心", emoji: "☔",
@@ -66,4 +67,5 @@ export const STORIES: Story[] = [
     example: "起初，女孩把種子放進花盆。接着，她拿水壺給泥土澆水。後來，綠色的小芽冒出來了！我猜她等了好些日子，所以看到小芽時特別開心。最後，她把小芽畫在紙上，小貓在旁邊看。我想她明天還會再畫一張，看看小芽有沒有長高。",
   },
   ...MORE_STORIES,
+  ...chinesePdfStories.map(story => ({ ...story, format: "four" as const })),
 ];

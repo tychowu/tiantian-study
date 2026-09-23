@@ -1,11 +1,15 @@
+import pdfStories from "./englishPdfStories.json";
+
 export type EnglishStory = {
   id: string; title: string; image: string; alt: string;
+  category?: string;
+  source?: { pdfPage: number; card: number };
   words: { text: string; x: number; y: number; sentence: string }[];
   questions: { text: string; starter: string; idea: string }[];
   model: string[];
 };
 
-export const ENGLISH_STORIES: EnglishStory[] = [
+const ORIGINAL_ENGLISH_STORIES: EnglishStory[] = [
   {
     id: "garden", title: "A Day in the Garden", image: "english-garden",
     alt: "A family is working in a sunny garden. Mum is planting flowers. The girl is watering the plants. Dad is holding a spade. There is a bucket beside him.",
@@ -51,7 +55,7 @@ export const ENGLISH_STORIES: EnglishStory[] = [
     model: ["This is a living room.", "Dad, Mum and the girl are sitting on the sofa.", "Dad is reading a book. Mum and the girl are listening.", "Their puppy is on the armchair.", "I can see a floor lamp, family pictures and a television.", "The family looks happy. I think they enjoy story time."],
   },
   {
-    id: "canteen", title: "Lunch at School", image: "english-canteen",
+    id: "canteen", title: "Lunch at School", image: "english-canteen", category: "School and Learning",
     alt: "Children are having lunch in the school canteen. A boy is getting food on a tray. A girl is waiting behind him. At the table, a girl is eating and a boy is drinking milk. There is fruit on the table.",
     words: [
       { text: "canteen", x: 48, y: 13, sentence: "The children are in the school canteen." },
@@ -73,3 +77,5 @@ export const ENGLISH_STORIES: EnglishStory[] = [
     model: ["The children are in the school canteen.", "It is lunchtime.", "One boy is getting food on a tray. A girl is waiting behind him.", "At the table, a girl is eating rice and vegetables.", "A boy is drinking milk. There are apples and bananas on the table.", "The children look happy to have lunch together."],
   },
 ];
+
+export const ENGLISH_STORIES: EnglishStory[] = [...ORIGINAL_ENGLISH_STORIES, ...pdfStories];
